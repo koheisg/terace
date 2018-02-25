@@ -26,6 +26,11 @@
     <%= form.select :state, Article.states.keys ,id: :article_state %>
   </div>
 
+  <div class="field">
+    <%= form.label :permalink %>
+    <%= form.text_field :permalink, id: :article_permalink %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
