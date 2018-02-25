@@ -1,15 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<header class="header">
+  <div class="logo">
+    <h1><a href='/'>dreamin' blog</a></h1>
+  </div>
+</header>
 
-<p>
-  <strong>Content:</strong>
+<article class="article article--top">
+  <header>
+    <p class="published_at">
+      <time datetime="<%= l @article.created_at, format: "%Y-%m-%d" %>">
+        <%= l @article.created_at, format: "%b %d, %Y" %>
+      </time>
+    </p>
+    <h1>
+      <%= link_to @article do %>
+        <%= @article.title %>
+      <% end %>
+    </h1>
+  </header>
   <%= @article.content %>
-</p>
-
+</article>
 
 <%- if @article.user.id == current_user&.id %>
   <%= link_to 'Edit', edit_article_path(@article) %>
