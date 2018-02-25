@@ -19,7 +19,7 @@
       <% end %>
     </h1>
   </header>
-  <%= @article.content %>
+  <%= @article.content_html %>
 </article>
 
 <%- if @article.user.id == current_user&.id %>
