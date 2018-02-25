@@ -3,6 +3,6 @@ class Articles::UsersController < ApplicationController
 
   def index
     @user = User.find_by!(name: params[:user_name])
-    @articles = @user.articles
+    @articles = @user.articles.published
   end
 end

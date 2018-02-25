@@ -21,6 +21,11 @@
     <%= form.text_area :content, id: :article_content %>
   </div>
 
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.select :state, Article.states.keys ,id: :article_state %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
