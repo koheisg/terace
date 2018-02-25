@@ -18,9 +18,7 @@
       </time>
     </p>
     <h1 itemprop="headline">
-      <%= link_to @article do %>
-        <%= @article.title %>
-      <% end %>
+      <%= @article.title %>
       <%- if @article.user.id == current_user&.id %>
         <small>
           (<%= link_to 'Edit', edit_article_path(@article) %>)
