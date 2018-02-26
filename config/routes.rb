@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     mount Terrace::Engine => "/"
   end
 
-  constraints(-> (req) { req.subdomain.blank? }) do
+  constraints(-> (req) { %w[lvh.me terace.herokuapp.com].include?(req.host) }) do
     resources :sessions, only: [:new, :create, :destroy]
     resources :users
     resources :articles, expect: [:index, :show]
