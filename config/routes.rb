@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  mount Terrace::Engine => "/terrace"
-
   constraints(-> (req) { req.subdomain.present? }) do
-    root to: 'articles/users#index'
-    get '/:permalink', to: 'articles#show', permalink: /[^\s]+/
+    mount Terrace::Engine => "/"
   end
 
   constraints(-> (req) { req.subdomain.blank? }) do

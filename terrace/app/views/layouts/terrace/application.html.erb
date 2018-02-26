@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Terrace</title>
+  <%= yield('title') %>
   <%= stylesheet_link_tag    "terrace/application", media: "all" %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= "#{controller.controller_name} #{controller.controller_name}--#{controller.action_name}" %>">
 
 <%= yield %>
 
