@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
+  has_many_attached :images
+  has_one_attached :ogp_image
 
   enum state: { draft: 0, published: 1 }
 
