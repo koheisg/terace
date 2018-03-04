@@ -2,11 +2,10 @@ class ArticlesController < ApplicationController
   skip_before_action :verify_user, only: :show
   before_action :set_article, only: [:edit, :update, :destroy]
 
-  # GET /articles/1
-  # GET /articles/1.json
-  def show
-    @user = User.find_by!(name: request.subdomain)
-    @article = Article.published.find_by!(permalink: params[:permalink])
+  # GET /articles
+  # GET /articles.json
+  def index
+    @articles = current_user.articles
   end
 
   # GET /articles/new
