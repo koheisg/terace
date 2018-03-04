@@ -33,6 +33,10 @@ gem 'bcrypt'
 gem 'html-pipeline'
 gem 'commonmarker'
 
+# A ruby wrapper for ImageMagick or GraphicsMagick command line.
+gem 'mini_magick'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
