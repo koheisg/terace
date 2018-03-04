@@ -2,6 +2,8 @@ class Article < ApplicationRecord
   belongs_to :user
   has_many_attached :images
   has_one_attached :ogp_image
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   enum state: { draft: 0, published: 1 }
 
