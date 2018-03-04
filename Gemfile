@@ -33,9 +33,11 @@ gem 'bcrypt'
 gem 'html-pipeline'
 gem 'commonmarker'
 
+# FrontMatterParser is a library to parse a front matter from strings or files. It allows writing syntactically correct source files, marking front matters as comments in the source file language.
+gem 'front_matter_parser'
+
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick'
-
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

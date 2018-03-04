@@ -105,6 +105,7 @@ GEM
     erubi (1.7.0)
     execjs (2.7.0)
     ffi (1.9.23)
+    front_matter_parser (0.1.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     html-pipeline (2.7.1)
@@ -213,6 +214,7 @@ DEPENDENCIES
   coffee-rails
   commonmarker
   dotenv-rails
+  front_matter_parser
   html-pipeline
   jbuilder
   listen
