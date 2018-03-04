@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :state %>
-    <%= form.select :state, Article.states.keys ,id: :article_state %>
+    <%= form.select :state, Article.states.keys , id: :article_state %>
   </div>
 
   <div class="field">
@@ -47,6 +47,11 @@
   <div class="field">
     <%= form.label :ogp_image %>
     <%= form.file_field :ogp_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tags %>
+    <%= form.select :tags, Tag.all.map { |v| [ v.name, v.id ] }, include_blank: true, id: :article_tags %>
   </div>
 
   <div class="actions">
