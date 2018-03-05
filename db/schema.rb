@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_04_030919) do
+ActiveRecord::Schema.define(version: 2018_03_05_144804) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2018_03_04_030919) do
     t.integer "user_id"
     t.integer "state"
     t.string "permalink"
+    t.datetime "published_at"
+    t.datetime "modified_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
