@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     resources :sessions, only: [:new, :create, :destroy]
     resources :users
-    resources :articles, expect: [:show]
+    resources :articles, expect: [:show] do
+      collection do
+        resources :drafts, only: :index, module: :articles
+      end
+    end
     resources :tags
   end
 
