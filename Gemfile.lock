@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6d4bcd439de4ca87374dd6ad03a43deeb3a5e1f6
+  revision: 0d7f13a622259ccafe3822d4e4eb7177107974ab
   specs:
     actioncable (6.0.0.alpha)
       actionpack (= 6.0.0.alpha)
@@ -233,7 +233,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
