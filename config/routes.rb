@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :articles, expect: [:show] do
       collection do
         resources :drafts, only: :index, module: :articles
+        resources :published, only: :index, module: :articles
       end
     end
     resources :tags
