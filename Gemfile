@@ -39,6 +39,9 @@ gem 'front_matter_parser'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick'
 
+# ⚡ A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps 
+gem 'kaminari'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
