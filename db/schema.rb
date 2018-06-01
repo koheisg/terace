@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_05_144804) do
+ActiveRecord::Schema.define(version: 2018_03_05_235655) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2018_03_05_144804) do
     t.string "permalink"
     t.datetime "published_at"
     t.datetime "modified_at"
+    t.index ["permalink", "user_id"], name: "index_articles_on_permalink_and_user_id", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_03_05_144804) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
