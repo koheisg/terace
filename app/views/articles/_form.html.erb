@@ -51,7 +51,9 @@
 
   <div class="field">
     <%= form.label :tags %>
-    <%= form.select :tags, Tag.all.map { |v| [ v.name, v.id ] }, include_blank: true, id: :article_tags %>
+    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
   </div>
 
   <div class="actions">
