@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<%- @article.attributes.each do |attr| %>
+  <p>
+  <strong><%= attr.first %>:</strong>
+    <%= attr.last %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

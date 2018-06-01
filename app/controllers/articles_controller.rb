@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   skip_before_action :verify_user, only: :show
-  before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :set_article, only: [:edit, :update, :destroy, :show]
 
   # GET /articles
   # GET /articles.json
@@ -8,9 +8,12 @@ class ArticlesController < ApplicationController
     @articles = current_user.articles.order(created_at: :desc)
   end
 
+  def show
+  end
+
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   # GET /articles/1/edit
@@ -24,7 +27,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to [:edit, @article], notice: 'Article was successfully created.' }
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -38,7 +41,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to [:edit, @article], notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
