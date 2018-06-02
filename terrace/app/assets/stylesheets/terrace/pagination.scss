@@ -1,6 +1,6 @@
 .pagination {
   list-style: none;
-  margin: -140px auto 40px;
+  margin: 40px auto;
   max-width: 720px;
   padding: 0;
 
@@ -10,7 +10,7 @@
     display: block;
   }
 
-  li {
+  &__arrow {
     $background-color: #fff;
     $box-shadow-color: #ccc;
     align-items: center;
@@ -21,6 +21,14 @@
     height: 50px;
     justify-content: center;
     width: 50px;
+
+    &--previous {
+      float: left;
+    }
+
+    &--next {
+      float: right;
+    }
   }
 
   &__previous {
@@ -28,6 +36,6 @@
   }
 
   &__next {
-    float: right;
+    float: left;
   }
 }

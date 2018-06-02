@@ -8,6 +8,8 @@
   <%= render "terrace/article", article: article %>
 <% end %>
 
+<%= paginate @articles, theme: 'terrace' %>
+
 <footer class="footer">
   <hr />
   <p>copyright &copy; <%= Time.current.year %> koheisg All Rights Reserved.</p>
