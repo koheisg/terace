@@ -4,7 +4,7 @@ module Terrace
   class ArticlesController < ApplicationController
     def index
       @user = ::User.find_by!(name: request.subdomain)
-      @articles = @user.articles.published
+      @articles = @user.articles.published.order(created_at: :desc).page(params[:page]).per(5)
     end
 
     def show
