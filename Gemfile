@@ -32,6 +32,7 @@ gem 'bcrypt'
 # GitHub HTML processing filters and utilities
 gem 'html-pipeline'
 gem 'commonmarker'
+gem 'html-pipeline-youtube'
 
 # FrontMatterParser is a library to parse a front matter from strings or files. It allows writing syntactically correct source files, marking front matters as comments in the source file language.
 gem 'front_matter_parser'
@@ -39,7 +40,7 @@ gem 'front_matter_parser'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick'
 
-# ⚡ A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps 
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
 gem 'kaminari'
 
 # Use Capistrano for deployment
