@@ -10,14 +10,20 @@ module Importable
     attr_reader :parsed
 
     def create_article(tags, state, user_id)
-      Article.create(content: parsed.content,
+      Article.create!(content: parsed.content,
                      user_id: user_id,
                      state: state,
                      title: parsed.front_matter['title'],
-                     permalink: parsed.front_matter['blogger_orig_url']&.gsub('http://koheisg.dreamin.cc/', ''),
+                     permalink: _permalink,
                      created_at: _created_at,
                      updated_at: _updated_at,
                      tags: tags || [])
+    end
+
+    def _permalink
+      tmp = parsed.front_matter['blogger_orig_url']&.gsub('http://koheisg.dreamin.cc/', '') || File.basename(@file, '.md').gsub('-', '/') + ".html"
+      p tmp
+      tmp
     end
 
     def _created_at
@@ -29,7 +35,7 @@ module Importable
     end
 
     def create_tags
-      parsed.front_matter['tags']&.map { |tag| ::Tag.create(name: tag) } if parsed.front_matter['tags'].present?
+      parsed.front_matter['tags']&.map { |tag| ::Tag.find_or_create_by!(name: tag) } if parsed.front_matter['tags'].present?
     end
   end
 end

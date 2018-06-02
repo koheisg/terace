@@ -14,6 +14,7 @@ module Importable
       Rails.logger.error file
       p = Importable::Parser.new(file)
       tags = p.create_tags
+      p tags
       p.create_article(tags, state, user_id)
     end
 
