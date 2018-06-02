@@ -13,7 +13,10 @@ class Article < ApplicationRecord
     require 'html/pipeline'
     require 'commonmarker'
 
-    filter = HTML::Pipeline::MarkdownFilter.new(content)
-    filter.call.html_safe
+    pipeline = HTML::Pipeline.new [
+      HTML::Pipeline::MarkdownFilter,
+      HTML::Pipeline::YoutubeFilter,
+    ]
+    pipeline.call(content)[:output].html_safe
   end
 end
