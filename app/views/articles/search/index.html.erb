@@ -3,6 +3,11 @@
 <%= form_with model: @q, local: true, url: search_articles_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
   <%= f.label :title %>
   <%= f.search_field :title %>
+  <%= f.label :state %>
+  <%= f.label :published %>
+  <%= f.radio_button :state, :published %>
+  <%= f.label :draft %>
+  <%= f.radio_button :state, :draft %>
   <%= f.submit %>
 <% end %>
 

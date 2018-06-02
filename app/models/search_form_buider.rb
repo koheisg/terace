@@ -1,4 +1,9 @@
 class SearchFormBuider < ActionView::Helpers::FormBuilder
+  def radio_button(method, tag_value, options = {})
+    options[:name] = method if tag_value.present?
+    super
+  end
+
   def search_field(attribute, options = {})
     options[:name] = attribute if attribute.present?
     super
