@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       collection do
         resources :drafts, only: :index, module: :articles
         resources :published, only: :index, module: :articles
+        get :search, to: 'articles/search#index', as: :search
       end
     end
     resources :tags
