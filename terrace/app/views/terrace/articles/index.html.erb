@@ -1,11 +1,15 @@
+<% content_for 'title' do %>
+  <title><%= t('service_name') %></title>
+<% end %>
+
 <header class="header">
   <div class="logo">
-    <h1><a href='/'>dreamin' blog</a></h1>
+    <h1 class="logo__text"><a href='/'>dreamin' blog</a></h1>
   </div>
 </header>
 
 <% @articles.each do |article| %>
-  <%= render "terrace/article", article: article %>
+  <%= render "terrace/article", article: article, heading_level: "h2" %>
 <% end %>
 
 <%= paginate @articles, theme: 'terrace' %>

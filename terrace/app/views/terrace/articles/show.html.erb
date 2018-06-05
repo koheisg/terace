@@ -4,11 +4,11 @@
 
 <header class="header">
   <div class="logo">
-    <h1><a href='/'>dreamin' blog</a></h1>
+    <h2 class="logo__text"><a href='/'>dreamin' blog</a></h2>
   </div>
 </header>
 
-<%= render "terrace/article", article: @article %>
+<%= render "terrace/article", article: @article, heading_level: "h1" %>
 
 <footer class="footer">
   <hr />

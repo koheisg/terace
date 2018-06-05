@@ -1,4 +1,5 @@
 en:
+  service_name: "dreamin' blog"
   views:
     pagination:
       first: "&laquo; First"

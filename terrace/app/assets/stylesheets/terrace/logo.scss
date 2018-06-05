@@ -1,9 +1,11 @@
 .logo {
-  font-family: "PT Sans Caption", sans-serif;
-  padding: 18px 10px 0;
-
-  h1 {
+  &__text {
+    display: block;
+    font-family: "PT Sans Caption", sans-serif;
+    font-size: 2em;
+    font-weight: bold;
     margin: 0;
+    padding: 18px 10px 0;
   }
 
   a {
