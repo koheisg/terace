@@ -23,12 +23,37 @@
 
   <div class="field">
     <%= form.label :state %>
-    <%= form.select :state, Article.states.keys ,id: :article_state %>
+    <%= form.select :state, Article.states.keys , id: :article_state %>
   </div>
 
   <div class="field">
     <%= form.label :permalink %>
     <%= form.text_field :permalink, id: :article_permalink %>
+  </div>
+
+  <%- form.object.images.each do |image| %>
+    <%= image_tag image.variant(resize: "200x200") %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <%- if form.object.ogp_image.attached? %>
+    <%= image_tag form.object.ogp_image.variant(resize: "200x200") %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :ogp_image %>
+    <%= form.file_field :ogp_image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tags %>
+    <%= form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+      <%= b.label { b.check_box + b.text } %>
+    <% end %>
   </div>
 
   <div class="actions">

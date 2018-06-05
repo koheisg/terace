@@ -1,17 +1,19 @@
 class ArticlesController < ApplicationController
   skip_before_action :verify_user, only: :show
-  before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :set_article, only: [:edit, :update, :destroy, :show]
 
-  # GET /articles/1
-  # GET /articles/1.json
+  # GET /articles
+  # GET /articles.json
+  def index
+    @articles = current_user.articles.order(created_at: :desc).page(params[:page])
+  end
+
   def show
-    @user = User.find_by!(name: request.subdomain)
-    @article = Article.published.find_by!(permalink: params[:permalink])
   end
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   # GET /articles/1/edit
@@ -25,7 +27,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to [:edit, @article], notice: 'Article was successfully created.' }
+        format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -39,7 +41,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to [:edit, @article], notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -66,6 +68,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :state, :permalink)
+      params.require(:article).permit(:title, :content, :state, :permalink, :ogp_image, images: [], tag_ids: [])
     end
 end

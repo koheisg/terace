@@ -1,20 +1,20 @@
-<p id="notice"><%= notice %></p>
+<% content_for 'title' do %>
+  <title><%= t('service_name') %></title>
+<% end %>
 
-<h1><%= @user.name %>'s Articles</h1>
+<header class="header">
+  <div class="logo">
+    <h1 class="logo__text"><a href='/'>dreamin' blog</a></h1>
+  </div>
+</header>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @articles.each do |article| %>
+  <%= render "terrace/article", article: article, heading_level: "h2" %>
+<% end %>
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= paginate @articles, theme: 'terrace' %>
+
+<footer class="footer">
+  <hr />
+  <p>copyright &copy; <%= Time.current.year %> koheisg All Rights Reserved.</p>
+</footer>

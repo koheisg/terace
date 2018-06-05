@@ -1,0 +1,71 @@
+AllCops:
+  Exclude:
+    - Capfile
+    - bin/**/*
+    - vendor/bundle/**/*
+    - db/schema.rb
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+
+Rails:
+  Enabled: true
+
+Naming/AccessorMethodName:
+  Exclude:
+    - app/controllers/**/*
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CommentAnnotation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/SignalException:
+  Enabled: false
+
+Style/SpecialGlobalVars:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+    - config/environments/development.rb
+    - config/environments/production.rb
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 140
+
+Rails/TimeZone:
+  Enabled: true
+  Exclude:
+    - bin/*.rb
+    - spec/rails_helper.rb
+
+Rails/HttpPositionalArguments:
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: false

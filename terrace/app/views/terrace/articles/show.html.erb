@@ -4,28 +4,11 @@
 
 <header class="header">
   <div class="logo">
-    <h1><a href='/'>dreamin' blog</a></h1>
+    <h2 class="logo__text"><a href='/'>dreamin' blog</a></h2>
   </div>
 </header>
 
-<article class="article" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    <p class="published_at">
-      <time datetime="<%= l @article.created_at, format: "%Y-%m-%d" %>">
-        <%= l @article.created_at, format: "%b %d, %Y" %>
-      </time>
-    </p>
-    <h1 itemprop="headline">
-      <%= @article.title %>
-      <%- if @article.user.id == current_user&.id %>
-        <small>
-          (<%= link_to 'Edit', edit_article_path(@article) %>)
-        </small>
-      <% end %>
-    </h1>
-  </header>
-  <%= @article.content_html %>
-</article>
+<%= render "terrace/article", article: @article, heading_level: "h1" %>
 
 <footer class="footer">
   <hr />
