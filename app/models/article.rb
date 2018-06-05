@@ -5,7 +5,8 @@ class Article < ApplicationRecord
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
 
-  validates :permalink, uniqueness: true, presence: true
+  validates :permalink, uniqueness: { conditions: -> { where(state: :published) } }, if: :published?
+  validates :permalink, presence: true, if: :published?
 
   enum state: { draft: 0, published: 1 }
 
