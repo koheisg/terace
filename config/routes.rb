@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
+    root 'root#index'
     resources :sessions, only: [:new, :create, :destroy]
     resources :users
     resources :articles, expect: [:show] do
