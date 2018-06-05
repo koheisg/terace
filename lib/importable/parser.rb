@@ -14,16 +14,23 @@ module Importable
                      user_id: user_id,
                      state: state,
                      title: parsed.front_matter['title'],
-                     permalink: _permalink,
+                     permalink: _permalink(state),
                      created_at: _created_at,
                      updated_at: _updated_at,
                      tags: tags || [])
     end
 
-    def _permalink
-      tmp = parsed.front_matter['blogger_orig_url']&.gsub('http://koheisg.dreamin.cc/', '') || File.basename(@file, '.md').gsub('-', '/') + ".html"
-      p tmp
+    def _permalink(state)
+      unless state == 1
+        return ''
+      end
+      tmp = parsed.front_matter['blogger_orig_url']&.gsub('http://koheisg.dreamin.cc/', '') || __permalink
       tmp
+    end
+
+    def __permalink
+      a = File.basename(@file, '.md').split('-')
+      [a[0..1].join('/'), a[3..-1].join('-')].join('/') + '.html'
     end
 
     def _created_at
