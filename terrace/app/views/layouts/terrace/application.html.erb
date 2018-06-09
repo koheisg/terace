@@ -2,7 +2,7 @@
 <html>
 <head>
   <%= yield('title') %>
-  <%= stylesheet_link_tag    "terrace/application", media: "all" %>
+  <%= stylesheet_pack_tag 'terrace/application' %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
 </head>
