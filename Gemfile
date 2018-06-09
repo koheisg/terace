@@ -29,6 +29,9 @@ gem 'jbuilder'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
+# Use Webpack to manage app-like JavaScript modules in Rails
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+
 # GitHub HTML processing filters and utilities
 gem 'html-pipeline'
 gem 'commonmarker'
