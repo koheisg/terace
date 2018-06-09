@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "4.0.0-pre.2",
+    "postcss-preset-env": "^5.1.0",
     "sanitize.css": "^5.0.0"
   },
   "devDependencies": {
