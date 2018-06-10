@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_user
+  before_action :redirect_to_artices_if_login, only: [:new, :create]
   # GET /sessions/new
   def new
     @session = Session.new
@@ -24,16 +25,17 @@ class SessionsController < ApplicationController
   # DELETE /sessions/1
   # DELETE /sessions/1.json
   def destroy
-    @session.destroy
-    respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    session[:user_id] = nil
+    redirect_to login_path, notice: "Logged out"
   end
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
       params.require(:session).permit(:name, :password)
+    end
+
+    def redirect_to_artices_if_login
+      redirect_to articles_path if login?
     end
 end
