@@ -4,7 +4,11 @@ module Authenticatable
   extend ActiveSupport::Concern
 
   def verify_user
-    redirect_to new_session_path unless current_user.persisted?
+    redirect_to login_path unless login?
+  end
+
+  def login?
+    current_user.persisted?
   end
 
   def current_user
