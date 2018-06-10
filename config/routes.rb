@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
-    resources :sessions, only: [:new, :create, :destroy]
+
+    controller :sessions do
+      get 'login' => :new
+      post 'login' => :create
+      delete 'logout' => :destroy
+    end
+
     resources :users
     resources :articles, expect: [:show] do
       collection do
