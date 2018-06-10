@@ -20,7 +20,7 @@ xml.rss(
       xml.item do
         xml.title p.title
         xml.description do
-          xml.cdata! strip_tags(p.content_html)
+          xml.cdata! p.content_html
         end
         xml.pubDate p.created_at #公開日
         xml.guid "#{request.protocol}#{request.host_with_port}/#{p.permalink}"
