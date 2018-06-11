@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :articles do
-    get 'histories/index'
-    get 'histories/show'
-  end
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
 
@@ -19,6 +15,8 @@ Rails.application.routes.draw do
         resources :published, only: :index, module: :articles
         get :search, to: 'articles/search#index', as: :search
       end
+
+      resources :histories, module: :articles, only: [:index, :show]
     end
     resources :tags
   end
