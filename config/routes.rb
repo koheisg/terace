@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :articles do
+    get 'histories/index'
+    get 'histories/show'
+  end
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
 
