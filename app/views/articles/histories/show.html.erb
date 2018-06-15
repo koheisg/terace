@@ -1,2 +1,28 @@
 <h1>Articles::Histories#show</h1>
-<p>Find me in app/views/articles/histories/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<%- @history.modifications.attributes.each do |attr| %>
+  <p>
+  <strong><%= attr.first %>:</strong>
+    <%= attr.last %>
+  </p>
+<% end %>
+<p>
+  <strong>ogp_image:</strong>
+  <%- if @history.modifications.ogp_image.attached? %>
+    <%= image_tag @history.modifications.ogp_image.variant(resize: "200x200") %>
+  <% end %>
+</p>
+<p>
+  <strong>images:</strong>
+  <%- @history.modifications.images.each do |image| %>
+    <%= image_tag image.variant(resize: "200x200") %>
+  <% end %>
+</p>
+<p>
+  <strong>tags:</strong>
+  <%= @history.modifications.tags.map(&:name).join(", ") %>
+</p>
+
+<%= link_to 'Article', article_path(@article) %> |
+<%= link_to 'Back', article_histories_path(@article) %>
