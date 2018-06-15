@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_162955) do
+ActiveRecord::Schema.define(version: 2018_06_12_164833) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +44,27 @@ ActiveRecord::Schema.define(version: 2018_06_05_162955) do
     t.datetime "published_at"
     t.datetime "modified_at"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.string "auditable_type"
+    t.integer "auditable_id"
+    t.string "user_type"
+    t.integer "user_id"
+    t.text "modifications"
+    t.string "action"
+    t.string "tag"
+    t.integer "version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action"], name: "index_audits_on_action"
+    t.index ["auditable_id", "auditable_type", "version"], name: "auditable_version_idx"
+    t.index ["auditable_id", "auditable_type"], name: "auditable_index"
+    t.index ["auditable_type", "auditable_id"], name: "index_audits_on_auditable_type_and_auditable_id"
+    t.index ["created_at"], name: "index_audits_on_created_at"
+    t.index ["tag"], name: "index_audits_on_tag"
+    t.index ["user_id", "user_type"], name: "user_index"
+    t.index ["user_type", "user_id"], name: "index_audits_on_user_type_and_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|

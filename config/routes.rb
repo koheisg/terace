@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         resources :published, only: :index, module: :articles
         get :search, to: 'articles/search#index', as: :search
       end
+
+      resources :histories, module: :articles, only: [:index, :show]
     end
     resources :tags
   end

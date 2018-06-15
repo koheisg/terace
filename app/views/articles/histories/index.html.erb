@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Articles::Histories#index</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |h| %>
+      <tr>
+        <td><%= h.action %></td>
+        <td><%= link_to l(h.modifications.updated_at), article_history_path(article_id: @article.id, id: h.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
