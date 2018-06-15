@@ -1,4 +1,5 @@
 class Article < ApplicationRecord
+  include Auditable
   belongs_to :user
   has_many_attached :images
   has_one_attached :ogp_image
