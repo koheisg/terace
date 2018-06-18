@@ -13,7 +13,7 @@
       <tr>
         <td><%= article.title %></td>
         <td><%= article.state %></td>
-        <td><%= link_to_if article.published?, "/#{article.permalink}", "//#{current_user.host}/#{article.permalink}", target: :_blank %></td>
+        <td><%= link_to_if article.published?, "/#{article.permalink}", "//#{article.user.host}/#{article.permalink}", target: :_blank %></td>
         <td><%= l article.created_at %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
