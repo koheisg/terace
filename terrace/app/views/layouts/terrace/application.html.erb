@@ -6,6 +6,7 @@
   <%= stylesheet_pack_tag 'terrace/application' %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
+  <%= javascript_include_tag "https://platform.twitter.com/widgets.js", async: 'async' %>
 </head>
 <body class="<%= "#{controller.controller_name} #{controller.controller_name}--#{controller.action_name}" %>">
 
