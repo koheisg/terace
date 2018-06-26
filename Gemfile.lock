@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 3fe81d31c320738219e56d1684d219d65167f2fc
+  revision: cc0e84f9bfa89750ceca38db47ce5657cc373c3d
   specs:
     actioncable (6.0.0.alpha)
       actionpack (= 6.0.0.alpha)
@@ -64,7 +64,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: 191099e682b7c0d8a64effd14f31e9ee7423eb27
+  revision: 80d509d98bf89604f43421ebf0ca5ee54c4a2c51
   specs:
     webpacker (4.0.0.pre.pre.2)
       activesupport (>= 4.2)
@@ -107,9 +107,9 @@ GEM
       ruby-enum (~> 0.5)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
-    dotenv (2.4.0)
-    dotenv-rails (2.4.0)
-      dotenv (= 2.4.0)
+    dotenv (2.5.0)
+    dotenv-rails (2.5.0)
+      dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
@@ -158,7 +158,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     nio4r (2.3.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     pg (1.0.0)
     pry (0.11.3)
@@ -198,7 +198,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    selenium-webdriver (3.12.0)
+    selenium-webdriver (3.13.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     spring (2.0.2)
@@ -206,7 +206,7 @@ GEM
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
-    sprockets (3.7.1)
+    sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.2.1)
@@ -222,7 +222,7 @@ GEM
     turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
-    uglifier (4.1.11)
+    uglifier (4.1.12)
       execjs (>= 0.3.0, < 3)
     web-console (3.6.2)
       actionview (>= 5.0)
