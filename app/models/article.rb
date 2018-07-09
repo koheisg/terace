@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   include Auditable
   belongs_to :user
+  belongs_to :site
   has_many_attached :images
   has_one_attached :ogp_image
   has_many :taggings, as: :taggable

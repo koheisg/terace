@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = current_user.articles.order(created_at: :desc).page(params[:page])
+    @articles = current_user.articles.includes(:site).order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -68,6 +68,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :content, :state, :permalink, :ogp_image, images: [], tag_ids: [])
+      params.require(:article).permit(:site_id, :title, :content, :state, :permalink, :ogp_image, images: [], tag_ids: [])
     end
 end

@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>Site</th>
       <th>Title</th>
       <th>State</th>
       <th>Permalink</th>
@@ -15,9 +16,10 @@
   <tbody>
     <% articles.each do |article| %>
       <tr>
+        <td><%= article.site&.domain %></td>
         <td><%= article.title %></td>
         <td><%= article.state %></td>
-        <td><%= link_to_if article.published?, "/#{article.permalink}", "//#{article.user.host}/#{article.permalink}", target: :_blank %></td>
+        <td><%= link_to_if article.published?, "/#{article.permalink}", "//#{article.site&.domain}/#{article.permalink}", target: :_blank %></td>
         <td><%= l article&.published_at if article.published_at %></td>
         <td><%= l article&.modified_at if article.modified_at %></td>
         <td><%= l article.created_at %></td>

@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+    <%= form.label :site %>
+    <%= form.collection_select :site_id, Site.all, :id, :domain %>
+  </div>
+
+  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :article_title %>
   </div>
