@@ -19,6 +19,7 @@
         <%- if admin? %>
           <li class="tab"><%= link_to t(".tags"), tags_path %></li>
           <li class="tab"><%= link_to t(".users"), users_path %></li>
+          <li class="tab"><%= link_to t(".sites"), sites_path %></li>
         <% end %>
         <%- if login? %>
           <li class="tab"><%= link_to t(".logout"), logout_path, method: :delete %></li>

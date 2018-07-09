@@ -1,4 +1,5 @@
 class SitesController < ApplicationController
+  before_action :verify_admin
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   def index
