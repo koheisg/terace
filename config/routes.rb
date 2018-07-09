@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :sites
     resources :articles, expect: [:show] do
       collection do
         resources :drafts, only: :index, module: :articles
