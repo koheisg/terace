@@ -12,6 +12,6 @@ module Authenticatable
   end
 
   def current_user
-    User.find_by(id: session[:user_id]) || Logout.new
+    @current_user ||= User.find_by(id: session[:user_id]) || Logout.new
   end
 end
