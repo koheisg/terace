@@ -21,8 +21,10 @@
             <li><%= link_to t(".search"), search_articles_path %></li>
           </ul>
         </li>
-        <li><%= link_to t(".tags"), tags_path %></li>
-        <li><%= link_to t(".users"), users_path %></li>
+        <%- if admin? %>
+          <li><%= link_to t(".tags"), tags_path %></li>
+          <li><%= link_to t(".users"), users_path %></li>
+        <% end %>
         <%- if login? %>
           <li><%= link_to t(".logout"), logout_path, method: :delete %></li>
         <% else %>
