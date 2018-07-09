@@ -10,23 +10,23 @@
   </head>
 
   <body class="<%= "#{controller.controller_path.gsub('/', '_')} #{controller.controller_path.gsub('/', '_')}--#{controller.action_name}" %>">
-    <nav>
-      <ul>
-        <li><%= link_to t(".home"), root_path %></li>
-        <li>
+    <nav class="global_menu">
+      <ul class="tabs">
+        <li class="tab"><%= link_to t(".home"), root_path %></li>
+        <li class="tab">
           <%= link_to t(".articles"), articles_path %>
         </li>
         <%- if admin? %>
-          <li><%= link_to t(".tags"), tags_path %></li>
-          <li><%= link_to t(".users"), users_path %></li>
+          <li class="tab"><%= link_to t(".tags"), tags_path %></li>
+          <li class="tab"><%= link_to t(".users"), users_path %></li>
         <% end %>
         <%- if login? %>
-          <li><%= link_to t(".logout"), logout_path, method: :delete %></li>
+          <li class="tab"><%= link_to t(".logout"), logout_path, method: :delete %></li>
         <% else %>
-          <li><%= link_to t(".login"), login_path %></li>
+          <li class="tab"><%= link_to t(".login"), login_path %></li>
         <% end %>
         <%- if Rails.env.development? %>
-          <li><%= link_to t(".routes"), 'rails/info/routes' %></li>
+          <li class="tab"><%= link_to t(".routes"), 'rails/info/routes' %></li>
         <% end %>
       </ul>
     </nav>
