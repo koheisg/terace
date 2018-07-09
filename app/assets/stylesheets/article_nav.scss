@@ -1,0 +1,16 @@
+.article_nav {
+  .search_form {
+    display: flex;
+    div {
+      margin-right: 5px;
+    }
+  }
+
+  .search_tabs {
+    display: flex;
+  }
+
+  .tab {
+    padding-left: 10px;
+  }
+}

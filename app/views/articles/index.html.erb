@@ -1,5 +1,39 @@
 <p id="notice"><%= notice %></p>
 
+<nav class="article_nav">
+  <ul class="search_tabs">
+    <li class="tab"><%= link_to t(".articles"), articles_path %></li>
+    <li class="tab"><%= link_to t(".published"), published_index_path %></li>
+    <li class="tab"><%= link_to t(".drafts"), drafts_path %></li>
+  </ul>
+  <%= form_with model: @q, local: true, url: search_articles_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
+    <div class="search_form">
+      <div>
+        <%= f.label :title %>
+      </div>
+      <div>
+        <%= f.search_field :title %>
+      </div>
+      <div class="search_form">
+        <div>
+          <%= f.label :state %>
+        </div>
+        <div class="search_form">
+          <%= f.radio_button :state, :published, id: :published %>
+          <%= f.label :published, for: :published %>
+        </div>
+        <div class="search_form">
+          <%= f.radio_button :state, :draft, id: :draft %>
+          <%= f.label :draft, for: :draft %>
+        </div>
+        <div>
+          <%= f.submit %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</ul>
+
 <h1>Articles</h1>
 
 <%= link_to 'New Article', new_article_path %>

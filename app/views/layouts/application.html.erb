@@ -9,17 +9,12 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="<%= "#{controller.controller_name} #{controller.controller_name}--#{controller.action_name}" %>">
+  <body class="<%= "#{controller.controller_path.gsub('/', '_')} #{controller.controller_path.gsub('/', '_')}--#{controller.action_name}" %>">
     <nav>
       <ul>
         <li><%= link_to t(".home"), root_path %></li>
         <li>
           <%= link_to t(".articles"), articles_path %>
-          <ul>
-            <li><%= link_to t(".published"), published_index_path %></li>
-            <li><%= link_to t(".drafts"), drafts_path %></li>
-            <li><%= link_to t(".search"), search_articles_path %></li>
-          </ul>
         </li>
         <%- if admin? %>
           <li><%= link_to t(".tags"), tags_path %></li>
