@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :user_sites
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
     controller :sessions do
@@ -9,6 +8,7 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :user_sites
     resources :sites do
       resources :articles, only: :index, module: :sites
     end
