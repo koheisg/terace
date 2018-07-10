@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :sites do
-    get 'articles/index'
-  end
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
     controller :sessions do
@@ -11,7 +8,9 @@ Rails.application.routes.draw do
     end
 
     resources :users
-    resources :sites
+    resources :sites do
+      resources :articles, only: :index, module: :sites
+    end
     resources :articles, expect: [:show] do
       collection do
         resources :drafts, only: :index, module: :articles
