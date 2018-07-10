@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :sites do
+    get 'users/index'
+    get 'users/show'
+    get 'users/edit'
+    get 'users/update'
+    get 'users/create'
+    get 'users/destroy'
+  end
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
     controller :sessions do
