@@ -1,5 +1,4 @@
 class ArticlesController < ApplicationController
-  skip_before_action :verify_user, only: :show
   before_action :set_article, only: [:edit, :update, :destroy, :show]
 
   # GET /articles
