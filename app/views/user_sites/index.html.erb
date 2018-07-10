@@ -21,8 +21,8 @@
   <tbody>
     <% @user_sites.each do |user_site| %>
       <tr>
-        <td><%= user_site.user %></td>
-        <td><%= user_site.site %></td>
+        <td><%= user_site.user.name %></td>
+        <td><%= user_site.site.domain %></td>
         <td><%= link_to 'Show', user_site %></td>
         <td><%= link_to 'Edit', edit_user_site_path(user_site) %></td>
         <td><%= link_to 'Destroy', user_site, method: :delete, data: { confirm: 'Are you sure?' } %></td>

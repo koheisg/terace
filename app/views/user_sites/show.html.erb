@@ -2,12 +2,12 @@
 
 <p>
   <strong>User:</strong>
-  <%= @user_site.user %>
+  <%= @user_site.user.name %>
 </p>
 
 <p>
   <strong>Site:</strong>
-  <%= @user_site.site %>
+  <%= @user_site.site.domain %>
 </p>
 
 <%= link_to 'Edit', edit_user_site_path(@user_site) %> |
