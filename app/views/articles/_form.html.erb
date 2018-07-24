@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :site %>
-    <%= form.collection_select :site_id, Site.all, :id, :domain %>
+    <%= form.collection_select :site_id, current_user.sites, :id, :domain %>
   </div>
 
   <div class="field">
