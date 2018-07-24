@@ -12,7 +12,7 @@ module Terrace
 
     private
       def site
-        @site ||= ::Site.find_by!(domain: request.host)
+        @site ||= ::Site.find_by!(domain: request.host_with_port)
       end
   end
 end
