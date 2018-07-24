@@ -9,10 +9,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :user_sites
-    resources :sites do
-      resources :articles, only: :index, module: :sites
-      resources :users, module: :sites
-    end
+    resources :sites
     resources :articles, expect: [:show] do
       collection do
         resources :drafts, only: :index, module: :articles
