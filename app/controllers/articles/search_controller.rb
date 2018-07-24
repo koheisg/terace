@@ -6,6 +6,6 @@ class Articles::SearchController < ApplicationController
   end
 
   def search_params
-    params.permit(:title, :state)
+    params.permit(:title, :state, :site)
   end
 end
