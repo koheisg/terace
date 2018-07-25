@@ -1,7 +1,8 @@
 local:
-  service: Disk
-  root: <%= Rails.root.join("storage") %>
-
-test:
-  service: Disk
-  root: <%= Rails.root.join("tmp/storage") %>
+  service: S3
+  access_key_id: "ABCABC"
+  secret_access_key: "CDECDE"
+  region: "us-west-2"
+  bucket: "terace-image-bucket"
+  endpoint: "http://localhost:4572"
+  force_path_style: true

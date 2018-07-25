@@ -46,6 +46,8 @@ gem 'mini_magick'
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
 gem 'kaminari'
 
+gem 'aws-sdk-s3'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
