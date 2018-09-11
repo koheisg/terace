@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       if @session.save
         reset_session
         session[:user_id] = @session.user.id
-        format.html { redirect_to users_path, notice: 'Login success!' }
+        format.html { redirect_to root_path, notice: 'Login success!' }
         format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new }
