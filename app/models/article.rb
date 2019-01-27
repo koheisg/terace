@@ -1,3 +1,6 @@
+require 'html/pipeline'
+require 'commonmarker'
+
 class Article < ApplicationRecord
   include Auditable
   belongs_to :user
@@ -13,13 +16,17 @@ class Article < ApplicationRecord
   enum state: { draft: 0, published: 1 }
 
   def content_html
-    require 'html/pipeline'
-    require 'commonmarker'
+    result = pipeline.call(content)
+    result[:output].to_s.html_safe
+  end
 
-    pipeline = HTML::Pipeline.new [
+  private
+
+  def pipeline
+    HTML::Pipeline.new [
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::YoutubeFilter,
+      HTML::Pipeline::SyntaxHighlightFilter
     ]
-    pipeline.call(content)[:output].html_safe
   end
 end
