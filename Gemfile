@@ -8,7 +8,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', github: 'rails/rails'
+gem 'rails'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -30,7 +30,7 @@ gem 'jbuilder'
 gem 'bcrypt'
 
 # Use Webpack to manage app-like JavaScript modules in Rails
-gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+gem 'webpacker'
 
 # GitHub HTML processing filters and utilities
 gem 'html-pipeline'
