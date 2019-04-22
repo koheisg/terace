@@ -12,7 +12,9 @@ class SessionsController < ApplicationController
     @session = Session.new(session_params)
 
     respond_to do |format|
-      if @session.save && session[:user_id] = @session.user.id
+      if @session.save
+        reset_session
+        session[:user_id] = @session.user.id
         format.html { redirect_to users_path, notice: 'Login success!' }
         format.json { render :show, status: :created, location: @session }
       else
