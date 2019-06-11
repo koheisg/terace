@@ -71,13 +71,13 @@ GEM
     bindex (0.7.0)
     builder (3.2.3)
     byebug (11.0.1)
-    capybara (3.18.0)
+    capybara (3.23.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
-      regexp_parser (~> 1.2)
+      regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (1.0.1)
       rake (< 13.0)
@@ -154,7 +154,7 @@ GEM
     pry-byebug (3.7.0)
       byebug (~> 11.0)
       pry (~> 0.10)
-    public_suffix (3.0.3)
+    public_suffix (3.1.0)
     puma (3.12.1)
     rack (2.0.7)
     rack-proxy (0.6.5)
@@ -189,7 +189,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    regexp_parser (1.4.0)
+    regexp_parser (1.5.1)
     rouge (3.3.0)
     ruby-enum (0.7.2)
       i18n
@@ -253,7 +253,7 @@ DEPENDENCIES
   aws-sdk-s3
   bcrypt
   byebug
-  capybara (~> 3.18)
+  capybara (~> 3.23)
   coffee-rails
   commonmarker
   dotenv-rails
