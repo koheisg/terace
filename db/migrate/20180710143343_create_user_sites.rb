@@ -1,4 +1,4 @@
-class CreateUserSites < ActiveRecord::Migration[6.0]
+class CreateUserSites < ActiveRecord::Migration[5.2]
   def change
     create_table :user_sites do |t|
       t.references :user, foreign_key: true
