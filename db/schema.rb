@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2018_07_10_143343) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -38,21 +41,21 @@ ActiveRecord::Schema.define(version: 2018_07_10_143343) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.integer "state"
     t.string "permalink"
     t.datetime "published_at"
     t.datetime "modified_at"
-    t.integer "site_id"
+    t.bigint "site_id"
     t.index ["site_id"], name: "index_articles_on_site_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "audits", force: :cascade do |t|
     t.string "auditable_type"
-    t.integer "auditable_id"
+    t.bigint "auditable_id"
     t.string "user_type"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "modifications"
     t.string "action"
     t.string "tag"
@@ -76,9 +79,9 @@ ActiveRecord::Schema.define(version: 2018_07_10_143343) do
   end
 
   create_table "taggings", force: :cascade do |t|
-    t.integer "tag_id"
+    t.bigint "tag_id"
     t.string "taggable_type"
-    t.integer "taggable_id"
+    t.bigint "taggable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
@@ -93,8 +96,8 @@ ActiveRecord::Schema.define(version: 2018_07_10_143343) do
   end
 
   create_table "user_sites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "site_id"
+    t.bigint "user_id"
+    t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_user_sites_on_site_id"
@@ -109,4 +112,8 @@ ActiveRecord::Schema.define(version: 2018_07_10_143343) do
     t.boolean "admin", default: false, null: false
   end
 
+  add_foreign_key "articles", "sites"
+  add_foreign_key "taggings", "tags"
+  add_foreign_key "user_sites", "sites"
+  add_foreign_key "user_sites", "users"
 end
