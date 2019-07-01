@@ -3,7 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= yield('title') %>
-  <%= stylesheet_pack_tag 'terrace/application' %>
+  <%= stylesheet_link_tag 'terrace/application' %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "https://platform.twitter.com/widgets.js", async: 'async' %>
