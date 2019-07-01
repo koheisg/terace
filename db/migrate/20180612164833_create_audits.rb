@@ -1,4 +1,4 @@
-class CreateAudits < ActiveRecord::Migration[6.0]
+class CreateAudits < ActiveRecord::Migration[5.2]
   def change
     create_table :audits do |t|
       t.belongs_to :auditable, :polymorphic => true
