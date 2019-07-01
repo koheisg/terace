@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @sites = current_user.sites
-    @articles = current_user.articles.where(site: @sites).order(created_at: :desc).page(params[:page])
+    @articles = current_user.articles.includes(:site).where(site: @sites).order(created_at: :desc).page(params[:page])
   end
 
   def show
