@@ -2,7 +2,7 @@
   "name": "blog-tools",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "4.0.2",
+    "@rails/webpacker": "4.0.7",
     "postcss-preset-env": "^6.6.0",
     "sanitize.css": "^10.0.0"
   },
