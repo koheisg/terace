@@ -16,7 +16,7 @@ class Article < ApplicationRecord
   enum state: { draft: 0, published: 1 }
 
   def content_html
-    result = pipeline.call(content)
+    result = pipeline.call(content.html_safe)
     result[:output].to_s.html_safe
   end
 
@@ -25,8 +25,8 @@ class Article < ApplicationRecord
   def pipeline
     HTML::Pipeline.new [
       HTML::Pipeline::MarkdownFilter,
-      HTML::Pipeline::YoutubeFilter,
-      HTML::Pipeline::SyntaxHighlightFilter
+      HTML::Pipeline::SanitizationFilter,
+      HTML::Pipeline::SyntaxHighlightFilter,
     ]
   end
 end
