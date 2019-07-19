@@ -25,8 +25,8 @@ class Article < ApplicationRecord
   def pipeline
     HTML::Pipeline.new [
       HTML::Pipeline::MarkdownFilter,
-      HTML::Pipeline::SanitizationFilter,
       HTML::Pipeline::SyntaxHighlightFilter,
+      HTML::Pipeline::SanitizationFilter,
     ], { gfm: true, unsafe: true, whitelist: whitelist}
   end
 
@@ -36,6 +36,8 @@ class Article < ApplicationRecord
         'blockquote' => ['class','data-lang'],
         'p' => ['lang', 'dir'],
         'a' => ['href'],
+        'span' => ['class'],
+        'pre' => ['lang', 'class'],
       }
     }
     HTML::Pipeline::SanitizationFilter::WHITELIST.merge(add_list)
