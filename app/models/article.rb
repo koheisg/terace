@@ -16,7 +16,7 @@ class Article < ApplicationRecord
   enum state: { draft: 0, published: 1 }
 
   def content_html
-    result = pipeline.call(content.html_safe)
+    result = pipeline.call(content)
     result[:output].to_s.html_safe
   end
 
@@ -27,6 +27,17 @@ class Article < ApplicationRecord
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::SanitizationFilter,
       HTML::Pipeline::SyntaxHighlightFilter,
-    ]
+    ], { gfm: true, unsafe: true, whitelist: whitelist}
+  end
+
+  def whitelist
+    add_list = {
+      attributes: {
+        'blockquote' => ['class','data-lang'],
+        'p' => ['lang', 'dir'],
+        'a' => ['href'],
+      }
+    }
+    HTML::Pipeline::SanitizationFilter::WHITELIST.merge(add_list)
   end
 end
