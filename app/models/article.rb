@@ -27,7 +27,7 @@ class Article < ApplicationRecord
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::SyntaxHighlightFilter,
       HTML::Pipeline::SanitizationFilter,
-    ], { gfm: true, unsafe: true, whitelist: whitelist}
+    ], { gfm: true, unsafe: true, whitelist: whitelist, scope: 'highlight'}
   end
 
   def whitelist
