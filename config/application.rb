@@ -19,5 +19,5 @@ end
 
 Raven.configure do |config|
   config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
-  config.dsn = 'https://baf612a7096643a1a2a1e4bd7cf5a6b8:318cbc70358548a1bd36f1c2621fbc99@sentry.io/1509938'
+  config.dsn = ENV['SENTRY_DSN']
 end
