@@ -1,10 +1,10 @@
 <% content_for 'title' do %>
-  <title><%= t('service_name') %></title>
+  <title><%= current_site.name %></title>
 <% end %>
 
 <header class="header">
   <div class="logo">
-    <h1 class="logo__text"><a href='/'>dreamin' blog</a></h1>
+    <h1 class="logo__text"><a href='/'><%= current_site.name %></a></h1>
   </div>
 </header>
 

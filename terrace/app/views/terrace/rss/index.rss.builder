@@ -9,8 +9,8 @@ xml.rss(
   "xmlns:slash" => "http://purl.org/rss/1.0/modules/slash/"
 ) do
   xml.channel do
-    xml.title @site.name
-    xml.description @site.description
+    xml.title current_site.name
+    xml.description current_site.description
     xml.link request.host_with_port
     xml.language "ja-ja"
     xml.ttl "40"
