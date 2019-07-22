@@ -19,5 +19,5 @@ end
 
 Raven.configure do |config|
   config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
-  config.dsn = ENV['SENTRY_DSN']
+  config.dsn = Rails.application.credentials[Rails.env.to_sym][:sentry_dsn]
 end
