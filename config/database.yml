@@ -3,4 +3,4 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: <%= Rails.application.credentials[Rails.env.to_sym][:database_url] %>
+  database: <%= ENV.fetch("DATABASE_URL") { nil } %>
