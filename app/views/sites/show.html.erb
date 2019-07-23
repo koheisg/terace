@@ -1,8 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Name:</strong>
+  <%= @site.name %>
+</p>
+<p>
+  <strong>description:</strong>
+  <%= @site.description %>
+</p>
+<p>
   <strong>Domain:</strong>
   <%= @site.domain %>
+</p>
+
+<p>
+  <strong>layout:</strong>
+  <%= @site.layout %>
 </p>
 
 <%= link_to 'Edit', edit_site_path(@site) %> |
