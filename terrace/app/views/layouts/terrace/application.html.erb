@@ -3,8 +3,7 @@
 <head>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= yield('title') %>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.2.0/dist/css/yakuhanjp-noto.min.css">
-  <%= stylesheet_link_tag 'terrace/application' %>
+  <%= yield(:stylesheets) %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "https://platform.twitter.com/widgets.js", async: 'async' %>
