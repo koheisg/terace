@@ -4,8 +4,7 @@
   max-width: 720px;
 
   hr {
-    $background-color: rgba(0, 0, 0, .8);
-    background-color: $background-color;
+    background-color: $footer-hr-background-color;
     border: 0;
     height: 1px;
   }

@@ -1,2 +1,9 @@
 @import 'sanitize.css/sanitize';
+
+$article-text-color: rgba(0, 0, 0, .8);
+$article-background-color: #fafafa;
+$article-link-text-color: #000;
+$published-at-text-color: rgba(0, 0, 0, .6);
+$footer-hr-background-color: rgba(0, 0, 0, .8);
+
 @import 'css/*';

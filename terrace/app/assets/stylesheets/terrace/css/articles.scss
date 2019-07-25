@@ -1,8 +1,6 @@
 .articles {
-  $color: rgba(0, 0, 0, .8);
-  $background-color: #fafafa;
-  background-color: $background-color;
-  color: $color;
+  background-color: $article-background-color;
+  color: $article-text-color;
   font-size: 16px;
   margin: 0 8px;
   padding: 0 10px;
@@ -27,13 +25,12 @@
     text-align: center;
 
     a {
-      $color: #000;
-      color: $color;
+      color: $article-link-text-color;
       text-decoration: none;
 
       &:hover,
       &:focus {
-        color: $color;
+        color: $article-link-text-color;
       }
     }
   }
@@ -51,8 +48,7 @@
     }
 
     .published-at {
-      $color: rgba(0, 0, 0, .6);
-      color: $color;
+      color: $published-at-text-color;
       text-align: center;
     }
 
