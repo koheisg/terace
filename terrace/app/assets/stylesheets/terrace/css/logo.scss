@@ -9,15 +9,14 @@
   }
 
   a {
-    $color: #000;
-    color: $color;
+    color: $logo-text-color;
     text-decoration-line: none;
 
 
     &:hover,
     &:focus,
     &:visited {
-      color: $color;
+      color: $logo-text-color;
     }
   }
 }

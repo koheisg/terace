@@ -25,13 +25,7 @@
     text-align: center;
 
     a {
-      color: $article-link-text-color;
       text-decoration: none;
-
-      &:hover,
-      &:focus {
-        color: $article-link-text-color;
-      }
     }
   }
 
@@ -53,10 +47,9 @@
     }
 
     p code {
-      $background-color: #eee;
-      $border-color: #ccc;
-      background-color: $background-color;
-      border: 1px solid $border-color;
+      color: $inline-code-text-color;
+      background-color: $inline-code-backgroud-color;
+      border: 1px solid $inline-code-border-color;
       border-radius: 4px;
       padding: 0 2px;
     }
@@ -97,5 +90,20 @@
         font-family: Consolas, Monaco, serif;
       }
     }
+  }
+}
+
+a {
+  color: $article-link-text-color;
+  text-decoration: underline;
+
+  &:visited {
+    color: $article-link-visited-text-color;
+  }
+  &:hover {
+    color: $article-link-hover-text-color;
+  }
+  &:focus {
+    color: $article-link-focus-text-color;
   }
 }

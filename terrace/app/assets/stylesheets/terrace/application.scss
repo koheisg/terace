@@ -3,7 +3,14 @@
 $article-text-color: rgba(0, 0, 0, .8);
 $article-background-color: #fafafa;
 $article-link-text-color: #000;
+$article-link-visited-text-color: #000;
+$article-link-hover-text-color: #000;
+$article-link-focus-text-color: #000;
 $published-at-text-color: rgba(0, 0, 0, .6);
 $footer-hr-background-color: rgba(0, 0, 0, .8);
+$logo-text-color: #000;
+$inline-code-backgroud-color: #eee;
+$inline-code-text-color: #000;
+$inline-code-border-color: #ccc;
 
 @import 'css/*';
