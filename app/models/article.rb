@@ -31,7 +31,12 @@ class Article < ApplicationRecord
       HTML::Pipeline::MarkdownFilter,
       HTML::Pipeline::SyntaxHighlightFilter,
       HTML::Pipeline::SanitizationFilter,
-    ], { gfm: true, unsafe: true, whitelist: whitelist, scope: 'highlight'}
+      HTML::Pipeline::TableOfContentsFilter,
+    ], { gfm: true, unsafe: true, whitelist: whitelist, scope: 'highlight', anchor_icon: anchor_icon }
+  end
+
+  def anchor_icon
+    '<i aria-hidden="true" class="fas fa-link"></i>'
   end
 
   def whitelist

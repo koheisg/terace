@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= yield('title') %>
   <%= yield(:stylesheets) %>
+  <%= yield(:javascript) %>
   <%= javascript_include_tag "terrace/application" %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "https://platform.twitter.com/widgets.js", async: 'async' %>

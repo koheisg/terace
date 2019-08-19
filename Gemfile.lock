@@ -111,6 +111,7 @@ GEM
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
     erubi (1.8.0)
+    escape_utils (1.2.1)
     execjs (2.7.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
@@ -282,6 +283,7 @@ DEPENDENCIES
   coffee-rails
   commonmarker
   dotenv-rails
+  escape_utils
   front_matter_parser
   html-pipeline
   html-pipeline-youtube

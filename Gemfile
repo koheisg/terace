@@ -51,6 +51,9 @@ gem 'kaminari'
 
 gem 'aws-sdk-s3'
 
+gem 'escape_utils'
+
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
