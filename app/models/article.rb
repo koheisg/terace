@@ -24,6 +24,16 @@ class Article < ApplicationRecord
     result[:output].to_s.html_safe
   end
 
+  def ogp_png
+    rsvg = RSVG::Handle.new_from_data(svg)
+    surface = Cairo::ImageSurface.new(Cairo::FORMAT_ARGB32, 800, 800)
+    context = Cairo::Context.new(surface)
+    context.render_rsvg_handle(rsvg)
+    b = StringIO.new
+    surface.write_to_png(b)
+    b.string
+  end
+
   private
 
   def pipeline
@@ -64,4 +74,19 @@ class Article < ApplicationRecord
     end
   end
 
+  def svg
+    <<~SVG
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg width="537px" height="69px" viewBox="0 0 537 69" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+        <title>Type something</title>
+        <desc>Created with Sketch.</desc>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="HiraginoSans-W3, Hiragino Sans" font-size="69" font-weight="300">
+          <text id="Type-something" fill="#000000">
+            <tspan x="0" y="54">#{title}</tspan>
+          </text>
+        </g>
+      </svg>
+    SVG
+  end
 end
