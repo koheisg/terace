@@ -39,6 +39,7 @@ gem 'html-pipeline-youtube'
 gem 'rouge'
 gem 'sanitize'
 gem "sentry-raven"
+gem "rsvg2"
 
 # FrontMatterParser is a library to parse a front matter from strings or files. It allows writing syntactically correct source files, marking front matters as comments in the source file language.
 gem 'front_matter_parser'
