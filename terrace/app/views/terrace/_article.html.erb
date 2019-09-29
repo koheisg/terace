@@ -7,11 +7,6 @@
     </p>
     <<%= heading_level %> itemprop="headline" class="article-title">
       <%= link_to article.title, "/#{article.permalink}" %>
-      <%- if article.user.id == current_user&.id %>
-        <small>
-          (<%= link_to 'Edit', edit_article_path(article) %>)
-        </small>
-      <% end %>
     </<%= heading_level %>>
   </header>
   <div class="content">
