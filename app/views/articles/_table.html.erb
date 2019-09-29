@@ -20,10 +20,10 @@
         <td><%= article.title %></td>
         <td><%= article.state %></td>
         <td><%= link_to_if article.shipped?, "/#{article.permalink}", "//#{article.site.domain}#{request.port_string}/#{article.permalink}", target: :_blank %></td>
-        <td><%= l article.published_at if article.published_at %></td>
-        <td><%= l article.modified_at if article.modified_at %></td>
-        <td><%= l article.created_at %></td>
-        <td><%= l article.updated_at %></td>
+        <td><%= article.published_at.to_s(:db) if article.published_at %></td>
+        <td><%= article.modified_at.to_s(:db) if article.modified_at %></td>
+        <td><%= article.created_at.to_s(:db) %></td>
+        <td><%= article.updated_at.to_s(:db) %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'History', article_histories_path(article) %></td>
