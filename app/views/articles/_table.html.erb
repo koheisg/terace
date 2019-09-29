@@ -16,12 +16,12 @@
   <tbody>
     <% articles.each do |article| %>
       <tr>
-        <td><%= article.site&.domain %></td>
+        <td><%= article.site.domain %></td>
         <td><%= article.title %></td>
         <td><%= article.state %></td>
-        <td><%= link_to_if article.shipped?, "/#{article.permalink}", "//#{article.site&.domain}#{request.port_string}/#{article.permalink}", target: :_blank %></td>
-        <td><%= l article&.published_at if article.published_at %></td>
-        <td><%= l article&.modified_at if article.modified_at %></td>
+        <td><%= link_to_if article.shipped?, "/#{article.permalink}", "//#{article.site.domain}#{request.port_string}/#{article.permalink}", target: :_blank %></td>
+        <td><%= l article.published_at if article.published_at %></td>
+        <td><%= l article.modified_at if article.modified_at %></td>
         <td><%= l article.created_at %></td>
         <td><%= l article.updated_at %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
