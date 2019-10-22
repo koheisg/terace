@@ -3,7 +3,7 @@ services:
   db:
     image: postgres
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data:cached
     ports:
       - 54320:5432
 
