@@ -37,6 +37,8 @@
     word-wrap: break-word;
 
     h1, h2, h3, h4, h5, h6 {
+      position: relative;
+
       &:hover {
         i {
           visibility: initial;
@@ -44,11 +46,14 @@
       }
 
       i {
-        visibility: hidden;
-        font-size: 15px;
-        padding-right: 10px;
+        font-size: 14px;
+        left: -20px;
         padding-bottom: 5px;
+        padding-right: 10px;
+        position: absolute;
+        top: 10px;
         vertical-align: middle;
+        visibility: hidden;
       }
     }
 
