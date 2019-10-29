@@ -5,10 +5,10 @@
 <nav class="article_nav">
   <ul class="search_tabs">
     <li class="tab"><%= link_to t(".articles"), articles_path %></li>
-    <li class="tab"><%= link_to t(".published"), published_index_path %></li>
-    <li class="tab"><%= link_to t(".drafts"), drafts_path %></li>
+    <li class="tab"><%= link_to t(".published"), articles_path(state: 'shipped') %></li>
+    <li class="tab"><%= link_to t(".drafts"), articles_path(state: 'draft') %></li>
   </ul>
-  <%= form_with model: @q, local: true, url: search_articles_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
+  <%= form_with model: @q, local: true, url: articles_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
     <div class="search_form">
       <div>
         <%= f.label :title %>

@@ -12,13 +12,7 @@ Rails.application.routes.draw do
     resources :users
     resources :user_sites
     resources :sites
-    resources :articles, expect: [:show] do
-      collection do
-        resources :drafts, only: :index, module: :articles
-        resources :published, only: :index, module: :articles
-        get :search, to: 'articles/search#index', as: :search
-      end
-
+    resources :articles do
       resources :histories, module: :articles, only: [:index, :show]
     end
     resources :tags

@@ -4,8 +4,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @sites = current_user.sites
-    @articles = current_user.articles.includes(:site).where(site: @sites).order(created_at: :desc).page(params[:page])
+    @q = Article::Search.new(search_params)
+    @q.user = current_user
+    @articles = @q.query(current_user.articles
+                                     .includes(:site)
+                                     .where(site: current_site || current_user.sites)
+                                     .order(created_at: :desc))
+                  .page(params[:page])
   end
 
   def show
@@ -69,5 +74,9 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:site_id, :title, :content, :state, :permalink, :ogp_image, images: [], tag_ids: [])
+    end
+
+    def search_params
+      params.permit(:title, :state, :site)
     end
 end
