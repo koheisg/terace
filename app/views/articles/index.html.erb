@@ -28,10 +28,6 @@
           <%= f.radio_button :state, :draft, id: :draft %>
           <%= f.label :draft, for: :draft %>
         </div>
-        <div class="search_form">
-          <%= f.select :site, @sites.map {|s| [s.domain, s.id]}, id: :draft %>
-          <%= f.label :draft, for: :site %>
-        </div>
         <div>
           <%= f.submit %>
         </div>
