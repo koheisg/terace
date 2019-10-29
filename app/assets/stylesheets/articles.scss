@@ -3,3 +3,14 @@
     max-width: 100%;
   }
 }
+
+.articles-table {
+  tbody {
+    text-align: left;
+  }
+  .shipped {
+  }
+  .draft {
+    background-color: #ccc;
+  }
+}
