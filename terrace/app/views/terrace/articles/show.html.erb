@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :canonical do %>
-  <link rel="canonical" href="<%= request.original_url %>" />
+  <link rel="canonical" href="<%= "https://#{@article.site.domain}/#{@article.permalink}" %>" />
 <% end %>
 
 <header class="header">
