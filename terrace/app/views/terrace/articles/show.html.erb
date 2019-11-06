@@ -2,6 +2,10 @@
   <title><%= @article.title %></title>
 <% end %>
 
+<% content_for :canonical do %>
+  <link rel="canonical" href="<%= request.original_url %>" />
+<% end %>
+
 <header class="header">
   <div class="logo">
     <h2 class="logo__text"><a href='/'><%= current_site.name %></a></h2>
