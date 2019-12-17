@@ -86,7 +86,7 @@ group :development do
   gem 'rubocop-performance'
 end
 
-group :development do
+group :test do
   gem 'simplecov', require: false
 end
 
