@@ -41,14 +41,15 @@ class Article < ApplicationRecord
 
   def whitelist
     add_list = {
-      'blockquote' => ['class','data-lang'],
-      'p' => ['lang', 'dir'],
-      'a' => ['href'],
-      'span' => ['class'],
-      'pre' => ['lang', 'class'],
+      attributes: {
+        'blockquote' => ['class','data-lang'],
+        'p' => ['lang', 'dir'],
+        'a' => ['href'],
+        'span' => ['class'],
+        'pre' => ['lang', 'class'],
+      }
     }
-    attribuites_list = HTML::Pipeline::SanitizationFilter::WHITELIST[:attributes].merge(add_list)
-    HTML::Pipeline::SanitizationFilter::WHITELIST.merge(attribuites_list)
+    HTML::Pipeline::SanitizationFilter::WHITELIST.deep_merge(add_list)
   end
 
   def set_published_at
