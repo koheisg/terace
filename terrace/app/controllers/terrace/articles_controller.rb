@@ -8,7 +8,7 @@ module Terrace
     end
 
     def show
-      @article = current_site.articles.published.find_by!(permalink: params[:permalink])
+      @article = current_site.articles.find_by!(permalink: params[:permalink])
     end
 
     private

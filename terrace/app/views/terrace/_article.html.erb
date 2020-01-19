@@ -1,5 +1,10 @@
 <article class="article" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
+    <%- if article.draft? %>
+      <p class="published-at article-title">
+        この記事は公開されていません。
+      </p>
+    <% end %>
     <p class="published-at">
       <time datetime="<%= l article.created_at, format: "%Y-%m-%d" %>">
         <%= l article.created_at, format: "%b %d, %Y" %>
