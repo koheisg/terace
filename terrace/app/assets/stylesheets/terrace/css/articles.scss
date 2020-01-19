@@ -66,6 +66,13 @@
       text-align: center;
     }
 
+    blockquote {
+      border-left: rgba(0,0,0,0.1) solid 3px;
+      color: $published-at-text-color;
+      margin-left: 1rem;
+      padding-left: 1rem;
+    }
+
     p code {
       color: $inline-code-text-color;
       background-color: $inline-code-backgroud-color;
