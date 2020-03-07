@@ -3,6 +3,7 @@
     <tr>
       <th scope="col">URL</th>
       <th scope="col">Title</th>
+      <th scope="col">Description</th>
       <th scope="col">Noindex</th>
       <th scope="col">Published At</th>
       <th scope="col">Modified At</th>
@@ -19,7 +20,26 @@
                          "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
                          target: :_blank %>
         </th>
-        <td><%= article.title %></td>
+        <td data-controller='editable-cell'>
+          <div data-action="click->editable-cell#edit" data-target="editable-cell.show">
+            <%= article.title %>
+          </div>
+          <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
+            <div class="field">
+              <%= form.text_field :title, data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'} %>
+            </div>
+          <% end %>
+        </td>
+        <td data-controller='editable-cell'>
+          <div data-action="click->editable-cell#edit" data-target="editable-cell.show">
+            <%= article.description %>
+          </div>
+          <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
+            <div class="field">
+              <%= form.text_field :description, data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'} %>
+            </div>
+          <% end %>
+        </td>
         <td><%= 'noindex' if article.noindex? %></td>
         <td><%= article.published_at.to_s(:db) if article.published_at %></td>
         <td><%= article.modified_at.to_s(:db) if article.modified_at %></td>

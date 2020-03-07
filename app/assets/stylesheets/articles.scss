@@ -18,9 +18,29 @@
   tbody {
     text-align: left;
   }
+
+  td, th {
+    max-width: 350px;
+  }
+
   .shipped {
   }
+
   .draft {
     background-color: #ccc;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .field {
+    width: 100%;
+    height: 100%;
+
+    input {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
