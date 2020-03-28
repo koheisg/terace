@@ -7,9 +7,6 @@ AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
 
-Rails:
-  Enabled: true
-
 Naming/AccessorMethodName:
   Exclude:
     - app/controllers/**/*
@@ -54,18 +51,15 @@ Metrics/BlockLength:
     - config/environments/development.rb
     - config/environments/production.rb
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: true
   Max: 140
 
-Rails/TimeZone:
+Style/HashEachMethods:
   Enabled: true
-  Exclude:
-    - bin/*.rb
-    - spec/rails_helper.rb
 
-Rails/HttpPositionalArguments:
-  Enabled: false
+Style/HashTransformKeys:
+  Enabled: true
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: false
+Style/HashTransformValues:
+  Enabled: true
