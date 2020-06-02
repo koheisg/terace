@@ -1,4 +1,14 @@
 .articles {
+  .form {
+    width: 770px;
+    .field {
+      width: 100%;
+      input, textarea {
+        width: 100%;
+      }
+    }
+
+  }
   .content_field {
     max-width: 100%;
   }

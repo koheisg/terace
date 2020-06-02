@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="<%= "#{controller.controller_path.gsub('/', '_')} #{controller.controller_path.gsub('/', '_')}--#{controller.action_name}" %>">
+  <body class="<%= "#{controller.controller_path.gsub('/', '_')}" %>">
     <%= collection_select :site, :id, Site.all, :id, :name,
                           {include_blank: 'All site', selected: current_site&.id},
                           data: {remote: true, method: :patch, url: '/site_session'} %>
