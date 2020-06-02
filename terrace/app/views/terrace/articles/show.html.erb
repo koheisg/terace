@@ -2,6 +2,12 @@
   <title><%= @article.title %></title>
 <% end %>
 
+<% content_for :description do %>
+  <% if @article.description.present? %>
+    <meta name="description" content="<%= @article.description %>">
+  <% end %>
+<% end %>
+
 <% content_for :canonical do %>
   <link rel="canonical" href="<%= "https://#{@article.site.domain}/#{@article.permalink}" %>" />
 <% end %>
