@@ -20,8 +20,8 @@
                          "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
                          target: :_blank %>
         </th>
-        <td data-controller='editable-cell'>
-          <div data-action="click->editable-cell#edit" data-target="editable-cell.show">
+        <td data-controller='editable-cell' data-action="click->editable-cell#edit">
+          <div data-target="editable-cell.show" class='field'>
             <%= article.title %>
           </div>
           <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
@@ -30,8 +30,8 @@
             </div>
           <% end %>
         </td>
-        <td data-controller='editable-cell'>
-          <div data-action="click->editable-cell#edit" data-target="editable-cell.show">
+        <td data-controller='editable-cell' data-action="click->editable-cell#edit" >
+          <div data-target="editable-cell.show" class='field'>
             <%= article.description %>
           </div>
           <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
