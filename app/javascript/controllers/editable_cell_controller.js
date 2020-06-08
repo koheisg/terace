@@ -16,4 +16,21 @@ export default class extends Controller {
     this.formTarget.classList.add("hide")
     this.showTarget.classList.remove("hide")
   }
+
+  loading() {
+    this.showTarget.classList.remove("error")
+    this.showTarget.innerHTML = this.inputTarget.value
+    this.formTarget.classList.add("hide")
+    this.showTarget.classList.add("loading")
+    this.showTarget.classList.remove("hide")
+  }
+
+  hide() {
+    this.showTarget.classList.remove("loading")
+  }
+
+  error() {
+    this.showTarget.classList.remove("loading")
+    this.showTarget.classList.add("error")
+  }
 }

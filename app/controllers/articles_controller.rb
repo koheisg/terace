@@ -47,11 +47,12 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
-        format.js { }
+        format.json { render :show, status: :ok }
+        format.js { head :ok }
       else
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js { head :unprocessable_entity }
       end
     end
   end

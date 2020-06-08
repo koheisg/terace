@@ -24,7 +24,10 @@
           <div data-target="editable-cell.show" class='field'>
             <%= article.title %>
           </div>
-          <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
+          <%= form_with(model: article, data: {target: 'editable-cell.form',
+                                               action: 'ajax:send->editable-cell#loading
+                                                        ajax:complete->editable-cell#hide
+                                                        ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
             <div class="field">
               <%= form.text_field :title, data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'} %>
             </div>
@@ -34,7 +37,10 @@
           <div data-target="editable-cell.show" class='field'>
             <%= article.description %>
           </div>
-          <%= form_with(model: article, data: {target: 'editable-cell.form'}, class: 'hide') do |form| %>
+          <%= form_with(model: article, data: {target: 'editable-cell.form',
+                                               action: 'ajax:send->editable-cell#loading
+                                                        ajax:complete->editable-cell#hide
+                                                        ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
             <div class="field">
               <%= form.text_field :description, data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'} %>
             </div>
