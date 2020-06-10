@@ -1,20 +1,27 @@
 .articles {
   .form {
     width: 770px;
+
     .field {
       width: 100%;
+
       input, textarea {
         width: 100%;
       }
     }
 
   }
+
   .content_field {
     max-width: 100%;
   }
 }
 
 .articles-table {
+  $co-loading: #ddd;
+  $co-error: #f00;
+  $co-draft: #ccc;
+
   tbody {
     text-align: left;
   }
@@ -37,7 +44,7 @@
   }
 
   .draft {
-    background-color: #ccc;
+    background-color: $co-draft;
   }
 
   .hide {
@@ -45,21 +52,22 @@
   }
 
   .loading {
-    background-color: #ddd;
+    background-color: $co-loading;
   }
 
   .error {
-    background-color: #f00;
+    background-color: $co-error;
   }
 
   .field {
-    width: 100%;
-    min-height: 20px;
     height: 100%;
+    margin: auto;
+    min-height: 20px;
+    width: 100%;
 
     input {
-      width: 100%;
       height: 100%;
+      width: 100%;
     }
   }
 }
