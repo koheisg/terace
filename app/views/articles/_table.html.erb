@@ -1,7 +1,8 @@
 <table class="articles-table">
   <thead>
     <tr>
-      <th scope="col">URL</th>
+      <th scope="col">Site</th>
+      <th scope="col">Permalink</th>
       <th scope="col">Title</th>
       <th scope="col">Description</th>
       <th scope="col">Noindex</th>
@@ -12,14 +13,32 @@
   </thead>
 
   <tbody>
+    <%= form_with(model: Article.new, class: 'form') do |form| %>
+      <%= form.hidden_field :state, value: :draft %>
+      <tr>
+        <td><%= form.collection_select :site_id, current_user.sites, :id, :domain %></td>
+        <td><%= form.text_field :permalink %></td>
+        <td><%= form.text_field :title, id: :article_title %></td>
+        <td><%= form.text_field :description, id: :article_description, rows: 10 %></td>
+        <td><%= form.check_box :noindex %></td>
+        <td></td>
+        <td></td>
+        <td><%= form.submit %></td>
+      </tr>
+    <% end %>
     <% articles.each do |article| %>
       <tr class="<%= article.state %>">
-        <th scope="row">
+        <td scope="row">
+          <%= link_to article.site.domain,
+                      "//#{article.site.domain}#{request.port_string}/",
+                      target: :_blank %>
+        </td>
+        <td scope="row">
           <%= link_to_if article.shipped?,
-                         "#{article.site.domain}/#{article.permalink}",
+                         "/#{article.permalink}",
                          "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
                          target: :_blank %>
-        </th>
+        </td>
         <td data-controller='editable-cell' data-action="click->editable-cell#edit">
           <div data-target="editable-cell.show" class='field'>
             <%= article.title %>

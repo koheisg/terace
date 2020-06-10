@@ -14,6 +14,7 @@ class Article < ApplicationRecord
 
   validates :permalink, uniqueness: { conditions: -> { shipped } }, if: :shipped?
   validates :permalink, presence: true, if: :shipped?
+  validates :state, presence: true
 
   enum state: { draft: 0, shipped: 1 }
 
