@@ -26,6 +26,16 @@
   .shipped {
   }
 
+  .permalink-prefix::before {
+    content: '/';
+    display: block;
+    float: left;
+  }
+
+  .flex-container {
+    display: flex;
+  }
+
   .draft {
     background-color: #ccc;
   }

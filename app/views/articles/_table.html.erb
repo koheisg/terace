@@ -33,11 +33,26 @@
                       "//#{article.site.domain}#{request.port_string}/",
                       target: :_blank %>
         </td>
-        <td scope="row">
-          <%= link_to_if article.shipped?,
-                         "/#{article.permalink}",
-                         "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
-                         target: :_blank %>
+        <td data-controller='editable-cell' data-action="click->editable-cell#edit">
+          <% if article.shipped? %>
+            <%= link_to_if article.shipped?,
+                           "/#{article.permalink}",
+                           "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
+                           target: :_blank %>
+          <% else %>
+            <div data-target="editable-cell.show" class='field permalink-prefix'>
+              <%= "#{article.permalink}" %>
+            </div>
+            <%= form_with(model: article, data: {target: 'editable-cell.form',
+                                                 action: 'ajax:send->editable-cell#loading
+                                                          ajax:complete->editable-cell#hide
+                                                          ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
+              <div class="field flex-container">
+                <div><span>/ <span></div>
+                <div><%= form.text_field :permalink, data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'} %></div>
+              </div>
+            <% end %>
+          <% end %>
         </td>
         <td data-controller='editable-cell' data-action="click->editable-cell#edit">
           <div data-target="editable-cell.show" class='field'>
