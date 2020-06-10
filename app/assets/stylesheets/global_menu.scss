@@ -1,10 +1,17 @@
-.global_menu {
+.global-menu {
+  display: flex;
+
+  .select {
+    margin: auto 0;
+    padding-right: 1rem;
+  }
+
   .tabs {
     display: flex;
     padding-left: 0;
   }
 
   .tab {
-    padding-right: 10px;
+    padding-right: .5rem;
   }
 }

@@ -11,10 +11,12 @@
   </head>
 
   <body class="<%= "#{controller.controller_path.gsub('/', '_')}" %>">
-    <%= collection_select :site, :id, Site.all, :id, :name,
-                          {include_blank: 'All site', selected: current_site&.id},
-                          data: {remote: true, method: :patch, url: '/site_session'} %>
-    <nav class="global_menu">
+    <nav class="global-menu">
+      <div class="select">
+        <%= collection_select :site, :id, Site.all, :id, :name,
+                              {include_blank: 'All site', selected: current_site&.id},
+                              data: {remote: true, method: :patch, url: '/site_session'} %>
+      </div>
       <ul class="tabs">
         <li class="tab"><%= link_to t(".home"), root_path %></li>
         <li class="tab">
