@@ -1,6 +1,7 @@
 class Article::Search
   include ActiveModel::Model
-  attr_accessor :title, :state, :site, :user
+  ATTRIBUTES = [:title, :state, :site, :user, :permalink]
+  attr_accessor *ATTRIBUTES
 
   def query(articles)
     res = articles
