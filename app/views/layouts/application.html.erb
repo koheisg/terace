@@ -11,7 +11,7 @@
   </head>
 
   <body class="<%= "#{controller.controller_path.gsub('/', '_')}" %>">
-    <nav class="global-menu">
+    <nav class="global-menu" data-turbolinks-permanent>
       <div class="select">
         <%= collection_select :site, :id, Site.all, :id, :name,
                               {include_blank: 'All site', selected: current_site&.id},
