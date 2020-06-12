@@ -37,6 +37,9 @@
         <% end %>
       </ul>
     </nav>
-    <%= yield %>
+    <div class="notification"><p id="notice"><%= notice %></p></div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

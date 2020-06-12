@@ -1,9 +1,4 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Editing Article <small>(<%= link_to 'preview', "//#{@article.site.domain}#{request.port_string}/#{@article.permalink}", target: :_blank %>)</small></h1>
-
-
-
 
 <%= render 'form', article: @article %>
 
