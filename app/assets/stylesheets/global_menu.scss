@@ -1,14 +1,15 @@
 .global-menu {
   display: flex;
+  padding: 3.3rem 3.3rem 1rem;
 
   .select {
-    margin: auto 0;
+    margin: 0;
     padding-right: 1rem;
   }
 
   .tabs {
     display: flex;
-    padding-left: 0;
+    margin: 0;
   }
 
   .tab {
