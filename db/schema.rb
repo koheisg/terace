@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_07_04_132636) do
     t.string "permalinkable_type", null: false
     t.bigint "permalinkable_id", null: false
     t.bigint "site_id", null: false
+    t.integer "state"
     t.string "path"
     t.string "title"
     t.string "description"

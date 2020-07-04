@@ -3,6 +3,7 @@ class CreatePermalinks < ActiveRecord::Migration[6.0]
     create_table :permalinks do |t|
       t.references :permalinkable, polymorphic: true, null: false
       t.references :site, null: false, foreign_key: true
+      t.integer "state"
       t.string :path
       t.string :title
       t.string :description
