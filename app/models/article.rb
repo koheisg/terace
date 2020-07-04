@@ -3,6 +3,7 @@ require 'commonmarker'
 
 class Article < ApplicationRecord
   include Auditable
+  include Permalinkable
   belongs_to :user
   belongs_to :site
   has_many_attached :images
