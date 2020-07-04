@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Permalinks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Permalinkable</th>
+      <th>Site</th>
+      <th>Path</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Noindex</th>
+      <th>Published at</th>
+      <th>Modified at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permalinks.each do |permalink| %>
+      <tr>
+        <td><%= permalink.permalinkable_id %></td>
+        <td><%= permalink.site_id %></td>
+        <td><%= permalink.path %></td>
+        <td><%= permalink.title %></td>
+        <td><%= permalink.description %></td>
+        <td><%= permalink.noindex %></td>
+        <td><%= permalink.published_at %></td>
+        <td><%= permalink.modified_at %></td>
+        <td><%= link_to 'Show', permalink %></td>
+        <td><%= link_to 'Edit', edit_permalink_path(permalink) %></td>
+        <td><%= link_to 'Destroy', permalink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Permalink', new_permalink_path %>

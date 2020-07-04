@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users
     resources :user_sites
     resources :sites
+    resources :permalinks
     resources :articles do
       resources :histories, module: :articles, only: [:index, :show]
     end

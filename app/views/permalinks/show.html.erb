@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Permalinkable:</strong>
+  <%= @permalink.permalinkable_id %>
+</p>
+
+<p>
+  <strong>Site:</strong>
+  <%= @permalink.site_id %>
+</p>
+
+<p>
+  <strong>Path:</strong>
+  <%= @permalink.path %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @permalink.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @permalink.description %>
+</p>
+
+<p>
+  <strong>Noindex:</strong>
+  <%= @permalink.noindex %>
+</p>
+
+<p>
+  <strong>Published at:</strong>
+  <%= @permalink.published_at %>
+</p>
+
+<p>
+  <strong>Modified at:</strong>
+  <%= @permalink.modified_at %>
+</p>
+
+<%= link_to 'Edit', edit_permalink_path(@permalink) %> |
+<%= link_to 'Back', permalinks_path %>

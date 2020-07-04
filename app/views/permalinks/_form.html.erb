@@ -1,0 +1,57 @@
+<%= form_with(model: permalink, local: true) do |form| %>
+  <% if permalink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(permalink.errors.count, "error") %> prohibited this permalink from being saved:</h2>
+
+      <ul>
+        <% permalink.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :permalinkable_id %>
+    <%= form.text_field :permalinkable_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :site_id %>
+    <%= form.text_field :site_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :path %>
+    <%= form.text_field :path %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :noindex %>
+    <%= form.check_box :noindex %>
+  </div>
+
+  <div class="field">
+    <%= form.label :published_at %>
+    <%= form.datetime_select :published_at %>
+  </div>
+
+  <div class="field">
+    <%= form.label :modified_at %>
+    <%= form.datetime_select :modified_at %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

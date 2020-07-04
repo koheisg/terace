@@ -8,8 +8,8 @@ one:
   title: MyString
   description: MyString
   noindex: false
-  published_at: 2020-07-04 22:26:36
-  modified_at: 2020-07-04 22:26:36
+  published_at: 2020-07-05 01:34:16
+  modified_at: 2020-07-05 01:34:16
 
 two:
   permalinkable: two
@@ -19,5 +19,5 @@ two:
   title: MyString
   description: MyString
   noindex: false
-  published_at: 2020-07-04 22:26:36
-  modified_at: 2020-07-04 22:26:36
+  published_at: 2020-07-05 01:34:16
+  modified_at: 2020-07-05 01:34:16
