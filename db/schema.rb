@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_145150) do
+ActiveRecord::Schema.define(version: 2020_07_04_132636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(version: 2020_06_02_145150) do
     t.index ["user_type", "user_id"], name: "index_audits_on_user_type_and_user_id"
   end
 
+  create_table "permalinks", force: :cascade do |t|
+    t.string "permalinkable_type", null: false
+    t.bigint "permalinkable_id", null: false
+    t.bigint "site_id", null: false
+    t.string "path"
+    t.string "title"
+    t.string "description"
+    t.boolean "noindex"
+    t.datetime "published_at"
+    t.datetime "modified_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["permalinkable_type", "permalinkable_id"], name: "index_permalinks_on_permalinkable_type_and_permalinkable_id"
+    t.index ["site_id"], name: "index_permalinks_on_site_id"
+  end
+
   create_table "sites", force: :cascade do |t|
     t.string "domain"
     t.datetime "created_at", null: false
@@ -118,6 +134,7 @@ ActiveRecord::Schema.define(version: 2020_06_02_145150) do
   end
 
   add_foreign_key "articles", "sites"
+  add_foreign_key "permalinks", "sites"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_sites", "sites"
   add_foreign_key "user_sites", "users"
