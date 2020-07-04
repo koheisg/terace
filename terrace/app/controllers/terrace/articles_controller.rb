@@ -4,11 +4,11 @@ module Terrace
   class ArticlesController < ApplicationController
     layout :site_layout
     def index
-      @articles = current_site.articles.published.order(created_at: :desc).page(params[:page]).per(5)
+      @permalinks = current_site.permalinks.published.order(created_at: :desc).page(params[:page]).per(5)
     end
 
     def show
-      @article = current_site.articles.find_by!(permalink: params[:permalink])
+      @permalink = current_site.permalinks.find_by!(path: params[:permalink])
     end
 
     private

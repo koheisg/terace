@@ -8,11 +8,11 @@
   </div>
 </header>
 
-<% @articles.each do |article| %>
-  <%= render "terrace/article", article: article, heading_level: "h2" %>
+<% @permalinks.each do |permalink| %>
+  <%= render "terrace/article", permalink: permalink, heading_level: "h2" %>
 <% end %>
 
-<%= paginate @articles, theme: 'terrace' %>
+<%= paginate @permalinks, theme: 'terrace' %>
 
 <footer class="footer">
   <hr />

@@ -1,19 +1,19 @@
 <% content_for 'title' do %>
-  <title><%= @article.title %></title>
+  <title><%= @permalink.title %></title>
 <% end %>
 
 <% content_for :description do %>
-  <% if @article.description.present? %>
-    <meta name="description" content="<%= @article.description %>">
+  <% if @permalink.description.present? %>
+    <meta name="description" content="<%= @permalink.description %>">
   <% end %>
 <% end %>
 
 <% content_for :canonical do %>
-  <link rel="canonical" href="<%= "https://#{@article.site.domain}/#{@article.permalink}" %>" />
+  <link rel="canonical" href="<%= "https://#{@permalink.site.domain}/#{@permalink.path}" %>" />
 <% end %>
 
 <% content_for :noindex do %>
-  <% if @article.noindex? %>
+  <% if @permalink.noindex? %>
     <meta name="robots" content="noindex">
   <% end %>
 <% end %>
@@ -24,7 +24,7 @@
   </div>
 </header>
 
-<%= render "terrace/article", article: @article, heading_level: "h1" %>
+<%= render "terrace/article", permalink: @permalink, heading_level: "h1" %>
 
 <footer class="footer">
   <hr />
