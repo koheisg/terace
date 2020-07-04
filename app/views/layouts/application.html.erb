@@ -20,6 +20,9 @@
       <ul class="tabs">
         <li class="tab"><%= link_to t(".home"), root_path %></li>
         <li class="tab">
+          <%= link_to t(".permalinks"), permalinks_path %>
+        </li>
+        <li class="tab">
           <%= link_to t(".articles"), articles_path %>
         </li>
         <%- if admin? %>
