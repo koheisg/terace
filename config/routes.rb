@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :pages
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
     controller :sessions do
