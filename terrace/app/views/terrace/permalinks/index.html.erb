@@ -8,9 +8,7 @@
   </div>
 </header>
 
-<% @permalinks.each do |permalink| %>
-  <%= render "terrace/article", permalink: permalink, heading_level: "h2" %>
-<% end %>
+<%= render @permalinks, heading_level: 'h2' %>
 
 <%= paginate @permalinks, theme: 'terrace' %>
 

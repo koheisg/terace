@@ -1,0 +1,13 @@
+<article class="permalink" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <%- if page.permalink.draft? %>
+      <p class="published-at permalink-title">
+        このページは公開されていません。
+      </p>
+    <% end %>
+    <time datetime="<%= l page.permalink.created_at, format: "%Y-%m-%d" %>"></time>
+  </header>
+  <div class="content">
+    <%= page.content_html %>
+  </div>
+</article>

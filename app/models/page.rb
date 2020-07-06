@@ -1,3 +1,3 @@
 class Page < ApplicationRecord
-  include Auditable, Permalinkable
+  include Auditable, Permalinkable, Htmlable
 end
