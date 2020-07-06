@@ -1,0 +1,18 @@
+<% content_for 'title' do %>
+  <title><%= current_site.name %></title>
+<% end %>
+
+<header class="header">
+  <div class="logo">
+    <h1 class="logo__text"><a href='/'><%= current_site.name %></a></h1>
+  </div>
+</header>
+
+<%= render @permalinks, heading_level: 'h2' %>
+
+<%= paginate @permalinks, theme: 'terrace' %>
+
+<footer class="footer">
+  <hr />
+  <p>copyright &copy; <%= Time.current.year %> koheisg All Rights Reserved.</p>
+</footer>

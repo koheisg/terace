@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :archives
   resources :pages
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
