@@ -58,7 +58,7 @@
     <%= form_with(model: Permalink.new, class: 'form') do |form| %>
       <%= form.hidden_field :state, value: :draft %>
       <tr>
-        <td><%= form.select :permalinkable_type, [[:article, 'Article']] %></td>
+        <td><%= form.select :permalinkable_type, [[:article, 'Article'], [:page, 'Page']] %></td>
         <td><%= form.collection_select :site_id, current_user.sites, :id, :domain %></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title, id: :article_title %></td>

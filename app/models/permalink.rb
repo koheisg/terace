@@ -16,6 +16,8 @@ class Permalink < ApplicationRecord
   def build_permalinkable
     if permalinkable_type == 'Article'
       self.permalinkable = Article.new
+    elsif permalinkable_type == 'Page'
+      self.permalinkable = Page.new
     end
   end
 
