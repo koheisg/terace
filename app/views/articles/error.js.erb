@@ -1,0 +1,5 @@
+var element = document.querySelector('#location-form');
+element.innerHTML = "<%= j(render("projects/locations/form", location: @location)) %>";
+<% if @move %>
+element.scrollIntoView(true);
+<% end %>

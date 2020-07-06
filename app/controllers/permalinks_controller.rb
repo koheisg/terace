@@ -4,7 +4,13 @@ class PermalinksController < ApplicationController
   # GET /permalinks
   # GET /permalinks.json
   def index
-    @permalinks = Permalink.all
+    @q = Permalink.new(params.permit(:path, :title, :state))
+    @permalinks = Permalink.includes(:site, :permalinkable)
+                           .order(created_at: :desc)
+                           .match_if(state: params[:state])
+                           .contains(title: params[:title])
+                           .contains(path: params[:path])
+                           .page(params[:page])
   end
 
   # GET /permalinks/1
@@ -25,11 +31,13 @@ class PermalinksController < ApplicationController
   # POST /permalinks.json
   def create
     @permalink = Permalink.new(permalink_params)
+    @permalink.build_permalinkable
 
     respond_to do |format|
       if @permalink.save
         format.html { redirect_to @permalink, notice: 'Permalink was successfully created.' }
         format.json { render :show, status: :created, location: @permalink }
+        format.js { render :create, status: :created }
       else
         format.html { render :new }
         format.json { render json: @permalink.errors, status: :unprocessable_entity }
@@ -44,6 +52,7 @@ class PermalinksController < ApplicationController
       if @permalink.update(permalink_params)
         format.html { redirect_to @permalink, notice: 'Permalink was successfully updated.' }
         format.json { render :show, status: :ok, location: @permalink }
+        format.js { render :update, status: :created }
       else
         format.html { render :edit }
         format.json { render json: @permalink.errors, status: :unprocessable_entity }
@@ -54,7 +63,7 @@ class PermalinksController < ApplicationController
   # DELETE /permalinks/1
   # DELETE /permalinks/1.json
   def destroy
-    @permalink.destroy
+    @permalink.permalinkable.destroy
     respond_to do |format|
       format.html { redirect_to permalinks_url, notice: 'Permalink was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +78,6 @@ class PermalinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permalink_params
-      params.require(:permalink).permit(:permalinkable_id, :permalinkable_type, :site_id, :path, :title, :description, :noindex, :published_at, :modified_at)
+      params.require(:permalink).permit(:permalinkable_type, :site_id, :path, :title, :description, :noindex, :state)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_04_164618) do
+ActiveRecord::Schema.define(version: 2020_07_06_123425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,20 +37,9 @@ ActiveRecord::Schema.define(version: 2020_07_04_164618) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.integer "state"
-    t.string "permalink"
-    t.datetime "published_at"
-    t.datetime "modified_at"
-    t.bigint "site_id"
-    t.boolean "noindex", default: false, null: false
-    t.text "description"
-    t.index ["site_id"], name: "index_articles_on_site_id"
-    t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "audits", force: :cascade do |t|
@@ -134,7 +123,6 @@ ActiveRecord::Schema.define(version: 2020_07_04_164618) do
     t.boolean "admin", default: false, null: false
   end
 
-  add_foreign_key "articles", "sites"
   add_foreign_key "permalinks", "sites"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_sites", "sites"

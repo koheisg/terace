@@ -11,34 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :site %>
-    <%= form.collection_select :site_id, current_user.sites, :id, :domain %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :article_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :article_description, rows: 10 %>
-  </div>
+  <%= render 'permalinks/form', form: form %>
 
   <div class="field">
     <%= form.label :content %>
     <%= form.text_area :content, id: :article_content, rows: 25 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.select :state, Article.states.keys , id: :article_state %>
-  </div>
-
-  <div class="field">
-    <%= form.label :permalink %>
-    <%= form.text_field :permalink, id: :article_permalink %>
   </div>
 
   <%- form.object.images.each do |image| %>
@@ -65,12 +42,6 @@
       <%= b.label { b.check_box + b.text } %>
     <% end %>
   </div>
-
-  <div class="field">
-    <%= form.label :noindex %>
-    <%= form.check_box :noindex %>
-  </div>
-
 
   <div class="actions">
     <%= form.submit %>

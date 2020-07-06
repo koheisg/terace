@@ -13,35 +13,22 @@
   </thead>
 
   <tbody>
-    <%= form_with(model: Article.new, class: 'form') do |form| %>
-      <%= form.hidden_field :state, value: :draft %>
-      <tr>
-        <td><%= form.collection_select :site_id, current_user.sites, :id, :domain %></td>
-        <td><%= form.text_field :permalink %></td>
-        <td><%= form.text_field :title, id: :article_title %></td>
-        <td><%= form.text_field :description, id: :article_description, rows: 10 %></td>
-        <td><%= form.check_box :noindex %></td>
-        <td></td>
-        <td></td>
-        <td><%= form.submit %></td>
-      </tr>
-    <% end %>
     <% articles.each do |article| %>
-      <tr class="<%= article.state %>">
+      <tr class="<%= article.permalink.state %>">
         <td scope="row">
-          <%= link_to article.site.domain,
-                      "//#{article.site.domain}#{request.port_string}/",
+          <%= link_to article.permalink.site.domain,
+                      "//#{article.permalink.site.domain}#{request.port_string}/",
                       target: :_blank %>
         </td>
         <td data-controller='editable-cell'>
-          <% if article.shipped? %>
-            <%= link_to_if article.shipped?,
-                           "/#{article.permalink}",
-                           "//#{article.site.domain}#{request.port_string}/#{article.permalink}",
+          <% if article.permalink.shipped? %>
+            <%= link_to_if article.permalink.shipped?,
+                           "/#{article.permalink.path}",
+                           "//#{article.permalink.site.domain}#{request.port_string}/#{article.permalink.path}",
                            target: :_blank %>
           <% else %>
             <div data-action="click->editable-cell#edit" data-target="editable-cell.show" class='field permalink-prefix'>
-              <%= "#{article.permalink}" %>
+              <%= "#{article.permalink.path}" %>
             </div>
             <%= form_with(model: article, data: {target: 'editable-cell.form',
                                                  action: 'ajax:send->editable-cell#loading
@@ -56,7 +43,7 @@
         </td>
         <td data-controller='editable-cell'>
           <div data-action="click->editable-cell#edit" data-target="editable-cell.show" class='field'>
-            <%= article.title %>
+            <%= article.permalink.title %>
           </div>
           <%= form_with(model: article, data: {target: 'editable-cell.form',
                                                action: 'ajax:send->editable-cell#loading
@@ -69,7 +56,7 @@
         </td>
         <td data-controller='editable-cell'>
           <div data-action="click->editable-cell#edit" data-target="editable-cell.show" class='field'>
-            <%= article.description %>
+            <%= article.permalink.description %>
           </div>
           <%= form_with(model: article, data: {target: 'editable-cell.form',
                                                action: 'ajax:send->editable-cell#loading
@@ -80,9 +67,9 @@
             </div>
           <% end %>
         </td>
-        <td><%= 'noindex' if article.noindex? %></td>
-        <td><%= article.published_at.to_s(:db) if article.published_at %></td>
-        <td><%= article.modified_at.to_s(:db) if article.modified_at %></td>
+        <td><%= 'noindex' if article.permalink.noindex? %></td>
+        <td><%= article.permalink.published_at.to_s(:db) if article.permalink.published_at %></td>
+        <td><%= article.permalink.modified_at.to_s(:db) if article.permalink.modified_at %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'History', article_histories_path(article) %></td>

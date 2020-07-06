@@ -1,4 +1,11 @@
-<h1><%= link_to_if @article.shipped?, @article.title, "//#{@article.site.domain}#{request.port_string}/#{@article.permalink}", target: :_blank %></h1>
+<h1><%= link_to_if @article.permalink.shipped?, @article.permalink.title, "//#{@article.permalink.site.domain}#{request.port_string}/#{@article.permalink.path}", target: :_blank %></h1>
+
+<%- @article.permalink.attributes.each do |attr| %>
+  <p>
+  <strong><%= attr.first %>:</strong>
+    <%= attr.last %>
+  </p>
+<% end %>
 
 <%- @article.attributes.each do |attr| %>
   <p>
@@ -24,7 +31,7 @@
 </p>
 <p>
   <strong>noindex:</strong>
-  <%= @article.noindex %>
+  <%= @article.permalink.noindex %>
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |

@@ -1,57 +1,32 @@
-<%= form_with(model: permalink, local: true) do |form| %>
-  <% if permalink.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(permalink.errors.count, "error") %> prohibited this permalink from being saved:</h2>
-
-      <ul>
-        <% permalink.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form.fields_for :permalink do |permalink_form| %>
   <div class="field">
-    <%= form.label :permalinkable_id %>
-    <%= form.text_field :permalinkable_id %>
+    <%= permalink_form.label :site %>
+    <%= permalink_form.collection_select :site_id, current_user.sites, :id, :domain %>
   </div>
 
   <div class="field">
-    <%= form.label :site_id %>
-    <%= form.text_field :site_id %>
+    <%= permalink_form.label :path %>
+    <%= permalink_form.text_field :path %>
   </div>
 
   <div class="field">
-    <%= form.label :path %>
-    <%= form.text_field :path %>
+    <%= permalink_form.label :title %>
+    <%= permalink_form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= permalink_form.label :description %>
+    <%= permalink_form.text_area :description, rows: 10 %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= permalink_form.label :noindex %>
+    <%= permalink_form.check_box :noindex %>
   </div>
 
   <div class="field">
-    <%= form.label :noindex %>
-    <%= form.check_box :noindex %>
+    <%= permalink_form.label :state %>
+    <%= permalink_form.select :state, Permalink.states.keys %>
   </div>
 
-  <div class="field">
-    <%= form.label :published_at %>
-    <%= form.datetime_select :published_at %>
-  </div>
-
-  <div class="field">
-    <%= form.label :modified_at %>
-    <%= form.datetime_select :modified_at %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

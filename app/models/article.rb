@@ -2,24 +2,14 @@ require 'html/pipeline'
 require 'commonmarker'
 
 class Article < ApplicationRecord
-  include Auditable
-  include Permalinkable
-  belongs_to :user
-  belongs_to :site
+  include Auditable, Permalinkable
+
+  delegate :title, :description, :path, to: :permalink
+
   has_many_attached :images
   has_one_attached :ogp_image
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
-
-  before_save :set_published_at, :set_modified_at
-
-  validates :permalink, uniqueness: { conditions: -> { shipped } }, if: :shipped?
-  validates :permalink, presence: true, if: :shipped?
-  validates :state, presence: true
-
-  enum state: { draft: 0, shipped: 1 }
-
-  scope :published, -> { shipped.where('articles.published_at <= ?', Time.current) }
 
   def content_html
     result = pipeline.call(content)
@@ -52,18 +42,6 @@ class Article < ApplicationRecord
       }
     }
     HTML::Pipeline::SanitizationFilter::WHITELIST.deep_merge(add_list)
-  end
-
-  def set_published_at
-    if published_at.blank? && (changes[:state] == ['draft', 'shipped'] || changes[:state] == [nil, 'shipped'])
-      self.published_at = Time.current
-    end
-  end
-
-  def set_modified_at
-    if shipped?
-      self.modified_at = Time.current
-    end
   end
 
 end

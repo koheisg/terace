@@ -4,13 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @q = Article::Search.new(search_params)
-    @q.user = current_user
-    @articles = @q.query(current_user.articles
-                                     .includes(:site)
-                                     .where(site: current_site || current_user.sites)
-                                     .order(created_at: :desc))
-                  .page(params[:page])
+    @articles = Article.order(created_at: :desc).page(params[:page])
   end
 
   def show
@@ -19,6 +13,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = current_user.articles.new
+    @article.build_permalink
   end
 
   # GET /articles/1/edit
@@ -28,7 +23,7 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = current_user.articles.new(article_params)
+    @article = Articles.new(article_params)
 
     respond_to do |format|
       if @article.save
@@ -72,12 +67,13 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = current_user.articles.find(params[:id])
+      @article = Article.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:site_id, :title, :description, :content, :state, :permalink, :ogp_image, :noindex, images: [], tag_ids: [])
+      params.require(:article).permit(:content, :ogp_image, images: [], tag_ids: [],
+                                      permalink_attributes: [:id, :site_id, :path, :title, :description, :state, :permalink, :noindex])
     end
 
     def search_params

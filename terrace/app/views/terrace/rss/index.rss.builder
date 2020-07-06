@@ -14,17 +14,17 @@ xml.rss(
     xml.link request.host_with_port
     xml.language "ja-ja"
     xml.ttl "40"
-    xml.pubDate(Time.now.strftime("%a, %d %b %Y %H:%M:%S %Z"))
+    xml.pubDate(Time.zone.now.strftime("%a, %d %b %Y %H:%M:%S %Z"))
     xml.atom :link, "href" => "RSSのURL", "rel" => "self", "type" => "application/rss+xml"
-    @articles.each do |p|
+    @permalinks.each do |permalink|
       xml.item do
-        xml.title p.title
+        xml.title permalink.title
         xml.description do
-          xml.cdata! p.content_html
+          xml.cdata! permalink.permalinkable.content_html
         end
-        xml.pubDate p.created_at #公開日
-        xml.guid "#{request.protocol}#{request.host_with_port}/#{p.permalink}"
-        xml.link "#{request.protocol}#{request.host_with_port}/#{p.permalink}"
+        xml.pubDate permalink.created_at #公開日
+        xml.guid "#{request.protocol}#{request.host_with_port}/#{permalink.path}"
+        xml.link "#{request.protocol}#{request.host_with_port}/#{permalink.path}"
       end
     end
   end

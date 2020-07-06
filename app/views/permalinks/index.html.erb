@@ -1,11 +1,48 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Permalinks</h1>
 
-<table>
+<nav class="article_nav">
+  <ul class="search_tabs">
+    <li class="tab"><%= link_to t(".all"), permalinks_path %></li>
+    <li class="tab"><%= link_to t(".published"), permalinks_path(state: 'shipped') %></li>
+    <li class="tab"><%= link_to t(".drafts"), permalinks_path(state: 'draft') %></li>
+  </ul>
+  <%= form_with model: @q, local: true, url: permalinks_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
+    <div class="search-form">
+      <div>
+        <%= f.label :title %>
+        <%= f.search_field :title %>
+      </div>
+      <div>
+        <%= f.label :path %>
+        <%= f.search_field :path %>
+      </div>
+      <div>
+        <%= f.label :state %>
+        <div class="search-form">
+          <%= f.radio_button :state, :shipped, id: :shipped %>
+          <%= f.label :shipped, for: :shipped, class: 'radio-button-label' %>
+          <%= f.radio_button :state, :draft, id: :draft %>
+          <%= f.label :draft, for: :draft, class: 'radio-button-label' %>
+        </div>
+      </div>
+      <div class="submit-field">
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>
+</nav>
+
+<br />
+
+<%= link_to 'New Article', new_article_path %>
+
+<br>
+<br>
+
+<table class="articles-table">
   <thead>
     <tr>
-      <th>Permalinkable</th>
+      <th>Permalinkable Type</th>
       <th>Site</th>
       <th>Path</th>
       <th>Title</th>
@@ -18,24 +55,24 @@
   </thead>
 
   <tbody>
-    <% @permalinks.each do |permalink| %>
+    <%= form_with(model: Permalink.new, class: 'form') do |form| %>
+      <%= form.hidden_field :state, value: :draft %>
       <tr>
-        <td><%= permalink.permalinkable_id %></td>
-        <td><%= permalink.site_id %></td>
-        <td><%= permalink.path %></td>
-        <td><%= permalink.title %></td>
-        <td><%= permalink.description %></td>
-        <td><%= permalink.noindex %></td>
-        <td><%= permalink.published_at %></td>
-        <td><%= permalink.modified_at %></td>
-        <td><%= link_to 'Show', permalink %></td>
-        <td><%= link_to 'Edit', edit_permalink_path(permalink) %></td>
-        <td><%= link_to 'Destroy', permalink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= form.select :permalinkable_type, [[:article, 'Article']] %></td>
+        <td><%= form.collection_select :site_id, current_user.sites, :id, :domain %></td>
+        <td><%= form.text_field :path %></td>
+        <td><%= form.text_field :title, id: :article_title %></td>
+        <td><%= form.text_field :description, id: :article_description, rows: 10 %></td>
+        <td><%= form.check_box :noindex %></td>
+        <td></td>
+        <td></td>
+        <td colspan="3"><%= form.submit %></td>
       </tr>
     <% end %>
+    <%= render @permalinks %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Permalink', new_permalink_path %>
+<%= paginate @permalinks %>

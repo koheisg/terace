@@ -1,5 +1,5 @@
-<h1>Editing Article <small>(<%= link_to 'preview', "//#{@article.site.domain}#{request.port_string}/#{@article.permalink}", target: :_blank %>)</small></h1>
+<h1>Editing Article <small>(<%= link_to 'preview', "//#{@article.permalink.site.domain}#{request.port_string}/#{@article.permalink.path}", target: :_blank %>)</small></h1>
 
 <%= render 'form', article: @article %>
 
-<%= link_to 'Show', @article if @article.shipped? %>
+<%= link_to 'Show', @article if @article.permalink.shipped? %>
