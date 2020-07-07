@@ -57,8 +57,8 @@ gem 'escape_utils'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 group :production do
-  # Use postgres as the database for Active Record
   gem 'pg'
+  gem 'newrelic_rpm'
 end
 
 group :development, :test do
