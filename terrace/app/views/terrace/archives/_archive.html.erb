@@ -1,7 +1,6 @@
-<%- permalinks = current_site.permalinks.article_types.published.order(created_at: :desc).page(params[:page]) %>
+<%- permalinks = current_site.permalinks.includes(:permalinkable).article_types.published.order(published_at: :desc).page(params[:page]) %>
 
-<%- permalinks.each do |permalink| %>
-  <%- article = permalink.permalinkable %>
+<%- permalinks.each do |article| %>
   <article class="permalink" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
       <%- if article.draft? %>
@@ -19,7 +18,7 @@
       </<%= heading_level %>>
     </header>
     <div class="content">
-      <%= article.content_html %>
+      <%= article.permalinkable.content_html %>
     </div>
   </article>
 <% end %>
