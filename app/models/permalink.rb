@@ -11,13 +11,21 @@ class Permalink < ApplicationRecord
   before_save :set_published_at, :set_modified_at
 
   validates :state, presence: true
-  validates :path, uniqueness: { conditions: -> { shipped } }, if: :shipped?
+  validates :path, uniqueness: { scope: :site_id, conditions: -> { shipped } }, if: :shipped?
+
+  def self.permalinkable_types
+    { article: 'Article',
+      page: 'Page',
+      archive: 'Archive' }
+  end
 
   def build_permalinkable
     if permalinkable_type == 'Article'
       self.permalinkable = Article.new
     elsif permalinkable_type == 'Page'
       self.permalinkable = Page.new
+    elsif permalinkable_type == 'Archive'
+      self.permalinkable = Archive.new
     end
   end
 

@@ -69,6 +69,6 @@ class ArchivesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def archive_params
-      params.fetch(:archive, {})
+      params.require(:archive).permit(permalink_attributes: [:id, :site_id, :path, :title, :description, :state, :permalink, :noindex])
     end
 end
