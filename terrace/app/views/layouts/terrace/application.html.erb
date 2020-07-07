@@ -14,7 +14,11 @@
 </head>
 <body class="<%= controller.controller_name %>">
 
+<%= yield(:header) %>
+
 <%= yield %>
+
+<%= yield(:footer) %>
 
 </body>
 </html>

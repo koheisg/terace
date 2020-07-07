@@ -1,8 +1,7 @@
 <% content_for :stylesheets do %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.2.0/dist/css/yakuhanjp-noto.min.css" async>
-  <%= stylesheet_link_tag 'terrace/dev/application' %>
+  <%= stylesheet_link_tag 'terrace/application' %>
 <% end %>
-
 <% content_for :javascript do %>
   <%= javascript_include_tag "https://kit.fontawesome.com/59a55ccf92.js", async: 'async' %>
 <% end %>
@@ -18,7 +17,7 @@
 <% content_for :footer do %>
   <footer class="footer">
     <hr />
-    <p>copyright &copy; <%= Time.current.year %> koheisg All Rights Reserved.</p>
+    <p>copyright &copy; <%= Time.current.year %> forward inc. All Rights Reserved.</p>
   </footer>
 <% end %>
 
