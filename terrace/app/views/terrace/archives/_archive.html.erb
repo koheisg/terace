@@ -1,4 +1,4 @@
-<%- permalinks = current_site.permalinks.article_types.published..order(created_at: :desc).page(params[:page]) %>
+<%- permalinks = current_site.permalinks.article_types.published.order(created_at: :desc).page(params[:page]) %>
 
 <%- permalinks.each do |permalink| %>
   <%- article = permalink.permalinkable %>
