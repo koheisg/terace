@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :archives
-  resources :pages
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
     root 'root#index'
     controller :sessions do
@@ -15,7 +13,9 @@ Rails.application.routes.draw do
     resources :user_sites
     resources :sites
     resources :permalinks
-    resources :articles do
+    resources :archives, except: [:index]
+    resources :pages, except: [:index]
+    resources :articles, except: [:index] do
       resources :histories, module: :articles, only: [:index, :show]
     end
     resources :tags

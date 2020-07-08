@@ -1,11 +1,5 @@
-class PagesController < ApplicationController
+class PagesController < PermalinkableController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
-
-  # GET /pages
-  # GET /pages.json
-  def index
-    @pages = Page.all
-  end
 
   # GET /pages/1
   # GET /pages/1.json
@@ -15,6 +9,7 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
+    @page.build_permalink
   end
 
   # GET /pages/1/edit
@@ -25,15 +20,15 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = Page.new(page_params)
-    @page.build_permalink
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to [:edit, @page], notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
         format.json { render json: @page.errors, status: :unprocessable_entity }
+        format.js { render :error, status: :unprocessable_entity }
       end
     end
   end
@@ -43,11 +38,12 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to [:edit, @page], notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
         format.json { render json: @page.errors, status: :unprocessable_entity }
+        format.js { render :error, status: :unprocessable_entity }
       end
     end
   end

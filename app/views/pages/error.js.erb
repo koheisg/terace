@@ -1,3 +1,3 @@
 var element = document.querySelector('.permalinkable-form');
-element.innerHTML = "<%= j(render("form", article: @article)) %>";
+element.innerHTML = "<%= j(render("form", page: @page)) %>";
 element.scrollIntoView(true);

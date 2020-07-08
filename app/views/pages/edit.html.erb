@@ -1,4 +1,8 @@
-<h1>Editing Page</h1>
+<% content_for :heading do %>
+  <h1>Editing Page</h1>
+<% end %>
+
+<% yield :new_permalinkable_menu %>
 
 <%= render 'form', page: @page %>
 

@@ -1,0 +1,9 @@
+<%- content_for :new_permalinkable_menu do %>
+  <%= link_to 'New Article', new_article_path %>
+  <%= link_to 'New Page', new_page_path %>
+  <%= link_to 'New Archive', new_archive_path %>
+  <br />
+  <br />
+<% end %>
+
+<%= render template: "layouts/application" %>

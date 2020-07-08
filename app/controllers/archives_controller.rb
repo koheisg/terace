@@ -1,11 +1,5 @@
-class ArchivesController < ApplicationController
+class ArchivesController < PermalinkableController
   before_action :set_archive, only: [:show, :edit, :update, :destroy]
-
-  # GET /archives
-  # GET /archives.json
-  def index
-    @archives = Archive.all
-  end
 
   # GET /archives/1
   # GET /archives/1.json
@@ -15,6 +9,7 @@ class ArchivesController < ApplicationController
   # GET /archives/new
   def new
     @archive = Archive.new
+    @archive.build_permalink
   end
 
   # GET /archives/1/edit
@@ -28,11 +23,12 @@ class ArchivesController < ApplicationController
 
     respond_to do |format|
       if @archive.save
-        format.html { redirect_to @archive, notice: 'Archive was successfully created.' }
+        format.html { redirect_to [:edit, @archive], notice: 'Archive was successfully created.' }
         format.json { render :show, status: :created, location: @archive }
       else
         format.html { render :new }
         format.json { render json: @archive.errors, status: :unprocessable_entity }
+        format.js { render :error, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +38,12 @@ class ArchivesController < ApplicationController
   def update
     respond_to do |format|
       if @archive.update(archive_params)
-        format.html { redirect_to @archive, notice: 'Archive was successfully updated.' }
+        format.html { redirect_to [:edit, @archive], notice: 'Archive was successfully updated.' }
         format.json { render :show, status: :ok, location: @archive }
       else
         format.html { render :edit }
         format.json { render json: @archive.errors, status: :unprocessable_entity }
+        format.js { render :error, status: :unprocessable_entity }
       end
     end
   end

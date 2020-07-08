@@ -22,9 +22,6 @@
         <li class="tab">
           <%= link_to t(".permalinks"), permalinks_path %>
         </li>
-        <li class="tab">
-          <%= link_to t(".articles"), articles_path %>
-        </li>
         <%- if admin? %>
           <li class="tab"><%= link_to t(".tags"), tags_path %></li>
           <li class="tab"><%= link_to t(".users"), users_path %></li>
@@ -42,6 +39,8 @@
     </nav>
     <div class="notification"><p id="notice"><%= notice %></p></div>
     <div class="container">
+      <%= yield(:heading) %>
+      <%= yield(:new_permalinkable_menu) %>
       <%= yield %>
     </div>
   </body>

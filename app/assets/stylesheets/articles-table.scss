@@ -1,0 +1,54 @@
+.articles-table {
+  $co-loading: #ddd;
+  $co-error: #f00;
+  $co-draft: #ccc;
+
+  tbody {
+    text-align: left;
+  }
+
+  td, th {
+    max-width: 35rem;
+  }
+
+  .shipped {
+  }
+
+  .permalink-prefix::before {
+    content: '/';
+    display: block;
+    float: left;
+  }
+
+  .flex-container {
+    display: flex;
+  }
+
+  .draft {
+    background-color: $co-draft;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  .loading {
+    background-color: $co-loading;
+  }
+
+  .error {
+    background-color: $co-error;
+  }
+
+  .field {
+    height: 100%;
+    margin: auto;
+    min-height: 2rem;
+    width: 100%;
+
+    input {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
