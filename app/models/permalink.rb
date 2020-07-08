@@ -4,7 +4,7 @@ class Permalink < ApplicationRecord
 
   enum state: { draft: 0, shipped: 1 }
   scope :published, -> { shipped.where('permalinks.published_at <= ?', Time.current) }
-  scope :match_if, -> (params) { where(params) if params.values.first }
+  scope :match_if, -> (params) { where(params) if params.values.first.present? }
   scope :contains, -> (params) { where("permalinks.#{params.keys.first} LIKE ?", "%#{sanitize_sql_like(params.values.first)}%") if params.values.first.present? }
   scope :article_types, -> { where(permalinkable_type: 'Article') }
 

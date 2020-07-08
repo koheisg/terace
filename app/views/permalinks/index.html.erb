@@ -9,6 +9,10 @@
   <%= form_with model: @q, local: true, url: permalinks_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
     <div class="search-form">
       <div>
+        <%= f.label :permalinkable_type %>
+        <%= f.select :permalinkable_type, Permalink.permalinkable_types, include_blank: true %>
+      </div>
+      <div>
         <%= f.label :title %>
         <%= f.search_field :title %>
       </div>
