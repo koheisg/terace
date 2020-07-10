@@ -5,6 +5,7 @@ module Auditable
     has_many :audits, as: :auditable
     after_create :create_audit_on_create
     after_update :create_audit_on_update
+    before_destroy :create_audit_on_destroy
 
     def create_audit_on_create
       create_audit(:create)
@@ -12,6 +13,10 @@ module Auditable
 
     def create_audit_on_update
       create_audit(:update)
+    end
+
+    def create_audit_on_destroy
+      create_audit(:destroy)
     end
 
     private

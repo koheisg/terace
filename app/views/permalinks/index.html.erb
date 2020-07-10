@@ -2,16 +2,8 @@
   <h1>Permalinks</h1>
 <% end %>
 
-<%- content_for :new_permalinkable_menu do %>
-  <%= link_to 'New Article', new_article_path %>
-  <%= link_to 'New Page', new_page_path %>
-  <%= link_to 'New Archive', new_archive_path %>
-  <br />
-  <br />
-<% end %>
-
-<nav class="article_nav">
-  <ul class="search_tabs">
+<nav class="search-navigation">
+  <ul class="tabs">
     <li class="tab"><%= link_to t(".all"), permalinks_path %></li>
     <li class="tab"><%= link_to t(".published"), permalinks_path(state: 'shipped') %></li>
     <li class="tab"><%= link_to t(".drafts"), permalinks_path(state: 'draft') %></li>
@@ -32,7 +24,7 @@
       </div>
       <div>
         <%= f.label :state %>
-        <div class="search-form">
+        <div class="fields">
           <%= f.radio_button :state, :shipped, id: :shipped %>
           <%= f.label :shipped, for: :shipped, class: 'radio-button-label' %>
           <%= f.radio_button :state, :draft, id: :draft %>
@@ -48,11 +40,12 @@
 
 <br />
 <br />
+<%= link_to 'New Permalink', new_permalink_path %>
 
-<table class="articles-table">
+<table class="table">
   <thead>
     <tr>
-      <th>Permalinkable Type</th>
+      <th>Type</th>
       <th>Site</th>
       <th>Path</th>
       <th>Title</th>
@@ -65,14 +58,14 @@
   </thead>
 
   <tbody>
-    <%= form_with(model: Permalink.new, class: 'form') do |form| %>
+    <%= form_with(model: Permalink.new) do |form| %>
       <%= form.hidden_field :state, value: :draft %>
       <tr>
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
-        <td><%= form.collection_select :site_id, current_user.sites, :id, :domain %></td>
+        <td><%= current_site&.domain %></td>
         <td><%= form.text_field :path %></td>
-        <td><%= form.text_field :title, id: :article_title %></td>
-        <td><%= form.text_field :description, id: :article_description, rows: 10 %></td>
+        <td><%= form.text_field :title %></td>
+        <td><%= form.text_field :description, rows: 10 %></td>
         <td><%= form.check_box :noindex %></td>
         <td></td>
         <td></td>
@@ -86,3 +79,7 @@
 <br>
 
 <%= paginate @permalinks %>
+
+<br>
+
+<%= link_to 'New Permalink', new_permalink_path %>

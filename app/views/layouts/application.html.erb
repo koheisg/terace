@@ -13,8 +13,8 @@
   <body class="<%= "#{controller.controller_path.gsub('/', '_')}" %>">
     <nav class="global-menu" data-turbolinks-permanent>
       <div class="select">
-        <%= collection_select :site, :id, Site.all, :id, :name,
-                              {include_blank: 'All site', selected: current_site&.id},
+        <%= collection_select :site, :id, current_user.sites, :id, :name,
+                              {include_blank: '-- select site --', selected: current_site&.id},
                               data: {remote: true, method: :patch, url: '/site_session'} %>
       </div>
       <ul class="tabs">
@@ -23,6 +23,7 @@
           <%= link_to t(".permalinks"), permalinks_path %>
         </li>
         <%- if admin? %>
+          <li class="tab"><%= link_to t(".histories"), histories_path %></li>
           <li class="tab"><%= link_to t(".tags"), tags_path %></li>
           <li class="tab"><%= link_to t(".users"), users_path %></li>
           <li class="tab"><%= link_to t(".sites"), sites_path %></li>

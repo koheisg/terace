@@ -2,6 +2,8 @@ class Permalink < ApplicationRecord
   belongs_to :permalinkable, polymorphic: true
   belongs_to :site
 
+  accepts_nested_attributes_for :permalinkable
+
   enum state: { draft: 0, shipped: 1 }
   scope :published, -> { shipped.where('permalinks.published_at <= ?', Time.current) }
   scope :match_if, -> (params) { where(params) if params.values.first.present? }
@@ -9,6 +11,7 @@ class Permalink < ApplicationRecord
   scope :article_types, -> { where(permalinkable_type: 'Article') }
 
   before_save :set_published_at, :set_modified_at
+  around_update :destroy_permalinkable_was
 
   validates :state, presence: true
   validates :path, uniqueness: { scope: :site_id, conditions: -> { shipped } }, if: :shipped?
@@ -19,14 +22,16 @@ class Permalink < ApplicationRecord
       archive: 'Archive' }
   end
 
-  def build_permalinkable
-    if permalinkable_type == 'Article'
-      self.permalinkable = Article.new
-    elsif permalinkable_type == 'Page'
-      self.permalinkable = Page.new
-    elsif permalinkable_type == 'Archive'
-      self.permalinkable = Archive.new
+  self.permalinkable_types.keys.each do |key|
+    define_method(key) do
+      return permalinkable if permalinkable_type == key.to_s.camelize
+
+      key.to_s.camelize.constantize.new
     end
+  end
+
+  def build_permalinkable(params = {})
+    self.permalinkable = permalinkable_type.constantize.new(params)
   end
 
   private
@@ -40,5 +45,14 @@ class Permalink < ApplicationRecord
       if shipped?
         self.modified_at = Time.current
       end
+    end
+
+    def destroy_permalinkable_was
+      if changed_attributes.include?(:permalinkable_type)
+        permalinkable_was = permalinkable_type_was.constantize.find(permalinkable_id_was)
+      end
+
+      yield
+      permalinkable_was&.destroy
     end
 end

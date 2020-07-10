@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_user
-  before_action :redirect_to_artices_if_login, only: [:new, :create]
+  before_action :redirect_to_permalinks_if_login, only: [:new, :create]
   # GET /sessions/new
   def new
     @session = Session.new
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
       params.require(:session).permit(:name, :password)
     end
 
-    def redirect_to_artices_if_login
-      redirect_to articles_path if login?
+    def redirect_to_permalinks_if_login
+      redirect_to permalinks_path if login?
     end
 end

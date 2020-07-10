@@ -1,4 +1,4 @@
-<h1>Articles::Histories#show</h1>
+<h1>Histories#show</h1>
 
 <%- @history.modifications.attributes.each do |attr| %>
   <p>
@@ -23,5 +23,4 @@
   <%= @history.modifications.tags.map(&:name).join(", ") %>
 </p>
 
-<%= link_to 'Article', article_path(@article) %> |
-<%= link_to 'Back', article_histories_path(@article) %>
+<%= link_to 'Back', histories_path %>

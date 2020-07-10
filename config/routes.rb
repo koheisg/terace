@@ -13,12 +13,8 @@ Rails.application.routes.draw do
     resources :user_sites
     resources :sites
     resources :permalinks
-    resources :archives, except: [:index]
-    resources :pages, except: [:index]
-    resources :articles, except: [:index] do
-      resources :histories, module: :articles, only: [:index, :show]
-    end
     resources :tags
+    resources :histories, only: [:index, :show]
   end
 
   constraints(-> (req) { req.subdomain.present? }) do

@@ -1,0 +1,25 @@
+<%- content_for :heading do %>
+  <h1>Histories</h1>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Resource</th>
+      <th>Action</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @histories.each do |history| %>
+      <tr>
+        <td><%= history.auditable_type %></td>
+        <td><%= history.action %></td>
+        <td><%= link_to 'Show', history_path(history.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @histories %>

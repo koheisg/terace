@@ -1,2 +1,0 @@
-class PermalinkableController < ApplicationController
-end

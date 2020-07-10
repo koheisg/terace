@@ -1,32 +1,70 @@
-<%= form.fields_for :permalink do |permalink_form| %>
+<%= form_with model: permalink, local: true, class: 'form', data: {controller: 'permalink-form'} do |form| %>
   <div class="field">
-    <%= permalink_form.label :site %>
-    <%= permalink_form.collection_select :site_id, current_user.sites, :id, :domain %>
+    <%= form.label :path %>
+    <%= form.text_field :path %>
   </div>
 
   <div class="field">
-    <%= permalink_form.label :path %>
-    <%= permalink_form.text_field :path %>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= permalink_form.label :title %>
-    <%= permalink_form.text_field :title %>
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 10 %>
   </div>
 
   <div class="field">
-    <%= permalink_form.label :description %>
-    <%= permalink_form.text_area :description, rows: 10 %>
+    <%= form.label :noindex %>
+    <%= form.check_box :noindex %>
   </div>
 
   <div class="field">
-    <%= permalink_form.label :noindex %>
-    <%= permalink_form.check_box :noindex %>
+    <%= form.label :state %>
+    <%= form.select :state, Permalink.states.keys %>
   </div>
 
   <div class="field">
-    <%= permalink_form.label :state %>
-    <%= permalink_form.select :state, Permalink.states.keys %>
+    <%= form.label :permalinkable_type %>
+    <%= form.select :permalinkable_type, Permalink.permalinkable_types, {}, data: {target: 'permalink-form.type', action: 'change->permalink-form#select'} %>
   </div>
 
+  <template data-target="permalink-form.articleFields">
+    <%= form.fields_for :permalinkable, permalink.article do |permalinkable_form| %>
+      <div class="field">
+        <%= permalinkable_form.label :content %>
+        <%= permalinkable_form.text_area :content, rows: 25 %>
+      </div>
+
+      <div class="field">
+        <%= permalinkable_form.label :tags %>
+        <%= permalinkable_form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+          <%= b.label { b.check_box + b.text } %>
+        <% end %>
+      </div>
+    <% end %>
+  </template>
+
+  <template data-target="permalink-form.pageFields">
+    <%= form.fields_for :permalinkable, permalink.page do |permalinkable_form| %>
+      <div class="field">
+        <%= permalinkable_form.label :content %>
+
+        <%= permalinkable_form.text_area :content, rows: 25 %>
+      </div>
+    <% end %>
+  </template>
+
+  <template data-target="permalink-form.archiveFields">
+    <%= form.fields_for :permalinkable, permalink.archive do |permalinkable_form| %>
+      <%= permalinkable_form.hidden_field :id %>
+    <% end %>
+  </template>
+
+  <div data-target="permalink-form.permalinkableFields">
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
 <% end %>

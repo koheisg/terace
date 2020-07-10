@@ -6,7 +6,7 @@ class PermalinksController < ApplicationController
   def index
     @q = Permalink.new(params.permit(:path, :title, :state, :permalinkable_type))
     @permalinks = Permalink.includes(:site, :permalinkable)
-                           .where(site: current_site || current_user.sites)
+                           .where(site: current_site)
                            .order(created_at: :desc)
                            .match_if(permalinkable_type: params[:permalinkable_type])
                            .match_if(state: params[:state])
@@ -33,7 +33,7 @@ class PermalinksController < ApplicationController
   # POST /permalinks.json
   def create
     @permalink = Permalink.new(permalink_params)
-    @permalink.build_permalinkable
+    @permalink.build_permalinkable unless @permalink.permalinkable
 
     respond_to do |format|
       if @permalink.save
@@ -80,6 +80,14 @@ class PermalinksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def permalink_params
-      params.require(:permalink).permit(:permalinkable_type, :site_id, :path, :title, :description, :noindex, :state)
+      if params[:permalink][:permalinkable_type] == 'Article'
+        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content, :ogp_image, {images: []}, {tag_ids: []}])
+      elsif params[:permalink][:permalinkable_type] == 'Page'
+        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content])
+      elsif params[:permalink][:permalinkable_type] == 'Archive'
+        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id])
+      else
+        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description)
+      end
     end
 end

@@ -1,3 +1,106 @@
 // Place all the styles related to the Permalinks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.permalinks {
+  .table {
+    $co-loading: #ddd;
+    $co-error: #f00;
+    $co-draft: #ccc;
+
+    tbody {
+      text-align: left;
+    }
+
+    td, th {
+      max-width: 35rem;
+    }
+
+    .shipped {
+    }
+
+    .permalink-prefix::before {
+      content: '/';
+      display: block;
+      float: left;
+    }
+
+    .flex-container {
+      display: flex;
+    }
+
+    .draft {
+      background-color: $co-draft;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .loading {
+      background-color: $co-loading;
+    }
+
+    .error {
+      background-color: $co-error;
+    }
+
+    .field {
+      height: 100%;
+      margin: auto;
+      min-height: 2rem;
+      width: 100%;
+
+      input {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .search-form {
+    display: flex;
+
+    div {
+      padding-right: 1rem;
+    }
+
+    input[type="radio"] {
+      margin: auto;
+    }
+
+    .radio-button-label {
+      padding: 0 .5rem;
+    }
+
+    .submit-field {
+      margin: auto 0;
+    }
+
+    .fields {
+      display: flex;
+    }
+  }
+
+  .search-navigation {
+    .tabs {
+      display: flex;
+      padding-left: 0;
+    }
+
+    .tab {
+      padding-right: 1rem;
+    }
+  }
+
+  .form {
+    width: 77rem;
+
+    .field {
+      width: 100%;
+
+      input, textarea {
+        width: 100%;
+      }
+    }
+  }
+}
