@@ -62,7 +62,16 @@
 
   <template data-target="permalink-form.archiveFields">
     <%= form.fields_for :permalinkable, permalink.archive do |permalinkable_form| %>
-      <%= permalinkable_form.hidden_field :id %>
+      <div class="field">
+        <%= permalinkable_form.label :archiveable_type %>
+
+        <%= permalinkable_form.text_field :archiveable_type %>
+      </div>
+      <div class="field">
+        <%= permalinkable_form.label :archiveable_id %>
+
+        <%= permalinkable_form.text_field :archiveable_id %>
+      </div>
     <% end %>
   </template>
 

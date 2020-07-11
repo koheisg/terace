@@ -1,4 +1,5 @@
 class Site < ApplicationRecord
+  include Archiveable
   has_many :permalinks
   has_many :categories
   has_many :articles, through: :permalinks

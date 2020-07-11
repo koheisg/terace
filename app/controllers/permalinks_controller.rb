@@ -85,7 +85,7 @@ class PermalinksController < ApplicationController
       elsif params[:permalink][:permalinkable_type] == 'Page'
         params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content])
       elsif params[:permalink][:permalinkable_type] == 'Archive'
-        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :archiveable_type, :archiveable_id])
       else
         params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description)
       end

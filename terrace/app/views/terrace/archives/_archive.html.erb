@@ -1,4 +1,4 @@
-<%- permalinks = current_site.permalinks.includes(:permalinkable).article_types.published.order(published_at: :desc).page(params[:page]) %>
+<%- permalinks = archive.permalinks.page(params[:page]) %>
 
 <%- permalinks.each do |article| %>
   <article class="permalink" itemscope itemtype="http://schema.org/BlogPosting">
