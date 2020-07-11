@@ -3,6 +3,7 @@ class Permalink < ApplicationRecord
 
   belongs_to :permalinkable, polymorphic: true
   belongs_to :site
+  belongs_to :category, optional: true
 
   accepts_nested_attributes_for :permalinkable
 
@@ -17,6 +18,8 @@ class Permalink < ApplicationRecord
 
   validates :state, presence: true
   validates :path, uniqueness: { scope: :site_id, conditions: -> { shipped } }, if: :shipped?
+
+  delegate :name, to: :category, prefix: true, allow_nil: true
 
   def self.permalinkable_types
     { article: 'Article',

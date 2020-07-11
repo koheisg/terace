@@ -47,6 +47,7 @@
     <tr>
       <th>Type</th>
       <th>Site</th>
+      <th>Category</th>
       <th>Path</th>
       <th>Title</th>
       <th>Description</th>
@@ -63,6 +64,7 @@
       <tr>
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
         <td><%= current_site&.domain %></td>
+        <td><%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title %></td>
         <td><%= form.text_field :description, rows: 10 %></td>

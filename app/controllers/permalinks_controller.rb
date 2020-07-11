@@ -32,7 +32,7 @@ class PermalinksController < ApplicationController
   # POST /permalinks
   # POST /permalinks.json
   def create
-    @permalink = Permalink.new(permalink_params)
+    @permalink = current_site.permalinks.new(permalink_params)
     @permalink.build_permalinkable unless @permalink.permalinkable
 
     respond_to do |format|
@@ -81,13 +81,13 @@ class PermalinksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def permalink_params
       if params[:permalink][:permalinkable_type] == 'Article'
-        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content, :ogp_image, {images: []}, {tag_ids: []}])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content, :ogp_image, {images: []}, {tag_ids: []}])
       elsif params[:permalink][:permalinkable_type] == 'Page'
-        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content])
       elsif params[:permalink][:permalinkable_type] == 'Archive'
-        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id])
       else
-        params.require(:permalink).permit(:permalinkable_type, :path, :title, :description)
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description)
       end
     end
 end

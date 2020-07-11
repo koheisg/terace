@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_045909) do
+ActiveRecord::Schema.define(version: 2020_07_11_165759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(version: 2020_07_11_045909) do
     t.index ["user_type", "user_id"], name: "index_audits_on_user_type_and_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "site_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["site_id"], name: "index_categories_on_site_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
@@ -90,6 +98,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_045909) do
     t.datetime "modified_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_permalinks_on_category_id"
     t.index ["permalinkable_type", "permalinkable_id"], name: "index_permalinks_on_permalinkable_type_and_permalinkable_id"
     t.index ["site_id"], name: "index_permalinks_on_site_id"
   end
@@ -137,6 +147,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_045909) do
     t.boolean "admin", default: false, null: false
   end
 
+  add_foreign_key "categories", "sites"
+  add_foreign_key "permalinks", "categories"
   add_foreign_key "permalinks", "sites"
   add_foreign_key "taggings", "tags"
   add_foreign_key "user_sites", "sites"
