@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_214159) do
+ActiveRecord::Schema.define(version: 2020_07_11_045909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,9 @@ ActiveRecord::Schema.define(version: 2020_07_06_214159) do
   create_table "archives", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "archiveable_type"
+    t.bigint "archiveable_id"
+    t.index ["archiveable_type", "archiveable_id"], name: "index_archives_on_archiveable_type_and_archiveable_id"
   end
 
   create_table "articles", force: :cascade do |t|
