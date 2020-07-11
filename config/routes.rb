@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :user_sites
     resources :sites
     resources :permalinks
+    resources :categories
     resources :tags
     resources :histories, only: [:index, :show]
   end
