@@ -1,7 +1,9 @@
 class Tag < ApplicationRecord
-  has_many :taggings, as: :taggable
-  has_many :articles, through: :taggings, source: :taggable, source_type: 'Article'
+  include Archiveable
+
+  has_many :taggings
   has_many :permalinks, through: :taggings, source: :taggable, source_type: 'Permalink'
+  belongs_to :site
 
   validates :name, uniqueness: true
 end
