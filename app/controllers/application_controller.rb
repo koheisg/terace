@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_site
-    Site.find_by(id: session[:site_id])
+    Site.find_by(id: session[:site_id]) || NullSite.new
   end
 end
