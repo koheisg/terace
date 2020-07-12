@@ -5,7 +5,7 @@ class PermalinksController < ApplicationController
   # GET /permalinks.json
   def index
     @q = Permalink.new(params.permit(:path, :title, :state, :permalinkable_type))
-    @permalinks = Permalink.includes(:site, :permalinkable)
+    @permalinks = Permalink.includes(:site, :category, :permalinkable, :tags)
                            .where(site: current_site)
                            .order(created_at: :desc)
                            .match_if(permalinkable_type: params[:permalinkable_type])
