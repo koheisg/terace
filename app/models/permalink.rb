@@ -1,5 +1,5 @@
 class Permalink < ApplicationRecord
-  include Auditable
+  include Auditable, Taggable
 
   belongs_to :permalinkable, polymorphic: true
   belongs_to :site

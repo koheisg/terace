@@ -6,6 +6,7 @@
                 target: :_blank %>
   </td>
   <td><%= permalink.category_name %></td>
+  <td><%= permalink.tags.map {|tag| tag.name }.join(', ') %></td>
   <td data-controller='editable-cell'>
     <% if permalink.shipped? %>
       <%= link_to_if permalink.shipped?,

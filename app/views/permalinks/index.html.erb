@@ -48,6 +48,7 @@
       <th>Type</th>
       <th>Site</th>
       <th>Category</th>
+      <th>Tags</th>
       <th>Path</th>
       <th>Title</th>
       <th>Description</th>
@@ -65,6 +66,7 @@
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
         <td><%= current_site&.domain %></td>
         <td><%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
+        <td><!--<%= form.collection_check_boxes :tag_ids, current_site.tags, :id, :name %>--></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title %></td>
         <td><%= form.text_field :description, rows: 10 %></td>
