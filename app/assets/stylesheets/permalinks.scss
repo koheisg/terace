@@ -98,8 +98,19 @@
     .field {
       width: 100%;
 
-      input, textarea {
+      input[type="text"], textarea {
         width: 100%;
+      }
+
+      .checkbox-fields {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .checkbox-field {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 1rem;
       }
     }
   }

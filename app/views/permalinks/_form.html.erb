@@ -30,6 +30,18 @@
   </div>
 
   <div class="field">
+    <%= form.label :tags %>
+    <div class="checkbox-fields">
+      <%= form.collection_check_boxes :tag_ids, current_site.tags, :id, :name do |b| %>
+        <div class="checkbox-field">
+          <%= b.check_box %>
+          <%= b.label { b.text } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="field">
     <%= form.label :permalinkable_type %>
     <%= form.select :permalinkable_type, Permalink.permalinkable_types, {}, data: {target: 'permalink-form.type', action: 'change->permalink-form#select'} %>
   </div>
@@ -39,13 +51,6 @@
       <div class="field">
         <%= permalinkable_form.label :content %>
         <%= permalinkable_form.text_area :content, rows: 25 %>
-      </div>
-
-      <div class="field">
-        <%= permalinkable_form.label :tags %>
-        <%= permalinkable_form.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
-          <%= b.label { b.check_box + b.text } %>
-        <% end %>
       </div>
     <% end %>
   </template>

@@ -81,13 +81,13 @@ class PermalinksController < ApplicationController
     # Only allow a list of trusted parameters through.
     def permalink_params
       if params[:permalink][:permalinkable_type] == 'Article'
-        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content, :ogp_image, {images: []}, {tag_ids: []}])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, {tag_ids: []}, permalinkable_attributes: [:id, :content, :ogp_image, {images: []}])
       elsif params[:permalink][:permalinkable_type] == 'Page'
-        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :content])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, {tag_ids: []}, permalinkable_attributes: [:id, :content])
       elsif params[:permalink][:permalinkable_type] == 'Archive'
-        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, permalinkable_attributes: [:id, :archiveable_type, :archiveable_id])
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, :noindex, :state, {tag_ids: []}, permalinkable_attributes: [:id, :archiveable_type, :archiveable_id])
       else
-        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description)
+        params.require(:permalink).permit(:category_id, :permalinkable_type, :path, :title, :description, {tag_ids: []})
       end
     end
 end
