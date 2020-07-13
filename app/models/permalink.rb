@@ -3,7 +3,7 @@ class Permalink < ApplicationRecord
 
   belongs_to :permalinkable, polymorphic: true
   belongs_to :site
-  belongs_to :category, optional: true
+  belongs_to :category, optional: true, counter_cache: true
 
   accepts_nested_attributes_for :permalinkable
 

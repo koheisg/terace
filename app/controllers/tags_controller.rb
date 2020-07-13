@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = current_site.tags
+    @tags = current_site.tags.order(taggings_count: :desc)
   end
 
   # GET /tags/1
