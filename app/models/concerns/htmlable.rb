@@ -1,12 +1,18 @@
 require 'html/pipeline'
 require 'commonmarker'
 
+# TODO decorator logicなので、theme側に切り出す
 module Htmlable
   extend ActiveSupport::Concern
 
   included do
     def content_html
       result = pipeline.call(content)
+      result[:output].to_s.html_safe
+    end
+
+    def content_concated_html
+      result = pipeline.call(content.truncate(1000, separator: /\n/))
       result[:output].to_s.html_safe
     end
 

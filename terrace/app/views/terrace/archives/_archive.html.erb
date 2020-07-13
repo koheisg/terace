@@ -1,5 +1,9 @@
 <%- permalinks = archive.permalinks.page(params[:page]) %>
-
+<%
+  if permalinks.total_count.zero?
+    raise ActiveRecord::RecordNotFound
+  end
+%>
 <%- permalinks.each do |article| %>
   <article class="permalink" itemscope itemtype="http://schema.org/BlogPosting">
     <header>
@@ -18,7 +22,8 @@
       </<%= heading_level %>>
     </header>
     <div class="content">
-      <%= article.permalinkable.content_html %>
+      <%= article.permalinkable.content_concated_html %>
+      <%= link_to '>> Continue Reading', "/#{article.path}" %>
     </div>
   </article>
 <% end %>
