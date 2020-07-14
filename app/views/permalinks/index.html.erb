@@ -16,11 +16,11 @@
       </div>
       <div>
         <%= f.label :category_id %>
-        <%= f.collection_select :category_id, current_site.categories, :id, :name, include_blank: true %>
+        <%= f.collection_select :category_id, @categories, :id, :name, include_blank: true %>
       </div>
       <div>
         <%= f.label :tag_ids %>
-        <%= f.collection_select :tag_ids, current_site.tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
+        <%= f.collection_select :tag_ids, @tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
       </div>
       <div>
         <%= f.label :path %>
@@ -73,8 +73,8 @@
       <tr>
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
         <td><%= current_site&.domain %></td>
-        <td><%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
-        <td><%= form.collection_select :tag_ids, current_site.tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %></td>
+        <td><%= form.select :category_id, @categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
+        <td><%= form.collection_select :tag_ids, @tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title %></td>
         <td><%= form.text_field :description, rows: 10 %></td>
@@ -84,7 +84,7 @@
         <td colspan="3"><%= form.submit %></td>
       </tr>
     <% end %>
-    <%= render @permalinks %>
+    <%= render @permalinks, categories: @categories, tags: @tags %>
   </tbody>
 </table>
 

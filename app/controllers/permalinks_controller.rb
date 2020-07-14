@@ -8,6 +8,8 @@ class PermalinksController < ApplicationController
   def index
     search_params = params.fetch(:permalink, {}).permit(:path, :title, :state, :permalinkable_type, :category_id, {tag_ids: []})
     @q = Permalink.new(search_params)
+    @categories = current_site.categories
+    @tags = current_site.tags
     @permalinks = Permalink.includes(:site, :category, :tags)
                            .preload(:permalinkable)
                            .where(site: current_site)
