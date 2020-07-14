@@ -5,8 +5,45 @@
                 "//#{permalink.site.domain}#{request.port_string}/",
                 target: :_blank %>
   </td>
-  <td><%= permalink.category_name %></td>
-  <td><%= permalink.tags.map {|tag| tag.name }.join(', ') %></td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-target="editable-cell.show" class='field'>
+      <%= permalink.category_name %>
+    </div>
+    <%= form_with(model: permalink, data: {target: 'editable-cell.form',
+                                           action: 'ajax:send->editable-cell#loading
+                                                    ajax:complete->editable-cell#hide
+                                                    ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
+      <div class="field">
+        <div>
+          <%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, {include_blank: true},
+            data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'},
+            onchange: 'javascript: Rails.fire(this.form, "submit")' %>
+        </div>
+      </div>
+    <% end %>
+  </td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-target="editable-cell.show" class='field'>
+      <%= permalink.tags.map {|tag| tag.name }.join(', ') %>
+    </div>
+    <%= form_with(model: permalink, data: {target: 'editable-cell.form',
+                                           action: 'ajax:send->editable-cell#loading
+                                                    ajax:complete->editable-cell#hide
+                                                    ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
+      <div class="field">
+        <div>
+          <%= form.collection_select :tag_ids,
+                                      current_site.tags,
+                                      :id,
+                                      :name,
+                                      {include_blank: true},
+                                      {multiple: true, size: 5,
+                                       data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'},
+                                       onchange: 'javascript: Rails.fire(this.form, "submit")'} %>
+        <div>
+      </div>
+    <% end %>
+  </td>
   <td data-controller='editable-cell'>
     <% if permalink.shipped? %>
       <%= link_to_if permalink.shipped?,

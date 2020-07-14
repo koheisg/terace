@@ -1,18 +1,25 @@
 class PermalinksController < ApplicationController
   before_action :set_permalink, only: [:show, :edit, :update, :destroy]
 
+  PRE_PAGE = 100
+
   # GET /permalinks
   # GET /permalinks.json
   def index
-    @q = Permalink.new(params.permit(:path, :title, :state, :permalinkable_type))
-    @permalinks = Permalink.includes(:site, :category, :permalinkable, :tags)
+    search_params = params.fetch(:permalink, {}).permit(:path, :title, :state, :permalinkable_type, :category_id, {tag_ids: []})
+    @q = Permalink.new(search_params)
+    @permalinks = Permalink.includes(:site, :category, :tags)
+                           .preload(:permalinkable)
                            .where(site: current_site)
                            .order(created_at: :desc)
-                           .match_if(permalinkable_type: params[:permalinkable_type])
-                           .match_if(state: params[:state])
-                           .contains(title: params[:title])
-                           .contains(path: params[:path])
+                           .match_if(permalinkable_type: search_params[:permalinkable_type])
+                           .match_if(category_id: search_params[:category_id])
+                           .match_if(state: search_params[:state])
+                           .contains(title: search_params[:title])
+                           .contains(path: search_params[:path])
+                           .match_if_tag_ids(search_params[:tag_ids])
                            .page(params[:page])
+                           .per(PRE_PAGE)
   end
 
   # GET /permalinks/1

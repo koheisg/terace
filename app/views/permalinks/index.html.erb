@@ -8,19 +8,27 @@
     <li class="tab"><%= link_to t(".published"), permalinks_path(state: 'shipped') %></li>
     <li class="tab"><%= link_to t(".drafts"), permalinks_path(state: 'draft') %></li>
   </ul>
-  <%= form_with model: @q, local: true, url: permalinks_path, method: :get, skip_enforcing_utf8: true, builder: SearchFormBuider do |f| %>
+  <%= form_with model: @q, local: true, url: permalinks_path, method: :get, skip_enforcing_utf8: true do |f| %>
     <div class="search-form">
       <div>
         <%= f.label :permalinkable_type %>
         <%= f.select :permalinkable_type, Permalink.permalinkable_types, include_blank: true %>
       </div>
       <div>
-        <%= f.label :title %>
-        <%= f.search_field :title %>
+        <%= f.label :category_id %>
+        <%= f.collection_select :category_id, current_site.categories, :id, :name, include_blank: true %>
+      </div>
+      <div>
+        <%= f.label :tag_ids %>
+        <%= f.collection_select :tag_ids, current_site.tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
       </div>
       <div>
         <%= f.label :path %>
         <%= f.search_field :path %>
+      </div>
+      <div>
+        <%= f.label :title %>
+        <%= f.search_field :title %>
       </div>
       <div>
         <%= f.label :state %>
@@ -66,7 +74,7 @@
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
         <td><%= current_site&.domain %></td>
         <td><%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
-        <td><!--<%= form.collection_check_boxes :tag_ids, current_site.tags, :id, :name %>--></td>
+        <td><%= form.collection_select :tag_ids, current_site.tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title %></td>
         <td><%= form.text_field :description, rows: 10 %></td>
