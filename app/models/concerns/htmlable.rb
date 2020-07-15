@@ -5,14 +5,20 @@ require 'commonmarker'
 module Htmlable
   extend ActiveSupport::Concern
 
+  TRUNCATED_COUNT = 800
+
   included do
     def content_html
       result = pipeline.call(content)
       result[:output].to_s.html_safe
     end
 
-    def content_concated_html
-      result = pipeline.call(content.truncate(1000, separator: /\n/))
+    def content_truncated?
+      content.length > TRUNCATED_COUNT
+    end
+
+    def content_truncated_html
+      result = pipeline.call(content.truncate(TRUNCATED_COUNT, separator: /\n/))
       result[:output].to_s.html_safe
     end
 

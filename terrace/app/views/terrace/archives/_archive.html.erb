@@ -22,9 +22,11 @@
       </<%= heading_level %>>
     </header>
     <div class="content">
-      <%= article.permalinkable.content_concated_html %>
-      <%= link_to '>> Continue Reading', "/#{article.path}" %>
+      <%= article.permalinkable.content_truncated_html %>
     </div>
+    <% if article.permalinkable.content_truncated? %>
+      <%= link_to '... Continue Reading', "/#{article.path}" %>
+    <% end %>
   </article>
 <% end %>
 
