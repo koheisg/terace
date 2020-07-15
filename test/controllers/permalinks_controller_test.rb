@@ -17,7 +17,11 @@ class PermalinksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create permalink" do
     assert_difference('Permalink.count') do
-      post permalinks_url, params: { permalink: { description: @permalink.description, modified_at: @permalink.modified_at, noindex: @permalink.noindex, path: @permalink.path, permalinkable_id: @permalink.permalinkable_id, permalinkable_type: @permalink.permalinkable_type, published_at: @permalink.published_at, site_id: @permalink.site_id, title: @permalink.title } }
+      post permalinks_url, params: { permalink: { description: @permalink.description, modified_at: @permalink.modified_at,
+                                                  noindex: @permalink.noindex, path: @permalink.path,
+                                                  permalinkable_id: @permalink.permalinkable_id,
+                                                  permalinkable_type: @permalink.permalinkable_type, published_at: @permalink.published_at,
+                                                  site_id: @permalink.site_id, title: @permalink.title } }
     end
 
     assert_redirected_to permalink_url(Permalink.last)
@@ -34,7 +38,12 @@ class PermalinksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update permalink" do
-    patch permalink_url(@permalink), params: { permalink: { description: @permalink.description, modified_at: @permalink.modified_at, noindex: @permalink.noindex, path: @permalink.path, permalinkable_id: @permalink.permalinkable_id, permalinkable_type: @permalink.permalinkable_type, published_at: @permalink.published_at, site_id: @permalink.site_id, title: @permalink.title } }
+    patch permalink_url(@permalink), params: { permalink: { description: @permalink.description, modified_at: @permalink.modified_at,
+                                                            noindex: @permalink.noindex, path: @permalink.path,
+                                                            permalinkable_id: @permalink.permalinkable_id,
+                                                            permalinkable_type: @permalink.permalinkable_type,
+                                                            published_at: @permalink.published_at, site_id: @permalink.site_id,
+                                                            title: @permalink.title } }
     assert_redirected_to permalink_url(@permalink)
   end
 

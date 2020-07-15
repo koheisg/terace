@@ -40,7 +40,7 @@ gem 'rouge'
 gem 'sanitize'
 gem "sentry-raven"
 
-# FrontMatterParser is a library to parse a front matter from strings or files. It allows writing syntactically correct source files, marking front matters as comments in the source file language.
+# FrontMatterParser is a library to parse a front matter from strings or files.
 gem 'front_matter_parser'
 
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
@@ -79,6 +79,9 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen'
+  gem 'rubocop'
+  gem 'rubocop-rails'
+  gem 'rubocop-performance'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
