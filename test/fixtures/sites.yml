@@ -1,7 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  domain: MyString
+  domain: one.example.com
+  layout: <%= Site.layouts[:default] %>
 
 two:
-  domain: MyString
+  domain: two.example.com
+  layout: <%= Site.layouts[:default] %>

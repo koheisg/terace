@@ -1,8 +1,7 @@
 module Terrace
   class ApplicationController < ActionController::Base
-    include Authenticatable
     protect_from_forgery with: :exception
-    helper_method :current_user, :current_site
+    helper_method :current_site
 
     before_action :set_raven_context
 
