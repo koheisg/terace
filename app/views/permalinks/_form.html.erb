@@ -26,13 +26,13 @@
 
   <div class="field">
     <%= form.label :category_id %>
-    <%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, include_blank: true %>
+    <%= form.select :category_id, Current.site.categories.map {|category| [category.name, category.id]}, include_blank: true %>
   </div>
 
   <div class="field">
     <%= form.label :tags %>
     <div class="checkbox-fields">
-      <%= form.collection_check_boxes :tag_ids, current_site.tags, :id, :name do |b| %>
+      <%= form.collection_check_boxes :tag_ids, Current.site.tags, :id, :name do |b| %>
         <div class="checkbox-field">
           <%= b.check_box %>
           <%= b.label { b.text } %>

@@ -5,7 +5,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = current_site.tags.order(taggings_count: :desc)
+    @tags = Current.site.tags.order(taggings_count: :desc)
   end
 
   # GET /tags/1
@@ -25,7 +25,7 @@ class TagsController < ApplicationController
   # POST /tags
   # POST /tags.json
   def create
-    @tag = current_site.tags.new(tag_params)
+    @tag = Current.site.tags.new(tag_params)
 
     respond_to do |format|
       if @tag.save
@@ -65,7 +65,7 @@ class TagsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tag
-      @tag = current_site.tags.find(params[:id])
+      @tag = Current.site.tags.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

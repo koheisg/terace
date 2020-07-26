@@ -13,8 +13,8 @@
   <body class="<%= "#{controller.controller_path.gsub('/', '_')}" %>">
     <nav class="global-menu" data-turbolinks-permanent>
       <div class="select">
-        <%= collection_select :site, :id, current_user.sites, :id, :name,
-                              {include_blank: '-- select site --', selected: current_site&.id},
+        <%= collection_select :site, :id, Current.user.sites, :id, :name,
+                              {include_blank: '-- select site --', selected: Current.site&.id},
                               data: {remote: true, method: :patch, url: '/site_session'} %>
       </div>
       <ul class="tabs">

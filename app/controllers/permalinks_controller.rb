@@ -8,11 +8,9 @@ class PermalinksController < ApplicationController
   def index
     search_params = params.fetch(:permalink, {}).permit(:path, :title, :state, :permalinkable_type, :category_id, {tag_ids: []})
     @q = Permalink.new(search_params)
-    @categories = current_site.categories
-    @tags = current_site.tags
     @permalinks = Permalink.includes(:site, :category, :tags)
                            .preload(:permalinkable)
-                           .where(site: current_site)
+                           .where(site: Current.site)
                            .order(created_at: :desc)
                            .match_if(permalinkable_type: search_params[:permalinkable_type])
                            .match_if(category_id: search_params[:category_id])
@@ -41,10 +39,7 @@ class PermalinksController < ApplicationController
   # POST /permalinks
   # POST /permalinks.json
   def create
-    @categories = current_site.categories
-    @tags = current_site.tags
-
-    @permalink = current_site.permalinks.new(permalink_params)
+    @permalink = Current.site.permalinks.new(permalink_params)
     @permalink.build_permalinkable unless @permalink.permalinkable
 
     respond_to do |format|
@@ -62,9 +57,6 @@ class PermalinksController < ApplicationController
   # PATCH/PUT /permalinks/1
   # PATCH/PUT /permalinks/1.json
   def update
-    @categories = current_site.categories
-    @tags = current_site.tags
-
     respond_to do |format|
       if @permalink.update(permalink_params)
         format.html { redirect_to @permalink, notice: 'Permalink was successfully updated.' }

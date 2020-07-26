@@ -16,11 +16,11 @@
       </div>
       <div>
         <%= f.label :category_id %>
-        <%= f.collection_select :category_id, @categories, :id, :name, include_blank: true %>
+        <%= f.collection_select :category_id, Current.site_categories, :id, :name, include_blank: true %>
       </div>
       <div>
         <%= f.label :tag_ids %>
-        <%= f.collection_select :tag_ids, @tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
+        <%= f.collection_select :tag_ids, Current.site_tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
       </div>
       <div>
         <%= f.label :path %>
@@ -71,9 +71,9 @@
       <%= form.hidden_field :state, value: :draft %>
       <tr>
         <td><%= form.select :permalinkable_type, Permalink.permalinkable_types %></td>
-        <td><%= current_site&.domain %></td>
-        <td><%= form.select :category_id, @categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
-        <td><%= form.collection_select :tag_ids, @tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %></td>
+        <td><%= Current.site&.domain %></td>
+        <td><%= form.select :category_id, Current.site_categories.map {|category| [category.name, category.id]}, include_blank: true %></td>
+        <td><%= form.collection_select :tag_ids, Current.site_tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %></td>
         <td><%= form.text_field :path %></td>
         <td><%= form.text_field :title %></td>
         <td><%= form.text_field :description, rows: 10 %></td>

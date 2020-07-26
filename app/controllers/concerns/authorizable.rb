@@ -8,6 +8,6 @@ module Authorizable
   end
 
   def admin?
-    current_user.admin?
+    Current.user.admin?
   end
 end
