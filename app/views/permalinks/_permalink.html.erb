@@ -1,4 +1,4 @@
-<tr class="<%= permalink.state %>">
+<tr class="<%= permalink.state %>" id="permalink-<%= permalink.id %>">
   <td scope="row"><%= permalink.permalinkable_type %></td>
   <td scope="row">
     <%= link_to permalink.site.domain,
@@ -15,7 +15,7 @@
                                                     ajax:error->editable-cell#error'}, class: 'hide') do |form| %>
       <div class="field">
         <div>
-          <%= form.select :category_id, categories.map {|category| [category.name, category.id]}, {include_blank: true},
+          <%= form.select :category_id, current_site.categories.map {|category| [category.name, category.id]}, {include_blank: true},
             data: {target: 'editable-cell.input', action: 'blur->editable-cell#show'},
             onchange: 'javascript: Rails.fire(this.form, "submit")' %>
         </div>
@@ -96,5 +96,5 @@
   <td><%= l permalink.modified_at, format: :db if permalink.modified_at %></td>
   <td><%= link_to 'Show', permalink %></td>
   <td><%= link_to 'Edit', [:edit, permalink] %></td>
-  <td><%= link_to 'Destroy', permalink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to 'Destroy', permalink, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

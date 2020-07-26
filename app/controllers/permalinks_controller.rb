@@ -41,6 +41,9 @@ class PermalinksController < ApplicationController
   # POST /permalinks
   # POST /permalinks.json
   def create
+    @categories = current_site.categories
+    @tags = current_site.tags
+
     @permalink = current_site.permalinks.new(permalink_params)
     @permalink.build_permalinkable unless @permalink.permalinkable
 
@@ -59,6 +62,9 @@ class PermalinksController < ApplicationController
   # PATCH/PUT /permalinks/1
   # PATCH/PUT /permalinks/1.json
   def update
+    @categories = current_site.categories
+    @tags = current_site.tags
+
     respond_to do |format|
       if @permalink.update(permalink_params)
         format.html { redirect_to @permalink, notice: 'Permalink was successfully updated.' }
@@ -77,6 +83,7 @@ class PermalinksController < ApplicationController
     @permalink.permalinkable.destroy
     respond_to do |format|
       format.html { redirect_to permalinks_url, notice: 'Permalink was successfully destroyed.' }
+      format.js { render :destroy, status: :ok }
       format.json { head :no_content }
     end
   end
