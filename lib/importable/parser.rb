@@ -9,15 +9,22 @@ module Importable
 
     attr_reader :parsed
 
-    def create_article(tags, state, user_id)
-      Article.create!(content: parsed.content,
-                     user_id: user_id,
-                     state: state,
-                     title: parsed.front_matter['title'],
-                     permalink: _permalink(state),
-                     created_at: _created_at,
-                     updated_at: _updated_at,
-                     tags: tags || [])
+    def create_article(tags, state, site)
+      article = Article.new(
+        content: parsed.content,
+        created_at: _created_at,
+        updated_at: _updated_at,
+      )
+      Permalink.create!(
+        site: site,
+        state: state,
+        title: parsed.front_matter['title'],
+        path: _permalink(state),
+        created_at: _created_at,
+        updated_at: _updated_at,
+        permalinkable: article,
+        tags: tags || []
+      )
     end
 
     def _permalink(state)
@@ -41,8 +48,8 @@ module Importable
       Time.zone.parse(parsed.front_matter['modified_time']) if parsed.front_matter['modified_time']
     end
 
-    def create_tags
-      parsed.front_matter['tags']&.map { |tag| ::Tag.find_or_create_by!(name: tag) } if parsed.front_matter['tags'].present?
+    def create_tags(site)
+      parsed.front_matter['tags']&.map { |tag| site.tags.find_or_create_by!(name: tag) } if parsed.front_matter['tags'].present?
     end
   end
 end

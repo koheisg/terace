@@ -2,7 +2,9 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
+    login_as(users(:koheisg))
     @category = categories(:one)
+    switch_session_as(@category.site)
   end
 
   test "should get index" do

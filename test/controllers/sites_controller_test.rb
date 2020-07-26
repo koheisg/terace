@@ -3,6 +3,7 @@ require 'test_helper'
 class SitesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @site = sites(:one)
+    login_as(users(:koheisg))
   end
 
   test "should get index" do
@@ -17,7 +18,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create site" do
     assert_difference('Site.count') do
-      post sites_url, params: { site: {  } }
+      post sites_url, params: { site: { domain: 'example.com', layout: :dev, name: 'example', description: 'example site' } }
     end
 
     assert_redirected_to site_url(Site.last)
@@ -34,7 +35,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update site" do
-    patch site_url(@site), params: { site: {  } }
+    patch site_url(@site), params: { site: { domain: 'example.com', layout: :dev, name: 'example', description: 'example site' } }
     assert_redirected_to site_url(@site)
   end
 

@@ -2,8 +2,15 @@
 
 one:
   name: MyString
-  password_digest: MyString
+  password_digest: <%= BCrypt::Password.create('password') %>
+  admin: false
 
 two:
   name: MyString
-  password_digest: MyString
+  password_digest: <%= BCrypt::Password.create('password') %>
+  admin: false
+
+koheisg:
+  name: koheisg
+  password_digest: <%= BCrypt::Password.create('password') %>
+  admin: true

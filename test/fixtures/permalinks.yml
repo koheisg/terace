@@ -1,23 +1,23 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  permalinkable: one
-  permalinkable_type: Permalinkable
+  permalinkable: one (Article)
   site: one
   path: MyString
   title: MyString
   description: MyString
   noindex: false
+  state: <%= Permalink.states[:shipped] %>
   published_at: 2020-07-05 01:34:16
   modified_at: 2020-07-05 01:34:16
 
 two:
-  permalinkable: two
-  permalinkable_type: Permalinkable
+  permalinkable: two (Article)
   site: two
   path: MyString
   title: MyString
   description: MyString
   noindex: false
+  state: <%= Permalink.states[:shipped] %>
   published_at: 2020-07-05 01:34:16
   modified_at: 2020-07-05 01:34:16

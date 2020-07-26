@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_user
   before_action :redirect_to_permalinks_if_login, only: [:new, :create]
-  # GET /sessions/new
+
   def new
     @session = Session.new
   end

@@ -6,18 +6,22 @@
     <%= attr.last %>
   </p>
 <% end %>
-<p>
+<% if @history.modifications.respond_to?(:ogp_image) %>
+  <p>
   <strong>ogp_image:</strong>
   <%- if @history.modifications.ogp_image.attached? %>
     <%= image_tag @history.modifications.ogp_image.variant(resize: "200x200") %>
   <% end %>
-</p>
-<p>
-  <strong>images:</strong>
-  <%- @history.modifications.images.each do |image| %>
-    <%= image_tag image.variant(resize: "200x200") %>
-  <% end %>
-</p>
+  </p>
+<% end %>
+<% if @history.modifications.respond_to?(:images) %>
+  <p>
+    <strong>images:</strong>
+    <%- @history.modifications.images.each do |image| %>
+      <%= image_tag image.variant(resize: "200x200") %>
+    <% end %>
+  </p>
+<% end %>
 <p>
   <strong>tags:</strong>
   <%= @history.modifications.tags.map(&:name).join(", ") %>

@@ -1,0 +1,9 @@
+one:
+  auditable: one (Permalink)
+  modifications: <%= Permalink.new.to_yaml.inspect %>
+  action: 'create'
+
+two:
+  auditable: one (Permalink)
+  modifications: <%= Permalink.new.to_yaml.inspect %>
+  action: 'update'

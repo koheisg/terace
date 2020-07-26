@@ -2,47 +2,32 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @session = sessions(:one)
-  end
-
-  test "should get index" do
-    get sessions_url
-    assert_response :success
+    @session = Session.new
+    @site = sites(:one)
+    @user = users(:one)
   end
 
   test "should get new" do
-    get new_session_url
+    get login_url
     assert_response :success
   end
 
   test "should create session" do
-    assert_difference('Session.count') do
-      post sessions_url, params: { session: {  } }
-    end
+    post login_url, params: { session: { name: @user.name, password: 'password' } }
 
-    assert_redirected_to session_url(Session.last)
+    assert_redirected_to root_url
   end
 
-  test "should show session" do
-    get session_url(@session)
+  test "fail create session" do
+    post login_url, params: { session: { name: @user.name, password: 'invalid password' } }
+
     assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_session_url(@session)
-    assert_response :success
-  end
-
-  test "should update session" do
-    patch session_url(@session), params: { session: {  } }
-    assert_redirected_to session_url(@session)
   end
 
   test "should destroy session" do
-    assert_difference('Session.count', -1) do
-      delete session_url(@session)
-    end
+    login_as(@user)
 
-    assert_redirected_to sessions_url
+    delete logout_url
+    assert_redirected_to login_url
   end
 end

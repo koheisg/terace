@@ -10,20 +10,20 @@ module Importable
       File.join(ENV['TARGET_DIR'], '_posts', '**')
     end
 
-    def self._import(file, state, user_id)
+    def self._import(file, state, site)
       Rails.logger.error file
-      p = Importable::Parser.new(file)
-      tags = p.create_tags
-      p.create_article(tags, state, user_id)
+      parser = Importable::Parser.new(file)
+      tags = parser.create_tags(site)
+      parser.create_article(tags, state, site)
     end
 
-    def self.import
+    def self.import(site)
       Dir.glob(posts_dir).each do |file|
-        _import(file, Article.states[:published], 1)
+        _import(file, Permalink.states[:shipped], site)
       end
 
       Dir.glob(drafts_dir).each do |file|
-        _import(file, Article.states[:draft], 1)
+        _import(file, Permalink.states[:draft], site)
       end
     end
   end

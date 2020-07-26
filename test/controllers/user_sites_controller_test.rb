@@ -3,6 +3,7 @@ require 'test_helper'
 class UserSitesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_site = user_sites(:one)
+    login_as(users(:koheisg))
   end
 
   test "should get index" do
