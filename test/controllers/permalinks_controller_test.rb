@@ -116,6 +116,17 @@ class PermalinksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should update permalink without Permalinkable by format js" do
+    patch permalink_url(@permalink, format: :js), params: { permalink: { description: @permalink.description,
+                                                                         modified_at: @permalink.modified_at,
+                                                                         noindex: @permalink.noindex, path: 'new',
+                                                                         state: @permalink.state,
+                                                                         published_at: @permalink.published_at,
+                                                                         site_id: @permalink.site_id,
+                                                                         title: @permalink.title } }
+    assert_response :success
+  end
+
   test "should update permalink with Article" do
     patch permalink_url(@permalink), params: { permalink: { description: @permalink.description, modified_at: @permalink.modified_at,
                                                             noindex: @permalink.noindex, path: 'new', state: @permalink.state,
