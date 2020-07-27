@@ -3,6 +3,7 @@
 one:
   permalinkable: one (Article)
   site: one
+  category: one
   path: MyString
   title: MyString
   description: MyString
@@ -14,7 +15,30 @@ one:
 two:
   permalinkable: two (Article)
   site: two
+  category: one
   path: MyString
+  title: MyString
+  description: MyString
+  noindex: false
+  state: <%= Permalink.states[:shipped] %>
+  published_at: 2020-07-05 01:34:16
+  modified_at: 2020-07-05 01:34:16
+
+one_of_page:
+  permalinkable: one (Page)
+  site: one
+  path: one_of_page
+  title: MyString
+  description: MyString
+  noindex: false
+  state: <%= Permalink.states[:shipped] %>
+  published_at: 2020-07-05 01:34:16
+  modified_at: 2020-07-05 01:34:16
+
+one_of_archive:
+  permalinkable: one (Archive)
+  site: one
+  path: one_of_archive
   title: MyString
   description: MyString
   noindex: false

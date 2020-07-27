@@ -1,5 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one: {}
+one:
+  content: MyText
 
-two: {}
+two:
+  content: MyText
