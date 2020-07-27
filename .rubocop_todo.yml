@@ -205,7 +205,7 @@ Layout/SpaceInsideHashLiteralBraces:
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: IndentationWidth.
-Layout/Tab:
+Layout/IndentationStyle:
   Exclude:
     - 'db/migrate/20200704164618_migrate_article_to_permalink.rb'
 
