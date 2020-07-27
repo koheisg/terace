@@ -125,7 +125,7 @@ GEM
       nokogiri (>= 1.4)
     html-pipeline-youtube (0.1.4)
       html-pipeline (~> 2.0)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
@@ -232,10 +232,10 @@ GEM
       parser (>= 2.7.1.4)
     rubocop-performance (1.7.1)
       rubocop (>= 0.82.0)
-    rubocop-rails (2.5.2)
-      activesupport
+    rubocop-rails (2.7.1)
+      activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 0.72.0)
+      rubocop (>= 0.87.0)
     ruby-enum (0.8.0)
       i18n
     ruby-progressbar (1.10.1)
