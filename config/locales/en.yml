@@ -31,6 +31,7 @@
 
 en:
   hello: "Hello world"
+  search: "Search"
 
   time:
     formats:
