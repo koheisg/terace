@@ -59,6 +59,7 @@ class PermalinksController < ApplicationController
   def update
     respond_to do |format|
       if @permalink.update(permalink_params)
+        CloudflarePurgeJob.perform_later(@permalink)
         format.html { redirect_to @permalink, notice: 'Permalink was successfully updated.' }
         format.json { render :show, status: :ok, location: @permalink }
         format.js { render :update, status: :created }
