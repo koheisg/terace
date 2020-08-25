@@ -52,6 +52,7 @@ gem 'kaminari'
 gem 'aws-sdk-s3'
 
 gem 'escape_utils'
+gem 'cloudflare'
 
 
 # Use Capistrano for deployment
