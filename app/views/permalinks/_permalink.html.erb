@@ -94,7 +94,6 @@
   <td><%= 'noindex' if permalink.noindex? %></td>
   <td><%= l permalink.published_at, format: :db if permalink.published_at %></td>
   <td><%= l permalink.modified_at, format: :db if permalink.modified_at %></td>
-  <td><%= link_to 'Show', permalink %></td>
   <td><%= link_to 'Edit', [:edit, permalink] %></td>
   <td><%= link_to 'Destroy', permalink, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>

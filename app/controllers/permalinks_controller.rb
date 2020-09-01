@@ -25,6 +25,10 @@ class PermalinksController < ApplicationController
   # GET /permalinks/1
   # GET /permalinks/1.json
   def show
+    respond_to do |format|
+      format.html { redirect_to [:edit, @permalink] }
+      format.json { render :show }
+    end
   end
 
   # GET /permalinks/new
