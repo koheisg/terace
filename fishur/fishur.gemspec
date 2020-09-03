@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version     = Fishur::VERSION
   spec.authors     = ["Kohei SUGI"]
   spec.email       = ["kohei.sg@gmail.com"]
-  spec.homepage    = "TODO"
-  spec.summary     = "TODO: Summary of Fishur."
-  spec.description = "TODO: Description of Fishur."
+  spec.homepage    = "https://github.com/koheisg/terace"
+  spec.summary     = "Rss Feed Renderer."
+  spec.description = "Rss Feed Renderer for Ruby on Rails"
   spec.license     = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
