@@ -19,9 +19,9 @@ module Terrace
       assert_response :success
     end
 
-    test "should show rss feed" do
-      get 'http://one.example.com/feed'
-      assert_response :success
-    end
+    #test "should show rss feed" do
+    #  get 'http://one.example.com/feed'
+    #  assert_response :success
+    #end
   end
 end

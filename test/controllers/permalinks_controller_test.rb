@@ -108,7 +108,7 @@ class PermalinksControllerTest < ActionDispatch::IntegrationTest
 
   test "should show permalink" do
     get permalink_url(@permalink)
-    assert_response :success
+    assert_response :found
   end
 
   test "should get edit" do
