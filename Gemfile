@@ -53,6 +53,7 @@ gem 'aws-sdk-s3'
 
 gem 'escape_utils'
 gem 'cloudflare'
+gem 'redis-rails'
 
 
 # Use Capistrano for deployment
