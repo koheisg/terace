@@ -3,4 +3,5 @@
 //= link_directory ../stylesheets .css
 
 //= link terrace/application.css
+//= link terrace/dev/application.css
 //= link terrace/application.js
