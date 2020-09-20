@@ -1,21 +1,6 @@
 Rails.application.routes.draw do
   constraints(-> (req) { ENV['MAIN_DOMEIN'].eql?(req.host) }) do
-    root 'root#index'
-    controller :sessions do
-      get 'login' => :new
-      post 'login' => :create
-      delete 'logout' => :destroy
-    end
-
-    resource :site_session, only: :update
-
-    resources :users
-    resources :user_sites
-    resources :sites
-    resources :permalinks
-    resources :categories
-    resources :tags
-    resources :histories, only: [:index, :show]
+    mount Desk::Engine => "/"
   end
 
   constraints(-> (req) { req.subdomain.present? }) do

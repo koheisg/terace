@@ -1,3 +1,6 @@
+require_dependency "desk/application_controller"
+
+module Desk
 class SitesController < ApplicationController
   before_action :verify_admin
   before_action :set_site, only: [:show, :edit, :update, :destroy]
@@ -59,3 +62,5 @@ class SitesController < ApplicationController
       params.require(:site).permit(:domain, :layout, :name, :description)
     end
 end
+end
+

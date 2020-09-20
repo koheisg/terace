@@ -1,3 +1,6 @@
+require_dependency "desk/application_controller"
+
+module Desk
 class UsersController < ApplicationController
   before_action :verify_admin
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -72,4 +75,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :password, :admin)
     end
+end
 end

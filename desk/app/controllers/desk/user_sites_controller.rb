@@ -1,3 +1,6 @@
+require_dependency "desk/application_controller"
+
+module Desk
 class UserSitesController < ApplicationController
   before_action :set_user_site, only: [:show, :edit, :update, :destroy]
 
@@ -71,4 +74,5 @@ class UserSitesController < ApplicationController
     def user_site_params
       params.require(:user_site).permit(:user_id, :site_id)
     end
+end
 end

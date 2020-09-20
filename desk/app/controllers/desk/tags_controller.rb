@@ -1,3 +1,7 @@
+require_dependency "desk/application_controller"
+
+module Desk
+
 class TagsController < ApplicationController
   before_action :verify_admin
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
@@ -73,3 +77,4 @@ class TagsController < ApplicationController
       params.require(:tag).permit(:name)
     end
 end
+  end

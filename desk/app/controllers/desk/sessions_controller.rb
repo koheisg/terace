@@ -1,3 +1,6 @@
+require_dependency "desk/application_controller"
+
+module Desk
 class SessionsController < ApplicationController
   skip_before_action :verify_user
   before_action :redirect_to_permalinks_if_login, only: [:new, :create]
@@ -40,4 +43,5 @@ class SessionsController < ApplicationController
     def redirect_to_permalinks_if_login
       redirect_to permalinks_path if login?
     end
+end
 end

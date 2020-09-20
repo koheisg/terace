@@ -1,4 +1,10 @@
 PATH
+  remote: desk
+  specs:
+    desk (0.1.0)
+      rails (~> 6.0.3, >= 6.0.3.3)
+
+PATH
   remote: terrace
   specs:
     terrace (0.1.0)
@@ -361,6 +367,7 @@ DEPENDENCIES
   cloudflare
   coffee-rails
   commonmarker
+  desk!
   dotenv-rails
   escape_utils
   front_matter_parser

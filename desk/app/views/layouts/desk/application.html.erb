@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Desk</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= yield('title') %>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag    "desk/application", media: "all" %>
+  <%= stylesheet_link_tag    'desk/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
-<body>
 
-<%= yield %>
-
+<body class="<%= "#{controller.controller_path.gsub('/', '--')}" %>">
+<nav class="global-menu" data-turbolinks-permanent>
+  <div class="select">
+    <%= collection_select :site, :id, Current.user.sites, :id, :name,
+                          {include_blank: '-- select site --', selected: Current.site&.id},
+                          data: {remote: true, method: :patch, url: '/site_session'} %>
+  </div>
+  <ul class="tabs">
+    <li class="tab"><%= link_to t(".home"), root_path %></li>
+    <li class="tab">
+      <%= link_to t(".permalinks"), permalinks_path %>
+    </li>
+    <%- if admin? %>
+      <li class="tab"><%= link_to t(".histories"), histories_path %></li>
+      <li class="tab"><%= link_to t(".tags"), tags_path %></li>
+      <li class="tab"><%= link_to t(".categories"), categories_path %></li>
+      <li class="tab"><%= link_to t(".users"), users_path %></li>
+      <li class="tab"><%= link_to t(".sites"), sites_path %></li>
+    <% end %>
+    <%- if login? %>
+      <li class="tab"><%= link_to t(".logout"), logout_path, method: :delete %></li>
+    <% else %>
+      <li class="tab"><%= link_to t(".login"), login_path %></li>
+    <% end %>
+    <%- if Rails.env.development? %>
+      <li class="tab"><%= link_to t(".routes"), 'rails/info/routes' %></li>
+    <% end %>
+  </ul>
+</nav>
+<div class="notification"><p id="notice"><%= notice %></p></div>
+<div class="container">
+  <%= yield(:heading) %>
+  <%= yield(:new_permalinkable_menu) %>
+  <%= yield %>
+</div>
 </body>
 </html>
