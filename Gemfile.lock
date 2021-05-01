@@ -131,9 +131,6 @@ GEM
     cloudflare (4.2.1)
       async-rest (~> 0.10.0)
     coderay (1.1.3)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -386,7 +383,7 @@ DEPENDENCIES
   byebug
   capybara
   cloudflare
-  coffee-rails
+  coffee-script
   commonmarker
   desk!
   dotenv-rails
