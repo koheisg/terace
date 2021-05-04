@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(version: 2021_05_01_094018) do
     t.index ["action"], name: "index_audits_on_action"
     t.index ["auditable_id", "auditable_type", "version"], name: "auditable_version_idx"
     t.index ["auditable_id", "auditable_type"], name: "auditable_index"
-    t.index ["auditable_type", "auditable_id"], name: "index_audits_on_auditable_type_and_auditable_id"
+    t.index ["auditable_type", "auditable_id"], name: "index_audits_on_auditable"
     t.index ["created_at"], name: "index_audits_on_created_at"
     t.index ["tag"], name: "index_audits_on_tag"
     t.index ["user_id", "user_type"], name: "user_index"
-    t.index ["user_type", "user_id"], name: "index_audits_on_user_type_and_user_id"
+    t.index ["user_type", "user_id"], name: "index_audits_on_user"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -85,14 +85,6 @@ ActiveRecord::Schema.define(version: 2021_05_01_094018) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "permalinks_count"
     t.index ["site_id"], name: "index_categories_on_site_id"
-  end
-
-  create_table "feeds", force: :cascade do |t|
-    t.string "archiveable_type", null: false
-    t.bigint "archiveable_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["archiveable_type", "archiveable_id"], name: "index_feeds_on_archiveable_type_and_archiveable_id"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -136,7 +128,7 @@ ActiveRecord::Schema.define(version: 2021_05_01_094018) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
-    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
+    t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable"
   end
 
   create_table "tags", force: :cascade do |t|
