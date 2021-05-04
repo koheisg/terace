@@ -3,4 +3,15 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: <%= ENV.fetch("DATABASE_URL") { nil } %>
+  url: <%= ENV.fetch("DATABASE_URL") { nil } %>
+
+test:
+  <<: *default
+  database: terace_test
+
+development:
+  <<: *default
+  database: terace_development
+
+production:
+  <<: *default
