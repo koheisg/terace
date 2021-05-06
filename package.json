@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "5.3.0",
-    "autoprefixer": "^9",
+    "autoprefixer": "^10",
     "postcss": "^8",
     "postcss-preset-env": "^6.7.0",
     "stimulus": "^2.0.0",
