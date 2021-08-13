@@ -95,4 +95,4 @@ gem 'terrace', path: 'terrace'
 gem 'desk', path: 'desk'
 gem 'fishur', path: 'fishur'
 
-gem "tailwindcss-rails", ">= 0.3.3"
+gem "tailwindcss-rails"
