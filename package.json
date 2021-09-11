@@ -3,13 +3,16 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "5.4.2",
-    "autoprefixer": "^10",
-    "postcss": "^8",
+    "autoprefixer": "^10.3.4",
+    "postcss": "^8.3.6",
     "postcss-preset-env": "^6.7.0",
     "stimulus": "^2.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "tailwindcss": "^2.2.15"
   },
   "devDependencies": {
     "webpack-dev-server": "^4.2.0"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   }
 }

@@ -53,3 +53,5 @@ terrace/coverage/*
 fishur/Gemfile.lock
 desk/Gemfile.lock
 terrace/Gemfile.lock
+/app/assets/builds
+!/app/assets/builds/.keep
