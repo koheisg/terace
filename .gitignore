@@ -49,3 +49,7 @@ yarn-debug.log*
 
 coverage/*
 terrace/coverage/*
+
+fishur/Gemfile.lock
+desk/Gemfile.lock
+terrace/Gemfile.lock
