@@ -53,6 +53,7 @@ gem 'escape_utils'
 gem 'cloudflare'
 gem 'redis-rails'
 
+gem 'cssbundling-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
