@@ -94,5 +94,3 @@ gem 'terrace', path: 'terrace'
 
 gem 'desk', path: 'desk'
 gem 'fishur', path: 'fishur'
-
-gem "tailwindcss-rails"
