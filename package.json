@@ -10,7 +10,7 @@
     "tailwindcss": "^2.2.15"
   },
   "devDependencies": {
-    "webpack-dev-server": "^4.2.0"
+    "webpack-dev-server": "^4.3.1"
   },
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
