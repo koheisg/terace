@@ -18,4 +18,10 @@
   <% end %>
 <% end %>
 
+<% content_for :ogp do %>
+  <% if @permalink.og_image_url.present? %>
+    <meta property="og:image" content="<%= @permalink.og_image_url %>">
+  <% end %>
+<% end %>
+
 <%= render @permalink.permalinkable, heading_level: 'h1' %>

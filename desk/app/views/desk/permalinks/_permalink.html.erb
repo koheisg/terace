@@ -91,6 +91,11 @@
       </div>
     <% end %>
   </td>
+  <td>
+    <% if permalink.og_image_url.present? %>
+      <%= image_tag(permalink.og_image_url) %>
+    <% end %>
+  </td>
   <td><%= 'noindex' if permalink.noindex? %></td>
   <td><%= l permalink.published_at, format: :db if permalink.published_at %></td>
   <td><%= l permalink.modified_at, format: :db if permalink.modified_at %></td>

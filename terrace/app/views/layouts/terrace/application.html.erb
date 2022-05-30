@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= yield('title') %>
   <%= yield(:description) %>
+  <%= yield(:ogp) %>
   <%= yield(:stylesheets) %>
   <%= yield(:javascript) %>
   <%= javascript_include_tag "terrace/application" %>
