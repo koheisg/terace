@@ -21,6 +21,12 @@
 <% content_for :ogp do %>
   <% if @permalink.og_image_url.present? %>
     <meta property="og:image" content="<%= @permalink.og_image_url %>">
+    <meta name=“twitter:card” content="summary_large_image" />
+    <meta name="twitter:site" content="@koheiSG">
+    <meta name="twitter:creator" content="@koheiSG">
+    <meta name="twitter:title" content="<%= @permalink.title %>">
+    <meta name="twitter:description" content="<%= @permalink.description %>">
+    <meta name="twitter:image" content="<%= @permalink.og_image_url %>">
   <% end %>
 <% end %>
 
