@@ -60,7 +60,6 @@ gem 'cssbundling-rails'
 # gem 'capistrano-rails', group: :development
 group :production do
   gem 'pg'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do

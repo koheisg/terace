@@ -187,7 +187,6 @@ GEM
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
     minitest (5.14.4)
-    newrelic_rpm (8.0.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
       mini_portile2 (~> 2.6.1)
@@ -383,7 +382,6 @@ DEPENDENCIES
   kaminari
   listen
   mini_magick
-  newrelic_rpm
   pg
   pry-byebug
   pry-rails
