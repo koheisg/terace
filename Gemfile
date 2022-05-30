@@ -36,6 +36,7 @@ gem 'commonmarker'
 gem 'html-pipeline-youtube'
 gem 'rouge'
 gem 'sanitize'
+gem "sentry-ruby"
 gem "sentry-rails"
 
 # FrontMatterParser is a library to parse a front matter from strings or files.
