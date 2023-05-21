@@ -1,5 +1,3 @@
-require 'cloudflare'
-
 class CloudflarePurgeJob < ApplicationJob
   def perform(permalink)
     return unless Rails.env.production?
