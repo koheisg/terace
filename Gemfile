@@ -9,7 +9,7 @@ gem "jbuilder"
 gem "pg"
 gem "puma"
 gem "rails"
-gem "redis", '4.8.1'
+gem "redis"
 gem "redis-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
