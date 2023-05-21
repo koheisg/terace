@@ -9,7 +9,6 @@ class Public::ApplicationController < ActionController::Base
 
     def set_sentry_context
       Sentry.with_scope do |scope|
-        scope.set_user(id: session[:user_id]) # or anything else in session
         scope.set_extras(params: params.to_unsafe_h, url: request.url)
       end
     end
