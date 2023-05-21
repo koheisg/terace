@@ -29,7 +29,7 @@ module Htmlable
           HTML::Pipeline::SyntaxHighlightFilter,
           HTML::Pipeline::SanitizationFilter,
           HTML::Pipeline::TableOfContentsFilter,
-        ], { gfm: true, unsafe: true, sanitization_config: allowlist, scope: 'highlight', anchor_icon: anchor_icon }
+        ], { gfm: true, unsafe: true, allowlist: allowlist, scope: 'highlight', anchor_icon: anchor_icon }
       end
 
       def anchor_icon
@@ -37,15 +37,17 @@ module Htmlable
       end
 
       def allowlist
-        {
-          attributes: {
-            'blockquote' => ['class','data-lang'],
-            'p' => ['lang', 'dir'],
-            'a' => ['href'],
-            'span' => ['class'],
-            'pre' => ['lang', 'class'],
+        HTML::Pipeline::SanitizationFilter::ALLOWLIST.merge(
+          {
+            attributes: {
+              'blockquote' => ['class','data-lang'],
+              'p' => ['lang', 'dir'],
+              'a' => ['href'],
+              'span' => ['class'],
+              'pre' => ['lang', 'class'],
+            }
           }
-        }
+        )
       end
   end
 end
