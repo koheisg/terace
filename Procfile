@@ -1,2 +1,2 @@
 web: bundle exec puma -C config/puma.rb
-deploy: yarn build:css
+css: bundle exec rails tailwindcss:build
