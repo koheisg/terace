@@ -1,7 +1,6 @@
 require 'html/pipeline'
 require 'commonmarker'
 
-# TODO decorator logicなので、theme側に切り出す
 module Htmlable
   extend ActiveSupport::Concern
 
@@ -30,7 +29,7 @@ module Htmlable
           HTML::Pipeline::SyntaxHighlightFilter,
           HTML::Pipeline::SanitizationFilter,
           HTML::Pipeline::TableOfContentsFilter,
-        ], { gfm: true, unsafe: true, whitelist: allowlist, scope: 'highlight', anchor_icon: anchor_icon }
+        ], { gfm: true, unsafe: true, sanitization_config: allowlist, scope: 'highlight', anchor_icon: anchor_icon }
       end
 
       def anchor_icon
@@ -38,7 +37,7 @@ module Htmlable
       end
 
       def allowlist
-        add_list = {
+        {
           attributes: {
             'blockquote' => ['class','data-lang'],
             'p' => ['lang', 'dir'],
@@ -47,7 +46,6 @@ module Htmlable
             'pre' => ['lang', 'class'],
           }
         }
-        HTML::Pipeline::SanitizationFilter::WHITELIST.deep_merge(add_list)
       end
   end
 end

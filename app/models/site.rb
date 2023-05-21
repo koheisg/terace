@@ -8,4 +8,12 @@ class Site < ApplicationRecord
   has_many :users, through: :user_sites
 
   enum layout: [:default, :dev, :forward]
+
+  def prose
+    dev? ? 'prose prose-invert' : 'prose'
+  end
+
+  def author
+    name == 'forward' ? 'forward inc.' : 'koheisg'
+  end
 end

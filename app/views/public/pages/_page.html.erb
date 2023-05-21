@@ -1,0 +1,13 @@
+<article itemscope itemtype="http://schema.org/BlogPosting" class="max-w-[704px] mx-auto <%= current_site.prose %>">
+  <header>
+    <%- if page.permalink.draft? %>
+      <p>
+        このページは公開されていません。
+      </p>
+    <% end %>
+    <time datetime="<%= l page.permalink.created_at, format: "%Y-%m-%d" %>"></time>
+  </header>
+  <div class="content">
+    <%= page.content_html %>
+  </div>
+</article>

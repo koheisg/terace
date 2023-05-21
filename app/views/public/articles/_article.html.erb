@@ -1,0 +1,20 @@
+<article itemscope itemtype="http://schema.org/BlogPosting" class="max-w-[704px] mx-auto <%= current_site.prose %>">
+  <header>
+    <%- if article.draft? %>
+      <p>
+      この記事は公開されていません。
+      </p>
+    <% end %>
+    <p>
+    <time datetime="<%= l article.created_at, format: "%Y-%m-%d" %>">
+      <%= l article.created_at, format: "%b %d, %Y" %>
+    </time>
+    </p>
+    <<%= heading_level %> itemprop="headline">
+    <%= link_to article.title, "/#{article.path}" %>
+    </<%= heading_level %>>
+  </header>
+  <div>
+    <%= article.content_html %>
+  </div>
+</article>

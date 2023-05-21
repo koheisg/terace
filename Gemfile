@@ -1,59 +1,35 @@
-source 'https://rubygems.org'
-ruby '3.0.1'
+source "https://rubygems.org"
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
-end
+ruby "3.0.1"
 
-gem 'webpacker'
-gem 'uglifier'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'turbolinks'
-gem 'terrace', path: 'terrace'
-gem 'sass-rails'
-gem 'sanitize'
-gem 'rouge'
-gem 'redis-rails'
-gem 'rails'
-gem 'puma'
-gem 'pg'
-gem 'mini_magick'
-gem 'kaminari'
-gem 'jbuilder'
-gem 'html-pipeline-youtube'
-gem 'html-pipeline'
-gem 'front_matter_parser'
-gem 'fishur', path: 'fishur'
-gem 'escape_utils'
-gem 'desk', path: 'desk'
-gem 'cssbundling-rails'
-gem 'commonmarker'
-gem 'cloudflare'
+gem "bootsnap"
+gem "importmap-rails"
+gem "jbuilder"
+gem "pg"
+gem "puma"
+gem "rails"
+gem "redis"
+gem "sprockets-rails"
+gem "stimulus-rails"
+gem "html-pipeline"
+gem "commonmarker"
+gem "rouge"
+gem "sanitize"
+gem "escape_utils"
+gem "tailwindcss-rails"
+gem "turbo-rails"
+gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'bcrypt'
-gem 'aws-sdk-s3'
-gem "sentry-ruby"
-gem "sentry-rails"
+gem 'sassc'
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'kaminari'
 
 group :development, :test do
-  gem 'selenium-webdriver'
-  gem 'pry-rails'
-  gem 'pry-byebug'
-  gem 'dotenv-rails'
-  gem 'capybara'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
 group :development do
-  gem 'web-console'
-  gem 'spring-watcher-listen'
-  gem 'spring'
-  gem 'rubocop-rails'
-  gem 'rubocop-performance'
-  gem 'rubocop'
-  gem 'listen'
-end
-
-group :test do
-  gem 'simplecov', require: false
+  gem "web-console"
 end

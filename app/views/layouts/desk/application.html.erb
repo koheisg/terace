@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= yield('title') %>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body>
+<nav class="flex" data-turbolinks-permanent>
+  <div class="select", data-controller='site'>
+    <%= form_tag '/site_session', method: :patch, data: {'site-target': 'form'} do %>
+      <%= collection_select :site, :id, Current.user.sites, :id, :name,
+        {include_blank: '-- select site --', selected: Current.site&.id}, data: {action: 'change->site#submit'} %>
+    <% end %>
+  </div>
+  <ul class="flex p-2 space-x-2">
+    <li class="tab"><%= link_to t(".home"), root_path %></li>
+    <li class="tab">
+      <%= link_to t(".permalinks"), permalinks_path %>
+    </li>
+    <%- if admin? %>
+      <li class="tab"><%= link_to t(".histories"), histories_path %></li>
+      <li class="tab"><%= link_to t(".tags"), tags_path %></li>
+      <li class="tab"><%= link_to t(".categories"), categories_path %></li>
+      <li class="tab"><%= link_to t(".users"), users_path %></li>
+      <li class="tab"><%= link_to t(".sites"), sites_path %></li>
+    <% end %>
+    <%- if login? %>
+      <li class="tab"><%= link_to t(".logout"), logout_path, method: :delete %></li>
+    <% else %>
+      <li class="tab"><%= link_to t(".login"), login_path %></li>
+    <% end %>
+    <%- if Rails.env.development? %>
+      <li class="tab"><%= link_to t(".routes"), 'rails/info/routes' %></li>
+    <% end %>
+  </ul>
+</nav>
+<div class="notification"><p id="notice"><%= notice %></p></div>
+<div>
+  <%= yield(:heading) %>
+  <%= yield(:new_permalinkable_menu) %>
+  <%= yield %>
+</div>
+</body>
+</html>

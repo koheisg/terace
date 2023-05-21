@@ -1,0 +1,104 @@
+<tr class="<%= permalink.state %>" id="permalink-<%= permalink.id %>">
+  <td scope="row"><%= permalink.permalinkable_type %></td>
+  <td scope="row">
+    <%= link_to permalink.site.domain,
+                "//#{permalink.site.domain}#{request.port_string}/",
+                target: :_blank %>
+  </td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-editable-cell-target="show" class='field'>
+      <%= permalink.category_name %>
+    </div>
+    <%= form_with(model: permalink, data: {'editable-cell-target': 'form',
+                                           action: 'ajax:send->editable-cell#loading
+                                                    ajax:complete->editable-cell#hide
+                                                    ajax:error->editable-cell#error'}, class: 'hidden') do |form| %>
+      <div class="field">
+        <div>
+          <%= form.select :category_id, Current.site_categories.map {|category| [category.name, category.id]}, {include_blank: true},
+            data: {'editable-cell-target': 'input', action: 'blur->editable-cell#show'},
+            onchange: 'javascript: Rails.fire(this.form, "submit")' %>
+        </div>
+      </div>
+    <% end %>
+  </td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-editable-cell-target="show" class='field'>
+      <%= permalink.tags.map {|tag| tag.name }.join(', ') %>
+    </div>
+    <%= form_with(model: permalink, data: {'editable-cell-target': 'form',
+                                           action: 'ajax:send->editable-cell#loading
+                                                    ajax:complete->editable-cell#hide
+                                                    ajax:error->editable-cell#error'}, class: 'hidden') do |form| %>
+      <div class="field">
+        <div>
+          <%= form.collection_select :tag_ids,
+                                      Current.site_tags,
+                                      :id,
+                                      :name,
+                                      {include_blank: true},
+                                      {multiple: true, size: 5,
+                                       data: {'editable-cell-target': 'input', action: 'blur->editable-cell#show'},
+                                       onchange: 'javascript: Rails.fire(this.form, "submit")'} %>
+        <div>
+      </div>
+    <% end %>
+  </td>
+  <td data-controller='editable-cell'>
+    <% if permalink.shipped? %>
+      <%= link_to_if permalink.shipped?,
+                     "/#{permalink.path}",
+                     "//#{permalink.site.domain}#{request.port_string}/#{permalink.path}",
+                     target: :_blank %>
+    <% else %>
+      <div data-action="click->editable-cell#edit" data-editable-cell-target="show" class='field permalink-prefix'>
+        <%= "#{permalink.path}" %>
+      </div>
+      <%= form_with(model: permalink, data: {'editable-cell-target': 'form',
+                                             action: 'ajax:send->editable-cell#loading
+                                                      ajax:complete->editable-cell#hide
+                                                      ajax:error->editable-cell#error'}, class: 'hidden') do |form| %>
+        <div class="field flex-container">
+          <div><span>/ <span></div>
+          <div><%= form.text_field :path, data: {'editable-cell-target': 'input', action: 'blur->editable-cell#show'} %></div>
+        </div>
+      <% end %>
+    <% end %>
+  </td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-editable-cell-target="show" class='field'>
+      <%= permalink.title %>
+    </div>
+    <%= form_with(model: permalink, data: {'editable-cell-target': 'form',
+                                         action: 'ajax:send->editable-cell#loading
+                                                  ajax:complete->editable-cell#hide
+                                                  ajax:error->editable-cell#error'}, class: 'hidden') do |form| %>
+      <div class="field">
+        <%= form.text_field :title, data: {'editable-cell-target': 'input', action: 'blur->editable-cell#show'} %>
+      </div>
+    <% end %>
+  </td>
+  <td data-controller='editable-cell'>
+    <div data-action="click->editable-cell#edit" data-editable-cell-target="show" class='field'>
+      <%= permalink.description %>
+    </div>
+    <%= form_with(model: permalink, data: {'editable-cell-target': 'form',
+                                           action: 'ajax:send->editable-cell#loading
+                                                    ajax:complete->editable-cell#hide
+                                                    ajax:error->editable-cell#error'}, class: 'hidden') do |form| %>
+      <div class="field">
+        <%= form.text_field :description, data: {'editable-cell-target': 'input', action: 'blur->editable-cell#show'} %>
+      </div>
+    <% end %>
+  </td>
+  <td>
+    <% if permalink.og_image_url.present? %>
+      <%= image_tag(permalink.og_image_url) %>
+    <% end %>
+  </td>
+  <td><%= 'noindex' if permalink.noindex? %></td>
+  <td><%= l permalink.published_at, format: :db if permalink.published_at %></td>
+  <td><%= l permalink.modified_at, format: :db if permalink.modified_at %></td>
+  <td><%= link_to 'Edit', [:edit, permalink] %></td>
+  <td><%= link_to 'Destroy', permalink, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

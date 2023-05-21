@@ -1,0 +1,81 @@
+<%- content_for :heading do %>
+  <h1>Permalinks</h1>
+<% end %>
+
+<nav class="flex flex-col">
+  <ul class="flex space-x-2">
+    <li class="tab"><%= link_to t(".all"), permalinks_path %></li>
+    <li class="tab"><%= link_to t(".published"), permalinks_path(permalink: {state: 'shipped'}) %></li>
+    <li class="tab"><%= link_to t(".drafts"), permalinks_path(permalink: {state: 'draft'}) %></li>
+  </ul>
+  <%= form_with model: @q, local: true, url: permalinks_path, method: :get, skip_enforcing_utf8: true do |f| %>
+    <div class='flex-col space-y-2'>
+      <div class='flex items-center'>
+        <%= f.label :permalinkable_type, class: 'basis-1/4' %>
+        <%= f.select :permalinkable_type, Permalink.permalinkable_types, include_blank: true %>
+      </div>
+      <div class='flex items-center'>
+        <%= f.label :category_id, class: 'basis-1/4' %>
+        <%= f.collection_select :category_id, Current.site_categories, :id, :name, include_blank: true %>
+      </div>
+      <div class='flex items-center'>
+        <%= f.label :tag_ids, class: 'basis-1/4' %>
+        <%= f.collection_select :tag_ids, Current.site_tags, :id, :name, {include_blank: true}, {multiple: true, size: 5} %>
+      </div>
+      <div class='flex items-center'>
+        <%= f.label :path, class: 'basis-1/4' %>
+        <%= f.search_field :path %>
+      </div>
+      <div class='flex items-center'>
+        <%= f.label :title, class: 'basis-1/4' %>
+        <%= f.search_field :title %>
+      </div>
+      <div class='flex items-center'>
+        <%= f.label :state, class: 'basis-1/4' %>
+        <div class="fields">
+          <%= f.radio_button :state, :shipped, id: :shipped %>
+          <%= f.label :shipped, for: :shipped, class: 'radio-button-label' %>
+          <%= f.radio_button :state, :draft, id: :draft %>
+          <%= f.label :draft, for: :draft, class: 'radio-button-label' %>
+        </div>
+      </div>
+      <div class="submit-field">
+        <%= f.submit I18n.t('search') %>
+      </div>
+    </div>
+  <% end %>
+</nav>
+
+<br />
+<br />
+<%= link_to 'New Permalink', new_permalink_path %>
+
+<table class="table-auto">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Site</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Path</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>OG Image</th>
+      <th>Noindex</th>
+      <th>Published at</th>
+      <th>Modified at</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody id="permalinks">
+    <%= render @permalinks, categories: @categories, tags: @tags %>
+  </tbody>
+</table>
+
+<br>
+
+<%= paginate @permalinks %>
+
+<br>
+
+<%= link_to 'New Permalink', new_permalink_path %>
