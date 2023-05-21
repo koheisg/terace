@@ -5,7 +5,7 @@
     end
   %>
 <%- permalinks.each do |article| %>
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="max-w-[704px] mx-auto <%= current_site.prose %>">
+  <article itemscope itemtype="http://schema.org/BlogPosting" class="pb-32 max-w-[704px] mx-auto <%= current_site.prose %>">
     <header>
       <%- if article.draft? %>
         <p>
