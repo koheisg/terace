@@ -1,6 +1,6 @@
 <% content_for :html_classes, "bg-neutral-700" %>
 <% content_for :body_classes, "bg-neutral-700 text-slate-50" %>
-<% content_for :article_classes, "max-w-[704px] mx-auto prose prose-invert" %>
+<% content_for :article_classes, "max-w-[704px] mx-auto prose prose-invert px-4" %>
 <% content_for :stylesheets do %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/yakuhanjp@3.2.0/dist/css/yakuhanjp-noto.min.css" async>
 <% end %>
@@ -10,7 +10,7 @@
 <% end %>
 
 <% content_for :header do %>
-  <div class='flex justify-center max-w-[704px] mx-auto'>
+  <div class='flex justify-center max-w-[704px] mx-auto px-4'>
     <header class="flex items-center justify-between w-full py-6 md:justify-start md:space-x-10">
       <a class='text-4xl font-extrabold' href="/"><%= current_site.name %></a>
       <%#= TODO: image_tag current_site.logo, alt: current_site.name %>
@@ -19,7 +19,7 @@
 <% end %>
 
 <% content_for :footer do %>
-  <div class='flex justify-center max-w-[704px] mx-auto'>
+  <div class='flex justify-center max-w-[704px] mx-auto px-4'>
     <footer class="bg-neutral-700">
       <div class="px-4 py-12 mx-auto max-w-7xl sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="mt-8 md:mt-0 md:order-1">

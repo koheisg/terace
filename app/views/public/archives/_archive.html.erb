@@ -5,7 +5,7 @@
     end
   %>
 <%- permalinks.each do |article| %>
-  <article itemscope itemtype="http://schema.org/BlogPosting" class="pb-32 max-w-[704px] mx-auto <%= current_site.prose %> prose-headings:text-lg prose-headings:my-5">
+  <article itemscope itemtype="http://schema.org/BlogPosting" class="pb-32 max-w-[704px] mx-auto <%= current_site.prose %> prose-headings:text-lg prose-headings:my-5 px-4">
     <header>
       <%- if article.draft? %>
         <p>
@@ -32,6 +32,6 @@
   </article>
 <% end %>
 
-<div class='max-w-[704px] mx-auto py-10'>
+<div class='max-w-[704px] mx-auto py-10 px-4'>
   <%= paginate permalinks, theme: 'terrace' %>
 </div>
