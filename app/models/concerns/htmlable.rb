@@ -1,4 +1,5 @@
 require 'html/pipeline'
+require 'html/pipeline/h1_to_h2_filter'
 require 'commonmarker'
 
 module Htmlable
@@ -28,12 +29,8 @@ module Htmlable
           HTML::Pipeline::MarkdownFilter,
           HTML::Pipeline::SyntaxHighlightFilter,
           HTML::Pipeline::SanitizationFilter,
-          HTML::Pipeline::TableOfContentsFilter,
-        ], { gfm: true, unsafe: true, allowlist: allowlist, scope: 'highlight', anchor_icon: anchor_icon }
-      end
-
-      def anchor_icon
-        '<i aria-hidden="true" class="fas fa-link"></i>'
+          HTML::Pipeline::H1ToH2Filter,
+        ], { gfm: true, unsafe: true, allowlist: allowlist, scope: 'highlight' }
       end
 
       def allowlist
