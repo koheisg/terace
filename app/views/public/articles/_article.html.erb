@@ -1,18 +1,20 @@
-<article itemscope itemtype="http://schema.org/BlogPosting" class="max-w-[704px] mx-auto <%= current_site.prose %>">
+<article itemscope itemtype="http://schema.org/BlogPosting" class="max-w-[704px] mx-auto <%= current_site.prose %> prose-headings:text-lg prose-headings:my-5">
   <header>
     <%- if article.draft? %>
       <p>
       この記事は公開されていません。
       </p>
     <% end %>
-    <p>
-    <time datetime="<%= l article.created_at, format: "%Y-%m-%d" %>">
-      <%= l article.created_at, format: "%b %d, %Y" %>
-    </time>
-    </p>
-    <<%= heading_level %> itemprop="headline">
-    <%= link_to article.title, "/#{article.path}" %>
-    </<%= heading_level %>>
+    <div>
+      <time datetime="<%= l article.created_at, format: "%Y-%m-%d" %>">
+        <%= l article.created_at, format: "%b %d, %Y" %>
+      </time>
+    </div>
+    <div class='py-5'>
+      <%= link_to "/#{article.path}", class: 'not-prose' do %>
+        <<%= heading_level %> itemprop="headline" class="text-2xl font-bold"><%= article.title %></<%= heading_level %>>
+      <% end %>
+    </div>
   </header>
   <div>
     <%= article.content_html %>
