@@ -7,7 +7,7 @@ class Site < ApplicationRecord
   has_many :user_sites, dependent: :destroy
   has_many :users, through: :user_sites
 
-  enum layout: [:default, :dev, :forward]
+  enum layout: [:default, :dev]
 
   def prose
     dev? ? 'prose prose-invert' : 'prose'
