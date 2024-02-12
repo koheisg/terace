@@ -13,7 +13,7 @@ gem "redis"
 gem "redis-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
-gem "html-pipeline"
+gem "html-pipeline", '2.14.3'
 gem "commonmarker"
 gem "rouge"
 gem "sanitize"

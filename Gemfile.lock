@@ -98,9 +98,9 @@ GEM
     ffi (1.16.3)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    html-pipeline (3.0.3)
-      selma (~> 0.1)
-      zeitwerk (~> 2.5)
+    html-pipeline (2.14.3)
+      activesupport (>= 2)
+      nokogiri (>= 1.4)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -228,8 +228,6 @@ GEM
       nokogiri (>= 1.12.0)
     sassc (2.4.0)
       ffi (~> 1.9)
-    selma (0.2.2-arm64-darwin)
-    selma (0.2.2-x86_64-linux)
     sentry-rails (5.16.1)
       railties (>= 5.0)
       sentry-ruby (~> 5.16.1)
@@ -279,7 +277,7 @@ DEPENDENCIES
   commonmarker
   debug
   escape_utils
-  html-pipeline
+  html-pipeline (= 2.14.3)
   importmap-rails
   jbuilder
   kaminari
