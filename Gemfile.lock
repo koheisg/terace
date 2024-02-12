@@ -82,8 +82,7 @@ GEM
     bootsnap (1.18.3)
       msgpack (~> 1.2)
     builder (3.2.4)
-    commonmarker (1.0.4-arm64-darwin)
-    commonmarker (1.0.4-x86_64-linux)
+    commonmarker (0.23.10)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -274,7 +273,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   bootsnap
-  commonmarker
+  commonmarker (= 0.23.10)
   debug
   escape_utils
   html-pipeline (= 2.14.3)
