@@ -14,7 +14,7 @@ gem "redis-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "html-pipeline", '2.14.3'
-gem "commonmarker", '0.23.10'
+gem "commonmarker", '1.0.4'
 gem "rouge"
 gem "sanitize"
 gem "escape_utils"
