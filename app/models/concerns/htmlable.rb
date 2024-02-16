@@ -37,6 +37,7 @@ module Htmlable
         HTML::Pipeline::SanitizationFilter::ALLOWLIST.merge(
           {
             attributes: {
+              'img' => ['src', 'alt', 'width', 'height'],
               'blockquote' => ['class','data-lang'],
               'p' => ['lang', 'dir'],
               'a' => ['href'],
