@@ -220,7 +220,7 @@ GEM
       redis (>= 4, < 6)
     reline (0.4.2)
       io-console (~> 0.5)
-    rouge (4.2.0)
+    rouge (4.2.1)
     ruby2_keywords (0.0.5)
     sanitize (6.1.0)
       crass (~> 1.0.2)
